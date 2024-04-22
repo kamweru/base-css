@@ -264,7 +264,6 @@ button {
   text-align: center;
   background-image: none;
   background: 0 0;
-  /* border: var(--border-width) var(--border-style) transparent; */
   pointer-events: auto;
   cursor: pointer;
   -webkit-user-select: none; /* Safari */
