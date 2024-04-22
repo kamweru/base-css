@@ -1,0 +1,100 @@
+:root {
+  --color-border: 66 66 66;
+  --border-color-disabled: 66 66 66;
+  --hover-bg: 20 20 20;
+  --hover-color: 60 137 232;
+  --hover-border-color: 60 137 232;
+  --active-bg: 20 20 20;
+  --active-color: 21 84 173;
+  --active-border-color: 21 84 173;
+  --color-border-secondary: 48 48 48;
+  --color-primary-bg: 17 26 44;
+  --color-primary-bg-hover: 17 37 69;
+  --color-primary-border: 21 50 91;
+  --color-primary-border-hover: 21 65 126;
+  --color-primary-hover: 60 137 232;
+  --color-primary-active: 21 84 173;
+  --color-primary-text-hover: 60 137 232;
+  --color-primary-text: 22 104 220;
+  --color-primary-text-active: 21 84 173;
+  --color-success-bg: 22 35 18;
+  --color-success-bg-hover: 29 55 18;
+  --color-success-border: 39 73 22;
+  --color-success-border-hover: 48 99 23;
+  --color-success-hover: 48 99 23;
+  --color-success-active: 60 134 24;
+  --color-success-text-hover: 106 190 57;
+  --color-success-text: 73 170 25;
+  --color-success-text-active: 60 134 24;
+  --color-error-bg: 44 22 24;
+  --color-error-bg-hover: 69 29 31;
+  --color-error-border: 91 37 38;
+  --color-error-border-hover: 126 46 47;
+  --color-error-hover: 232 110 107;
+  --color-error-active: 173 57 58;
+  --color-error-text-hover: 232 110 107;
+  --color-error-text: 220 68 70;
+  --color-error-text-active: 173 57 58;
+  --color-warning-bg: 43 33 17;
+  --color-warning-bg-hover: 68 49 17;
+  --color-warning-border: 89 66 20;
+  --color-warning-border-hover: 124 89 20;
+  --color-warning-hover: 124 89 20;
+  --color-warning-active: 170 119 20;
+  --color-warning-text-hover: 232 179 57;
+  --color-warning-text: 216 150 20;
+  --color-warning-text-active: 170 119 20;
+  --color-info-bg: 17 26 44;
+  --color-info-bg-hover: 17 37 69;
+  --color-info-border: 21 50 91;
+  --color-info-border-hover: 21 65 126;
+  --color-info-hover: 21 65 126;
+  --color-info-active: 21 84 173;
+  --color-info-text-hover: 60 137 232;
+  --color-info-text: 22 104 220;
+  --color-info-text-active: 21 84 173;
+  --color-link-hover: 21 65 126;
+  --color-link-active: 21 84 173;
+}
+.new-btn {
+  background-color: rgb(var(--color-primary-bg));
+  color: rgb(var(--color-primary-text));
+  border: 1px solid rgb(var(--color-primary-border));
+}
+.new-btn:hover {
+  background-color: rgb(var(--color-primary-bg-hover));
+  color: rgb(var(--color-primary-text-hover));
+  border: 1px solid rgb(var(--color-primary-border-hover));
+}
+.new-btn.success {
+  background-color: rgb(var(--color-success-bg));
+  color: rgb(var(--color-success-text));
+  border: 1px solid rgb(var(--color-success-border));
+}
+.new-btn.success:hover {
+  background-color: rgb(var(--color-success-bg-hover));
+  color: rgb(var(--color-success-text-hover));
+  border: 1px solid rgb(var(--color-success-border-hover));
+}
+
+cursor: pointer;
+position: relative;
+box-sizing: border-box;
+text-decoration: none;
+outline: none;
+user-select: none;
+appearance: none;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: var(--svelteui-radii-sm);
+height: 36px;
+padding: 0px 18px;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+font-weight: var(--svelteui-fontWeights-semibold);
+font-size: var(--svelteui-fontSizes-sm);
+line-height: 1;
+flex-grow: 0;
+width: fit-content;
