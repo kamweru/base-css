@@ -84,6 +84,9 @@
         class="obj:cover min-w:full"
       />
     </div>
+    <div>
+      <a href="/admin/form">admin form</a>
+    </div>
     {#if !sections.length}
       <div class="flex ai:center rel">
         <span class="flex:1 h:1 bg:rgb($(gray-5))"></span>
