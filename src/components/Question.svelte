@@ -29,6 +29,11 @@
         value: "dropdown",
         icon: "lucide:circle-chevron-down",
       },
+      {
+        title: "File Upload",
+        value: "fileupload",
+        icon: "bytesize:upload",
+      },
     ],
     collapsed = false,
     tabs = [
