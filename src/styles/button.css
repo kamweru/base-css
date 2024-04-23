@@ -44,11 +44,19 @@ button {
   border-color: rgb(var(--color-primary-active));
   color: rgb(var(--color-primary-text-active));
 }
+button:disabled,
 .btn:disabled,
+.btn.btn-success:disabled,
+.btn.btn-error:disabled,
+.btn.btn-warning:disabled,
+.btn.btn-info:disabled,
+.btn.btn-link:disabled,
 .btn-disabled {
   cursor: not-allowed;
   background-color: var(--color-bg-disabled);
+  border-color: rgb(var(--color-border));
   color: var(--color-text-disabled);
+  box-shadow: none;
 }
 .btn.btn-icon {
 }
@@ -59,6 +67,10 @@ button {
 .btn.btn-lg {
 }
 .btn.btn-lg.btn-icon {
+}
+.btn.btn-success {
+  border-color: rgb(var(--color-success-border));
+  color: rgb(var(--color-success-text));
 }
 .btn.btn-fill {
   background-color: rgb(var(--color-primary));
@@ -77,6 +89,7 @@ button {
   border-color: transparent;
 }
 .btn.btn-fill.btn-success {
+  background-color: rgb(var(--color-success));
 }
 .btn.btn-fill.btn-success:not(:disabled):not(.btn-disabled):active {
 }
