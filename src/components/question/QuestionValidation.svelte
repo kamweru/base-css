@@ -1,6 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-  import SelectSingleSearch from "./SelectSingleSearch.svelte";
+  import SelectSingleSearch from "../SelectSingleSearch.svelte";
   export let sections;
   export let question;
   export let index;
@@ -266,7 +266,7 @@
         label="Select validation rule"
       ></SelectSingleSearch>
     </div>
-    <button class="$btn-bg:$(gray-4) fill md" on:click={addRule}>
+    <button class="fill md" on:click={addRule}>
       <span class="lh:0 mr:8">
         <Icon icon="fluent:add-28-filled"></Icon>
       </span>

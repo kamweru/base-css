@@ -1,7 +1,8 @@
 <script>
+  import { appStore } from "../../lib/AppStore";
   import Icon from "@iconify/svelte";
-  import { uuid } from "../lib/utils";
-  import SelectSingleSearch from "./SelectSingleSearch.svelte";
+  import { uuid } from "../../lib/utils";
+  import SelectSingleSearch from "../SelectSingleSearch.svelte";
   export let sections;
   export let question;
   export let index;
@@ -30,15 +31,15 @@
     ],
     questions = [],
     questionCount = 0;
-  sections
-    .map((s) => s.questions)
-    .flat()
-    .map(({ id, value }) => {
-      if (id !== question.id) {
-        questions = [...questions, { title: value, id, value: id }];
-      }
-      questionCount++;
-    });
+  // $appStore.sections
+  //   .map((s) => s.questions)
+  //   .flat()
+  $appStore.questions.map(({ id, value }) => {
+    if (id !== question.id) {
+      questions = [...questions, { title: value, id, value: id }];
+    }
+    questionCount++;
+  });
   console.log(questions);
   // console
   //   .log
@@ -69,10 +70,12 @@
           question.skipLogic[skipLogicIndex].condition
         )
       ) {
-        let selectedQuestion = sections
-          .map((s) => s.questions)
-          .flat()
-          .find((q) => q.id === question.skipLogic[skipLogicIndex].questionId);
+        // $appStore.sections
+        //   .map((s) => s.questions)
+        //   .flat()
+        let selectedQuestion = $appStore.questions.find(
+          (q) => q.id === question.skipLogic[skipLogicIndex].questionId
+        );
         if (selectedQuestion && selectedQuestion.options) {
           question.skipLogic[skipLogicIndex].questionOptions =
             selectedQuestion.options;

@@ -15,6 +15,11 @@ export const routes = [
     view: "Admin",
   },
   {
+    path: "/admin/:id?",
+    name: "Admin",
+    view: "Admin",
+  },
+  {
     path: "/admin/form",
     name: "Admin Form",
     view: "Admin.Form",

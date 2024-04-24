@@ -19,4 +19,4 @@
   router.start();
 </script>
 
-<svelte:component this={page} />
+<svelte:component this={page} {params} />

@@ -27,3 +27,41 @@ export const capitalizeFirstLetter = (string) =>
 export const typeAction = (node, type) => {
   node.type = type;
 };
+
+export const formatDate = (timestamp) => {
+  // Create a new Date object from the timestamp
+  let date = new Date(timestamp);
+  // Get the day of the month
+  let day = date.getDate();
+  // Get the month name from an array of names
+  let monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = monthNames[date.getMonth()];
+  // Get the year
+  let year = date.getFullYear();
+  // Add the ordinal suffix to the day
+  let suffix = "";
+  if (day % 10 == 1 && day != 11) {
+    suffix = "st";
+  } else if (day % 10 == 2 && day != 12) {
+    suffix = "nd";
+  } else if (day % 10 == 3 && day != 13) {
+    suffix = "rd";
+  } else {
+    suffix = "th";
+  }
+  // Return the formatted date
+  return day + suffix + " " + month.substring(0, 3) + " " + year;
+};

@@ -4,7 +4,8 @@
 </script>
 
 <Main>
-  <div class="flex ai:center jc:center h:100%">
+  <div class="flex flex:col ai:center jc:center gap:16 h:100%">
+    <h3>Admin Login</h3>
     <button class="outline md">
       <span class="lh:0 mr:8">
         <Icon icon="flat-color-icons:google"></Icon>

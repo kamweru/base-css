@@ -1,4 +1,5 @@
 <script>
+  import { appStore } from "../lib/AppStore";
   import { addDocument } from "../lib/firebase";
   let folderName = "",
     loading = false;
@@ -11,9 +12,10 @@
         title: folderName,
         createdAt: Date.now(),
       },
-      () => {
+      (folder) => {
         loading = false;
         folderName = "";
+        $appStore.folders = [...$appStore.folders, folder];
       }
     );
   };
