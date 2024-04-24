@@ -1,4 +1,5 @@
 <script>
+  import router from "page";
   import { createEventDispatcher } from "svelte";
   import Icon from "@iconify/svelte";
   import SelectSingleSearch from "../components/SelectSingleSearch.svelte";
@@ -74,6 +75,7 @@
           on:click={() => {
             viewPath = "FoldersView";
             dispatch("changeView");
+            router.redirect("/admin");
           }}
         >
           <span class="lh:0 mr:8">
@@ -104,5 +106,5 @@
       {/each}
     </nav>
   </div>
-  <svelte:component this={view} />
+  <svelte:component this={view} {params} />
 </Main>

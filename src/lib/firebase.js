@@ -7,6 +7,7 @@ import {
   getDocs,
   getFirestore,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -41,4 +42,16 @@ export const getCollection = async (collectionName, callback) => {
   const snapshot = await getDocs(collectionRef);
   const documents = snapshot.docs.map((doc) => doc.data());
   callback(documents);
+};
+
+export const deleteDocument = async (collectionName, documentId, callback) => {
+  const docRef = doc(FIRESTORE, collectionName, documentId);
+  await deleteDoc(docRef).then(() => callback(documentId));
+};
+
+export const deleteMultipleDocuments = async (collectionName, documentIds) => {
+  const promises = documentIds.map((id) =>
+    deleteDoc(doc(FIRESTORE, collectionName, id))
+  );
+  return Promise.all(promises);
 };

@@ -4,6 +4,7 @@
   import Icon from "@iconify/svelte";
   import SelectSingleSearch from "./SelectSingleSearch.svelte";
   import { uuid } from "../lib/utils";
+  import { deleteDocument } from "../lib/firebase";
   export let question;
   export let index;
   export let questionIndex;
@@ -68,6 +69,14 @@
     toggleView = async () => {
       view = (await import(`./question/${currentTab.settingView}.svelte`))
         .default;
+    },
+    removeQuestion = () => {
+      $appStore.questions = $appStore.questions.filter(
+        (q) => q.id !== question.id
+      );
+      deleteDocument("questions", question.id, () => {
+        console.log("question deleted");
+      });
     };
   toggleView();
 </script>
@@ -97,7 +106,7 @@
         <Icon icon="mage:copy" class="f:18"></Icon>
       </span>
     </button>
-    <button class="$btn-bg:$(gray-8) outline sm icon">
+    <button class="$btn-bg:$(gray-8) outline sm icon" on:click={removeQuestion}>
       <span class="lh:0">
         <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
       </span>

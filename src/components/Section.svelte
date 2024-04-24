@@ -1,10 +1,19 @@
 <script>
+  import { collection } from "firebase/firestore";
+  import { appStore } from "../lib/AppStore";
   import Icon from "@iconify/svelte";
+  export let section;
   export let index = 1;
   export let total = 1;
-  export let title = "untitled section";
-  export let description = "";
   let collapsed = false;
+  const removeSection = () => {
+    let tempSection = { ...section };
+    $appStore.questions = $appStore.questions.filter(
+      (q) => q.sectionId !== section.id
+    );
+    $appStore.sections = $appStore.sections.filter((s) => s.id !== section.id);
+    console.log(tempSection);
+  };
 </script>
 
 <div class="b:1|solid|rgb($(border)) r:5">
@@ -16,7 +25,10 @@
           <Icon icon="mage:copy" class="f:18"></Icon>
         </span>
       </button>
-      <button class="$btn-bg:$(color-neutral) outline sm icon">
+      <button
+        class="$btn-bg:$(color-neutral) outline sm icon"
+        on:click={removeSection}
+      >
         <span class="lh:0">
           <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
         </span>
@@ -44,7 +56,7 @@
             id="title"
             class="underline lg"
             placeholder="Section title"
-            bind:value={title}
+            bind:value={section.title}
           />
         </div>
         <!-- <div>
@@ -76,7 +88,7 @@
             id="title"
             class="underline lg"
             placeholder="Section description (optional)"
-            bind:value={description}
+            bind:value={section.description}
           />
         </div>
       </div>

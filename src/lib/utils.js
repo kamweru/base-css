@@ -3,7 +3,7 @@
  * @param {number} n - The length of the string to generate.
  * @returns {string} - The generated hexadecimal string.
  */
-export let uuid = (n = 16) => {
+export let uuid = (n = 20) => {
   // Define the possible characters to use
   const DIGITS = "0123456789";
   const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

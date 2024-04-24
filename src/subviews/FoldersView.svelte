@@ -27,6 +27,18 @@
           return s;
         });
       });
+      getCollection("sections", (data) => {
+        appStore.update((s) => {
+          s.sections = data;
+          return s;
+        });
+      });
+      getCollection("questions", (data) => {
+        appStore.update((s) => {
+          s.questions = data;
+          return s;
+        });
+      });
     },
     changeView = () => {
       console.log(viewPath);
