@@ -1,7 +1,7 @@
 <script>
   import Icon from "@iconify/svelte";
-  import { uuid } from "../../lib/utils";
-  import SelectSingleSearch from "../SelectSingleSearch.svelte";
+  import { uuid } from "../lib/utils";
+  import SelectSingleSearch from "./SelectSingleSearch.svelte";
   export let sections;
   export let question;
   export let index;

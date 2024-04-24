@@ -1,8 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-  import Card from "../Card.svelte";
-  import SelectSingleSearch from "../SelectSingleSearch.svelte";
-  import { uuid } from "../../lib/utils";
+  import { uuid } from "../lib/utils";
   export let sections;
   export let index;
   export let questionIndex;
@@ -24,7 +22,7 @@
     };
 </script>
 
-<div class="flex flex:col gap:8 p:7|11">
+<div class="flex flex:col gap:8 p:16">
   <!--   <div>
     <div class="control-group">
       <input
@@ -58,7 +56,7 @@
   {:else}
     <div class="flex flex:col gap:8" id="options">
       {#each question.options as option, optionIndex}
-        <div class="flex ai:center p:7|11 r:4 gap:8">
+        <div class="flex ai:center r:4 gap:8">
           {#if question.questionType === "dropdown"}
             <span>{index + 1}.</span>
           {:else}
@@ -84,7 +82,7 @@
           </button>
         </div>
       {/each}
-      <div class="flex ai:center p:7|11 r:4 gap:8" id="add-option">
+      <div class="flex ai:center r:4 gap:8" id="add-option">
         {#if question.questionType === "select-one" || question.questionType === "multiple" || question.questionType === "dropdown"}
           <div class="flex ai:center gap:8">
             {#if question.questionType === "dropdown"}
@@ -108,9 +106,9 @@
           {#if question.questionType !== "dropdown"}
             <div class="flex ai:center gap:8">
               <span>or</span>
-              <button class="$btn-color:$(color-primary) link sm"
-                >add "Other"</button
-              >
+              <button class="$btn-color:$(color-primary) link md">
+                add "Other"
+              </button>
             </div>
           {/if}
         {/if}
@@ -122,12 +120,12 @@
   <div class="control-group">
     <input
       type="checkbox"
-      id="check-required"
+      id="switch-{question.id}"
       class="switch"
       value={question.validationRules.required}
       bind:checked={question.validationRules.required}
     />
-    <label for="check-required">Required</label>
+    <label for="switch-{question.id}">Required</label>
   </div>
   <!-- <button class="$btn-bg:$(gray-8) $btn-color:$(color-error) fill sm icon">
     <span class="lh:0">
@@ -142,20 +140,20 @@
     </span>
   </button> -->
   <div class="flex ai:center gap:16">
-    <button class="$btn-bg:$(color-neutral) outline sm icon">
+    <!-- <button class="$btn-bg:$(color-neutral) outline sm icon">
       <span class="lh:0">
         <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
       </span>
-    </button>
-    <div class="flex flex:col ai:center jc:center rel">
+    </button> -->
+    <div class=" rel">
       <button class="$btn-bg:$(color-neutral) text sm icon">
-        <span>
-          <Icon icon="line-md:arrow-up"></Icon>
+        <span class="lh:0">
+          <Icon icon="line-md:arrow-up" class="f:18"></Icon>
         </span>
       </button>
       <button class="$btn-bg:$(color-neutral) text sm icon">
-        <span>
-          <Icon icon="line-md:arrow-down"></Icon>
+        <span class="lh:0">
+          <Icon icon="line-md:arrow-down" class="f:18"></Icon>
         </span>
       </button>
     </div>

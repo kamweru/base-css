@@ -1,7 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-  import { capitalizeFirstLetter, typeAction } from "../../lib/utils";
-  import SelectSingleSearch from "../SelectSingleSearch.svelte";
+  import SelectSingleSearch from "./SelectSingleSearch.svelte";
   export let sections;
   export let question;
   export let index;

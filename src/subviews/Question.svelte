@@ -1,7 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-  import Card from "./Card.svelte";
-  import SelectSingleSearch from "./SelectSingleSearch.svelte";
+  import SelectSingleSearch from "../components/SelectSingleSearch.svelte";
   import { uuid } from "../lib/utils";
   import { fade } from "svelte/transition";
   //   export let currentView = "QuestionView";
@@ -50,7 +49,7 @@
       // question.currentView =
       question.currentView = currentTab.settingView;
       // async () => {
-      qView = (await import(`./question/${currentTab.settingView}.svelte`))
+      qView = (await import(`../components/${currentTab.settingView}.svelte`))
         .default;
       //   console.log("called from toggleView", sections);
       // };

@@ -1,5 +1,5 @@
 <script>
-  import { uuid } from "../../lib/utils";
+  import { uuid } from "../lib/utils";
   export let sections;
   export let index;
   export let questionIndex;
