@@ -3,10 +3,7 @@
   import Icon from "@iconify/svelte";
   import { uuid } from "../../lib/utils";
   import SelectSingleSearch from "../SelectSingleSearch.svelte";
-  export let sections;
   export let question;
-  export let index;
-  export let questionIndex;
   let conditions = [
       {
         id: uuid(),
@@ -41,6 +38,7 @@
     questionCount++;
   });
   console.log(questions);
+  // , questionIndex = $appStore.questions.findIndex((q) => q.id === question.id);
   // console
   //   .log
   //   // questions.map(({ id, value }) => ({ title: value, id, value }))

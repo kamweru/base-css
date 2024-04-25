@@ -1,6 +1,7 @@
 <script>
   import { appStore } from "../lib/AppStore";
   import { addDocument } from "../lib/firebase";
+  export let open;
   let folderName = "",
     loading = false;
   const addFolder = () => {
@@ -16,6 +17,7 @@
         loading = false;
         folderName = "";
         $appStore.folders = [...$appStore.folders, folder];
+        open = false;
       }
     );
   };

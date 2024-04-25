@@ -2,10 +2,12 @@
   import Icon from "@iconify/svelte";
   import { uuid } from "../../lib/utils";
   import { appStore } from "../../lib/AppStore";
-  export let questionIndex;
   export let question;
   const addOption = () => {
-      let id = uuid();
+      let id = uuid(),
+        questionIndex = $appStore.questions.findIndex(
+          (q) => q.id === question.id
+        );
       $appStore.questions[questionIndex].options = [
         ...$appStore.questions[questionIndex].options,
         {
@@ -14,11 +16,28 @@
           value: `Option ${$appStore.questions[questionIndex].options.length + 1}`,
         },
       ];
+      appStore.updateData({
+        collectionName: "questions",
+        document: $appStore.questions[questionIndex],
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     },
     removeOption = (option) => {
+      let questionIndex = $appStore.questions.findIndex(
+        (q) => q.id === question.id
+      );
       $appStore.questions[questionIndex].options = $appStore.questions[
         questionIndex
       ].options.filter((o) => o.id !== option.id);
+      appStore.updateData({
+        collectionName: "questions",
+        document: $appStore.questions[questionIndex],
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     },
     callFocus = (input) => {
       input.focus();

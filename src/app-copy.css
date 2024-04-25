@@ -7,7 +7,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --yellow: 239 175 0;
+  --beige: 251 229 183;
   --button-default-bg: 255 255 255;
   --button-default-hover-bg: 255 255 255;
   --button-default-border-color: 0 0 0;
@@ -314,21 +314,21 @@ button.dashed:hover {
 }
 button.text {
   background-color: transparent;
-  color: rgb(var(--btn-color));
+  color: rgb(var(--text-strong));
   /* rgb(var(--surface)); */
 }
 button.text:hover {
-  background-color: rgb(var(--btn-bg) / 0.72);
+  background-color: rgb(var(--color-border));
   /* background-color: rgb(var(--btn-bg) / 0.12); */
   /* color: rgb(var(--btn-bg)); */
 }
 button.link {
   background-color: transparent;
-  color: rgb(var(--btn-color));
+  color: rgb(var(--color-primary-text));
   /* rgb(var(--surface)); */
 }
 button.link:hover {
-  color: rgb(var(--btn-color) / 0.72);
+  color: rgb(var(--color-primary-text-hover));
   /* background-color: rgb(var(--btn-bg) / 0.12); */
   /* color: rgb(var(--btn-bg)); */
 }

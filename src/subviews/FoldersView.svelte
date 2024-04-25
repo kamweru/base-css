@@ -8,43 +8,24 @@
   import Header from "../layout/Header.svelte";
   import Main from "../layout/Main.svelte";
   import Icon from "@iconify/svelte";
-  import { getCollection } from "../lib/firebase";
   export let viewPath;
   let open = false,
     currentForm = AddFolder,
     folderId;
   const dispatch = createEventDispatcher(),
-    fetchData = async () => {
-      getCollection("folders", (data) => {
-        appStore.update((s) => {
-          s.folders = data;
-          return s;
-        });
-      });
-      getCollection("forms", (data) => {
-        appStore.update((s) => {
-          s.forms = data;
-          return s;
-        });
-      });
-      getCollection("sections", (data) => {
-        appStore.update((s) => {
-          s.sections = data;
-          return s;
-        });
-      });
-      getCollection("questions", (data) => {
-        appStore.update((s) => {
-          s.questions = data;
-          return s;
-        });
-      });
-    },
     changeView = () => {
-      console.log(viewPath);
+      // console.log(viewPath);
       dispatch("changeView");
-    };
-  fetchData();
+    },
+    onChange = (id) =>
+      appStore.updateData({
+        collectionName: "folders",
+        document: $appStore.folders.find((f) => f.id === id),
+        callback: (data) => {
+          console.log(data);
+        },
+      });
+  //sE#QfJFuf@Hy5yCa
 </script>
 
 <Main>
@@ -72,13 +53,24 @@
       </div>
     </div>
   </Header>
-  {#if $appStore.folders && $appStore.folders.length > 0}
+  {#if $appStore.loading}
+    <div class="flex ai:center jc:center h:100%">
+      <span class="loader"></span>
+    </div>
+  {:else if $appStore.folders && $appStore.folders.length > 0}
     <div class="flex flex:col gap:16">
-      {#each $appStore?.folders as folder}
+      {#each $appStore.folders as folder}
         <div class="flex ai:center jc:space-between py:16">
           <div class="flex ai:center gap:16">
             <Icon icon="iconoir:folder"></Icon>
-            <div>{folder.title}</div>
+            <div class="control-group">
+              <input
+                type="text"
+                bind:value={folder.title}
+                class="underline md"
+                on:change={() => onChange(folder.id)}
+              />
+            </div>
           </div>
 
           <button
@@ -109,6 +101,7 @@
     </div>
   {/if}
   <Modal bind:open>
-    <svelte:component this={currentForm} bind:folderId></svelte:component>
+    <svelte:component this={currentForm} bind:folderId bind:open
+    ></svelte:component>
   </Modal>
 </Main>

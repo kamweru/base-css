@@ -69,17 +69,57 @@
       });
       return { sections, questions };
     });
+  let MmuLogo =
+      "https://students-personal-details-form.web.app/static/images/mmu-logo-download-C9wO1TvD.webp",
+    collapsed = false;
   // console.log($formStore);
 </script>
 
 <div class="flex flex:col gap:16 mt:16">
-  <div class="flex">
-    <img
-      src="https://f4.bcbits.com/img/0014753839_100.png"
-      alt=""
-      class="obj:cover min-w:full"
-    />
+  <div class="b:1|solid|rgb($(border)) r:5">
+    <div class="flex ai:center jc:space-between p:7|11">
+      <div>Form Header</div>
+      <div class="flex ai:center gap:8">
+        <button class="$btn-bg:$(color-neutral) outline sm icon">
+          <span class="lh:0">
+            <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
+          </span>
+        </button>
+        <button
+          class="$btn-bg:$(gray-8) outline sm icon"
+          on:click={() => (collapsed = !collapsed)}
+        >
+          <span class="lh:0 chevron-down" class:active={!collapsed}>
+            <Icon icon="fluent:chevron-down-24-filled" class="f:18"></Icon>
+          </span>
+        </button>
+      </div>
+    </div>
+    {#if !collapsed}
+      <div class="p:16 bg:rgb($(beige)) r:5" contenteditable="true">
+        <div class="mb:8">
+          <div
+            class="mx:auto h:120 mb:8 aspect:1/1 p:20 bg:transparent|url({MmuLogo})|no-repeat|top|left/cover bg:url({MmuLogo})!"
+          ></div>
+        </div>
+        <div class="mb:8 text:center flex flex:col gap:8">
+          <h1 class="f:30">MAASAI MARA UNIVERSITY</h1>
+          <h2>
+            <div>OFFICE OF THE REGISTRAR</div>
+            <div>(ACADEMIC AFFAIRS)</div>
+          </h2>
+          <h3>STUDENT’S PERSONAL DETAILS FORM</h3>
+          <p class="f:16 text:justify t-balance">
+            Information provided in this form is intended to assist the Office
+            of the Registrar Academic to understand the student better. It will
+            be used for the purposes of improving the student’s welfare while at
+            the University.
+          </p>
+        </div>
+      </div>
+    {/if}
   </div>
+
   {#if $formStore.sections && $formStore.sections.length > 0}
     {#each $formStore.sections as section, index}
       <Section index={index + 1} total={$formStore.sections.length} {section}
@@ -87,7 +127,7 @@
       {#if $formStore.questions && $formStore.questions.length > 0}
         {#each $formStore.questions as question, questionIndex}
           {#if question.sectionId === section.id}
-            <Question {index} {question} {questionIndex}></Question>
+            <Question {question}></Question>
           {/if}
         {/each}
         <div class="flex ai:center rel my:8">

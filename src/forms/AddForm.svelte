@@ -2,6 +2,7 @@
   import { appStore } from "../lib/AppStore";
   import { addDocument } from "../lib/firebase";
   export let folderId;
+  export let open;
   let formName = "",
     formDescription = "",
     loading = false;
@@ -21,6 +22,7 @@
         formName = "";
         formDescription = "";
         $appStore.forms = [...$appStore.forms, formData];
+        open = false;
       }
     );
   };

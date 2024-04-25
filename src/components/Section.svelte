@@ -7,13 +7,24 @@
   export let total = 1;
   let collapsed = false;
   const removeSection = () => {
-    let tempSection = { ...section };
-    $appStore.questions = $appStore.questions.filter(
-      (q) => q.sectionId !== section.id
-    );
-    $appStore.sections = $appStore.sections.filter((s) => s.id !== section.id);
-    console.log(tempSection);
-  };
+      // let tempSection = { ...section };
+      $appStore.questions = $appStore.questions.filter(
+        (q) => q.sectionId !== section.id
+      );
+      $appStore.sections = $appStore.sections.filter(
+        (s) => s.id !== section.id
+      );
+      // console.log(tempSection);
+    },
+    onChange = () => {
+      appStore.updateData({
+        collectionName: "sections",
+        document: section,
+        callback: (data) => {
+          console.log(data);
+        },
+      });
+    };
 </script>
 
 <div class="b:1|solid|rgb($(border)) r:5">
@@ -57,6 +68,7 @@
             class="underline lg"
             placeholder="Section title"
             bind:value={section.title}
+            on:change={onChange}
           />
         </div>
         <!-- <div>

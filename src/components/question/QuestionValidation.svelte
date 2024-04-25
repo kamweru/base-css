@@ -1,10 +1,7 @@
 <script>
   import Icon from "@iconify/svelte";
   import SelectSingleSearch from "../SelectSingleSearch.svelte";
-  export let sections;
   export let question;
-  export let index;
-  export let questionIndex;
   let newRules = {
       required: {
         value: "required",
@@ -183,6 +180,7 @@
       );
     },
     removeRule = (key) => {
+      //, questionIndex = $appStore.questions.findIndex((q) => q.id === question.id);
       // let tmpRules = delete question.validationRules[key];
       // console.log(key);
       // question.validationRules[key] = null;

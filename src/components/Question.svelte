@@ -6,8 +6,6 @@
   import { uuid } from "../lib/utils";
   import { deleteDocument } from "../lib/firebase";
   export let question;
-  export let index;
-  export let questionIndex;
   let collapsed = false,
     questionTypes = [
       { title: "Short answer", value: "short", icon: "mdi:text-short" },
@@ -44,10 +42,15 @@
     ],
     currentTab = tabs[0],
     view;
-  const onChange = (sectionIndex, questionIndex, questionType) => {
-      if (["select-one", "multiple", "dropdown"].includes(questionType)) {
+  const onChange = () => {
+      let questionIndex = $appStore.questions.findIndex(
+        (q) => q.id === question.id
+      );
+      if (
+        ["select-one", "multiple", "dropdown"].includes(question.questionType)
+      ) {
         $appStore.questions[questionIndex]["questionIcon"] =
-          questionType === "select-one"
+          question.questionType === "select-one"
             ? "eva:radio-button-off-fill"
             : "carbon:checkbox";
         $appStore.questions[questionIndex]["options"] = [
@@ -58,13 +61,26 @@
           },
         ];
       } else {
-        if ($appStore.questions[questionIndex]["questionIcon"]) {
+        if (
+          $appStore.questions[questionIndex] &&
+          $appStore.questions[questionIndex]["questionIcon"]
+        ) {
           delete $appStore.questions[questionIndex]["questionIcon"];
         }
-        if ($appStore.questions[questionIndex]["options"]) {
+        if (
+          $appStore.questions[questionIndex] &&
+          $appStore.questions[questionIndex]["options"]
+        ) {
           delete $appStore.questions[questionIndex]["options"];
         }
       }
+      appStore.updateData({
+        collectionName: "questions",
+        document: $appStore.questions[questionIndex],
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     },
     toggleView = async () => {
       view = (await import(`./question/${currentTab.settingView}.svelte`))
@@ -95,8 +111,7 @@
       <SelectSingleSearch
         options={questionTypes}
         id={question.id}
-        on:onChange={() =>
-          onChange(index, questionIndex, question.questionType)}
+        on:onChange={onChange}
         bind:selected={question.questionType}
         label="Type of answer"
       ></SelectSingleSearch>
@@ -139,12 +154,7 @@
         {/each}
       </nav>
       <div transition:fade={{ duration: 150 }}>
-        <svelte:component
-          this={view}
-          bind:question
-          bind:index
-          bind:questionIndex
-        />
+        <svelte:component this={view} bind:question />
       </div>
     </div>
   {/if}

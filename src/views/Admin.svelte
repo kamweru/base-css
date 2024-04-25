@@ -4,7 +4,6 @@
     view;
   const changeView = async () => {
     view = (await import(`../subviews/${viewPath}.svelte`)).default;
-    console.log(params, viewPath);
   };
   changeView();
 </script>

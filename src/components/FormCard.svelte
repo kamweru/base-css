@@ -22,7 +22,7 @@
       />
     </div>
     <div class="p:16">
-      <div>{form.title}</div>
+      <div class="lines:1">{form.title}</div>
       <div class="color:rgb($(text-light)) f:14 mt:4">
         {formatDate(form.createdAt)}
       </div>
@@ -30,11 +30,11 @@
     <div class="flex ai:center jc:space-between bt:1|solid|rgb($(border)) p:8">
       <div>
         <div class="color:rgb($(text-light))">Responses</div>
-        <div class=" f:14">211</div>
+        <div class=" f:14 mt:4">211</div>
       </div>
       <div>
         <div class="color:rgb($(text-light))">Completed</div>
-        <div class=" f:14">211</div>
+        <div class=" f:14 mt:4">211</div>
       </div>
     </div>
   </a>
