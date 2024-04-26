@@ -101,7 +101,6 @@
   <Header slot="header">
     <div class="w:xs mx:auto">
       <div class="flex ai:center jc:space-between gap:16">
-        <!-- <div> -->
         <div class="flex ai:center gap:16">
           <button
             class="link md"
@@ -116,7 +115,6 @@
             </span>
             All forms
           </button>
-
           <div class="control-group">
             <input
               type="text"

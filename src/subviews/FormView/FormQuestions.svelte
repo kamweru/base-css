@@ -8,6 +8,11 @@
   import { derived } from "svelte/store";
   export let params;
   // let section
+  let sections = [],
+    questions = [],
+    MmuLogo =
+      "https://students-personal-details-form.web.app/static/images/mmu-logo-download-C9wO1TvD.webp",
+    collapsed = false;
   const addSection = () => {
       let section = {
         id: uuid(),
@@ -15,11 +20,14 @@
         title: "untitled section",
         description: "",
       };
-      appStore.update((s) => {
-        if (!s.sections) s.sections = [];
-        s.sections = [...s.sections, section];
-        return s;
-      });
+      $appStore.sections = [...$appStore.sections, section];
+      $appStore.update.items = "sections";
+      $appStore.update.updated = false;
+      // appStore.update((s) => {
+      //   if (!s.sections) s.sections = [];
+      //   s.sections = [...s.sections, section];
+      //   return s;
+      // });
       addDocument("sections", section, () => {
         console.log("section added");
       });
@@ -27,6 +35,7 @@
     addQuestion = (section) => {
       let question = {
         id: uuid(),
+        formId: params.id,
         sectionId: section.id,
         type: "input",
         dataType: "text",
@@ -45,33 +54,53 @@
           messages: [],
         },
       };
-      appStore.update((s) => {
-        if (!s.questions) s.questions = [];
-        s.questions = [...s.questions, question];
-        return s;
-      });
+      $appStore.questions = [...$appStore.questions, question];
+      $appStore.update.items = "questions";
+      $appStore.update.updated = false;
+      // appStore.update((s) => {
+      //   if (!s.questions) s.questions = [];
+      //   s.questions = [...s.questions, question];
+      //   return s;
+      // });
       addDocument("questions", question, () => {
         console.log("question added");
       });
-    },
-    formStore = derived([appStore], ([$appStore]) => {
-      let sections = [],
-        questions = [];
+    };
+  $: if (!$appStore.update.updated) {
+    if ($appStore.update.items === "sections") {
+      sections = [];
       $appStore.sections.forEach((s) => {
         if (s.formId === params.id) {
-          sections.push(s);
-          $appStore.questions.forEach((q) => {
-            if (q.sectionId === s.id) {
-              questions.push(q);
-            }
-          });
+          sections = [...sections, s];
         }
       });
-      return { sections, questions };
-    });
-  let MmuLogo =
-      "https://students-personal-details-form.web.app/static/images/mmu-logo-download-C9wO1TvD.webp",
-    collapsed = false;
+      $appStore.update.items = "";
+    }
+    if ($appStore.update.items === "questions") {
+      questions = [];
+      $appStore.questions.forEach((q) => {
+        if (q.formId === params.id) {
+          questions = [...questions, q];
+        }
+      });
+      $appStore.update.items = "skipLogic";
+    }
+    $appStore.update.updated = true;
+  }
+
+  $appStore.sections.forEach((s) => {
+    if (s.formId === params.id) {
+      sections = [...sections, s];
+    }
+  });
+  $appStore.questions.forEach((q) => {
+    if (q.formId === params.id) {
+      questions = [...questions, q];
+    }
+  });
+  // $: if (!$appStore.update.updated) {
+  //   console.log($appStore.update);
+  // }
   // console.log($formStore);
 </script>
 
@@ -120,14 +149,13 @@
     {/if}
   </div>
 
-  {#if $formStore.sections && $formStore.sections.length > 0}
-    {#each $formStore.sections as section, index}
-      <Section index={index + 1} total={$formStore.sections.length} {section}
-      ></Section>
-      {#if $formStore.questions && $formStore.questions.length > 0}
-        {#each $formStore.questions as question, questionIndex}
+  {#if sections && sections.length > 0}
+    {#each sections as section, index}
+      <Section index={index + 1} total={sections.length} bind:section></Section>
+      {#if questions && questions.length > 0}
+        {#each questions as question}
           {#if question.sectionId === section.id}
-            <Question {question}></Question>
+            <Question bind:question></Question>
           {/if}
         {/each}
         <div class="flex ai:center rel my:8">

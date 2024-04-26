@@ -37,8 +37,17 @@
         settingView: "AnswerView",
         id: uuid(),
       },
+      {
+        title: "Answer Settings",
+        settingView: "AnswerSettings",
+        id: uuid(),
+      },
       { title: "Skip Logic", settingView: "QuestionConditions", id: uuid() },
-      { title: "Validation", settingView: "QuestionValidation", id: uuid() },
+      {
+        title: "Validation Criteria",
+        settingView: "QuestionValidation",
+        id: uuid(),
+      },
     ],
     currentTab = tabs[0],
     view;
@@ -90,8 +99,26 @@
       $appStore.questions = $appStore.questions.filter(
         (q) => q.id !== question.id
       );
+      // $appStore.questions.splice(
+      //   $appStore.questions.findIndex((q) => q.id === question.id),
+      //   1
+      // );
+      $appStore.update.items = "questions";
+      $appStore.update.updated = false;
       deleteDocument("questions", question.id, () => {
         console.log("question deleted");
+      });
+    },
+    onQuestionInputChange = () => {
+      let questionIndex = $appStore.questions.findIndex(
+        (q) => q.id === question.id
+      );
+      appStore.updateData({
+        collectionName: "questions",
+        document: $appStore.questions[questionIndex],
+        callback: (data) => {
+          console.log(data);
+        },
       });
     };
   toggleView();
@@ -105,6 +132,7 @@
         class="outline md"
         placeholder={question.placeholder}
         bind:value={question.value}
+        on:change={onQuestionInputChange}
       />
     </div>
     <div class="rel">
@@ -136,7 +164,6 @@
     </button>
   </div>
   {#if !collapsed}
-    <!-- transition:fade={{ duration: 150 }} -->
     <div class="bt:1|solid|rgb($(border))">
       <nav class="tabs-wrapper">
         {#each tabs as { title, id }}

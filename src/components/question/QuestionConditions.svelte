@@ -28,27 +28,37 @@
     ],
     questions = [],
     questionCount = 0;
-  // $appStore.sections
-  //   .map((s) => s.questions)
-  //   .flat()
-  $appStore.questions.map(({ id, value }) => {
-    if (id !== question.id) {
+  $appStore.questions.map(({ id, value, formId }) => {
+    if (id !== question.id && question.formId === formId) {
       questions = [...questions, { title: value, id, value: id }];
     }
-    questionCount++;
+    // questionCount++;
   });
-  console.log(questions);
-  // , questionIndex = $appStore.questions.findIndex((q) => q.id === question.id);
-  // console
-  //   .log
-  //   // questions.map(({ id, value }) => ({ title: value, id, value }))
-  //   // sections
-  //   //   .map((s) => s.questions)).map(({ id, title }) => ({ title, id, value: title })
-  //   ();
+  questionCount = questions.length;
+  $: if ($appStore.update.items === "skipLogic") {
+    $appStore.questions.map(({ id, value, formId }) => {
+      if (id !== question.id && question.formId === formId) {
+        if (questions.length) {
+          if (!questions.map((q) => q.id).includes(id)) {
+            questions = [...questions, { title: value, id, value: id }];
+            console.log("added in many", questions.length);
+          }
+        } else {
+          questions = [{ title: value, id, value: id }];
+          console.log("added", questions.length);
+        }
+      }
+    });
+    questionCount = questions.length;
+    $appStore.update.items = "";
+    console.log(questionCount + " from skip logic", questions);
+  }
+  // console.log(questionCount);
   const addCondition = () => {
       let tmpCondition = {
+        id: uuid(),
         questionId: "",
-        condition: "",
+        condition: conditions[0].value,
         value: "",
         questionOptions: [],
         questionOptionId: "",
@@ -58,8 +68,25 @@
       } else {
         question["skipLogic"] = [...question["skipLogic"], tmpCondition];
       }
-      // console.log(question.skipLogic);
-      // questionOptionId: "",
+      appStore.updateData({
+        collectionName: "questions",
+        document: question,
+        callback: (data) => {
+          console.log(data);
+        },
+      });
+    },
+    removeCondition = (skipLogic) => {
+      question.skipLogic = question.skipLogic.filter(
+        (s) => s.id !== skipLogic.id
+      );
+      appStore.updateData({
+        collectionName: "questions",
+        document: question,
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     },
     onChange = (item, skipLogicIndex) => {
       if (
@@ -68,9 +95,6 @@
           question.skipLogic[skipLogicIndex].condition
         )
       ) {
-        // $appStore.sections
-        //   .map((s) => s.questions)
-        //   .flat()
         let selectedQuestion = $appStore.questions.find(
           (q) => q.id === question.skipLogic[skipLogicIndex].questionId
         );
@@ -90,48 +114,47 @@
         ].questionOptions.find(
           (o) => o.value === question.skipLogic[skipLogicIndex].value
         );
-        question.skipLogic[skipLogicIndex].questionOptionId = "meh";
-        // question.skipLogic[skipLogicIndex].questionOptionId =
-        //   selectedQuestionOption.id;
-        // question.skipLogic[skipLogicIndex].questionOptions.find(
-        //   (o) => o.value === question.skipLogic[skipLogicIndex].value
-        // ).id;
-        console.log(
-          question.skipLogic[skipLogicIndex].questionOptionId,
-          selectedQuestionOption.id
-        );
+        question.skipLogic[skipLogicIndex].questionOptionId =
+          selectedQuestionOption.id;
       }
-      // questionOptions = sections
-      //   .map((s) => s.questions)
-      //   .flat()
-      //   .find((q) => q.id === seletedQuestion).options;
-      // console.log("questionOptions", questionOptions);
+      appStore.updateData({
+        collectionName: "questions",
+        document: question,
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     };
 </script>
 
 <div class="flex flex:col gap:8 p:7|11">
   {#if question.skipLogic && question.skipLogic.length > 0}
     <div class="color:rgb($(text-light)) f:14">
-      This question will only be displayed if the following conditions apply
+      This question will only be displayed if the following conditions apply {questionCount}
     </div>
     {#each question.skipLogic as skipLogic, skipLogicIndex}
       <div class="flex flex:col gap:8 b:1|solid|rgb($(border)) p:7|11 r:5">
         <div class="flex ai:center jc:space-between p:4">
           <div class="color:rgb($(text-light)) f:14">Condition</div>
-          <button class="outline sm icon">
+          <button
+            class="outline sm icon"
+            on:click={() => removeCondition(skipLogic)}
+          >
             <span class="lh:0">
               <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
             </span>
           </button>
         </div>
-        <div>
-          <SelectSingleSearch
-            options={questions}
-            bind:selected={skipLogic.questionId}
-            on:onChange={() => onChange("question", skipLogicIndex)}
-            label="Select question from list"
-          ></SelectSingleSearch>
-        </div>
+        {#if questionCount > 1}
+          <div>
+            <SelectSingleSearch
+              options={questions}
+              bind:selected={skipLogic.questionId}
+              on:onChange={() => onChange("question", skipLogicIndex)}
+              label="Select question from list"
+            ></SelectSingleSearch>
+          </div>
+        {/if}
         {#if skipLogic.questionId}
           <div>
             <SelectSingleSearch
@@ -141,6 +164,8 @@
               on:onChange={() => onChange("condition", skipLogicIndex)}
             ></SelectSingleSearch>
           </div>
+        {/if}
+        {#if skipLogic.condition && ["(=) equal to", "(!=) not equal to"].includes(skipLogic.condition)}
           {#if skipLogic.questionOptions && skipLogic.questionOptions.length}
             <div>
               <SelectSingleSearch
@@ -161,15 +186,6 @@
             </div>
           {/if}
         {/if}
-        <!--  {#if seletedQuestion && questionOptions && questionOptions.length > 0 && ["(=) equal to", "(!=) not equal to"].includes(condition)}
-        <div>
-          <SelectSingleSearch
-            options={questionOptions}
-            label="Select option from list"
-            bind:selected={selectedQuestionOption}
-          ></SelectSingleSearch>
-        </div>
-      {/if} -->
       </div>
     {/each}
   {/if}
@@ -182,7 +198,7 @@
         <span class="lh:0 mr:8">
           <Icon icon="fluent:add-28-filled"></Icon>
         </span>
-        Add condition
+        Add conditional logic
       </button>
     {/if}
     {#if questionCount === 1 || questionCount === 0}
@@ -190,15 +206,5 @@
         Please add atleast two questions
       </div>
     {/if}
-    <!-- <span class="flex:1 h:1 bg:rgb($(gray-5))"></span>
-    <span class="px:8">
-      <button class="$btn-bg:$(gray-4) dashed md">
-        <span class="lh:0 mr:8">
-          <Icon icon="fluent:add-28-filled"></Icon>
-        </span>
-        Add condition
-      </button>
-    </span>
-    <span class="flex:1 h:1 bg:rgb($(gray-5))"></span> -->
   </div>
 </div>

@@ -10,7 +10,17 @@ export const routes = [
     view: "HomeOld",
   },
   {
+    path: "/form/:id?/:action?",
+    name: "View Form",
+    view: "ViewForm",
+  },
+  {
     path: "/admin",
+    name: "Admin",
+    view: "Admin",
+  },
+  {
+    path: "/admin/form/:id?/:action?",
     name: "Admin",
     view: "Admin",
   },

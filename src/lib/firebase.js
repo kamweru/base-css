@@ -9,6 +9,7 @@ import {
   setDoc,
   deleteDoc,
   query,
+  where,
   onSnapshot,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -51,7 +52,20 @@ export const getCollection = async (collectionName, callback) => {
   const documents = snapshot.docs.map((doc) => doc.data());
   callback(documents);
 };
-
+export const queryCollection = async (
+  collectionName,
+  queryPayload,
+  callback
+) => {
+  const collectionRef = collection(FIRESTORE, collectionName),
+    q = query(
+      collectionRef,
+      where(queryPayload.field, queryPayload.operator, queryPayload.value)
+    );
+  const snapshot = await getDocs(q);
+  const documents = snapshot.docs.map((doc) => doc.data());
+  callback(documents);
+};
 export const deleteDocument = async (collectionName, documentId, callback) => {
   const docRef = doc(FIRESTORE, collectionName, documentId);
   await deleteDoc(docRef).then(() => callback(documentId));

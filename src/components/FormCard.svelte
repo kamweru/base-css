@@ -8,12 +8,12 @@
     changeView = () => {
       viewPath = "FormView";
       dispatch("changeView");
-      router.redirect(`/admin/${form.id}`);
+      router.redirect(`/admin/form/${form.id}`);
     };
 </script>
 
 <div class="flex flex:col b:1|solid|rgb($(border)) r:5">
-  <a href="#" on:click|preventDefault={changeView}>
+  <a href="/admin/form/{form.id}" on:click|preventDefault={changeView}>
     <div class="flex p:8 h:120">
       <img
         src="https://f4.bcbits.com/img/0014753839_100.png"

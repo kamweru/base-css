@@ -2,6 +2,7 @@
   import { collection } from "firebase/firestore";
   import { appStore } from "../lib/AppStore";
   import Icon from "@iconify/svelte";
+  import { deleteDocument } from "../lib/firebase";
   export let section;
   export let index = 1;
   export let total = 1;
@@ -14,6 +15,11 @@
       $appStore.sections = $appStore.sections.filter(
         (s) => s.id !== section.id
       );
+      $appStore.update.items = "sections";
+      $appStore.update.updated = false;
+      deleteDocument("sections", section.id, () => {
+        console.log("section deleted");
+      });
       // console.log(tempSection);
     },
     onChange = () => {

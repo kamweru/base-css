@@ -42,32 +42,18 @@
     callFocus = (input) => {
       input.focus();
       input.select();
+    },
+    toggleRequired = (e) => {
+      let isChecked = e.target.checked;
+      if (question.validationRules && !question.validationRules.required) {
+        question.validationRules.required = isChecked;
+      } else {
+        question.validationRules.required = isChecked;
+      }
     };
 </script>
 
 <div class="flex flex:col gap:8 p:16">
-  <!--   <div>
-    <div class="control-group">
-      <input
-        type="checkbox"
-        id="check-required"
-        class="switch"
-        value={question.validationRules.required}
-        bind:checked={question.validationRules.required}
-      />
-      <label for="check-required">Required</label>
-    </div>
-  </div>
- <div class="control-group">
-    <input
-      type="text"
-      name="title"
-      id="title"
-      class="underline lg"
-      placeholder={question.placeholder}
-      bind:value={question.title}
-    />
-  </div> -->
   {#if question.questionType === "short" || question.questionType === "long"}
     <div class="control-group">
       <input
@@ -150,27 +136,11 @@
       class="switch"
       value={question.validationRules.required}
       bind:checked={question.validationRules.required}
+      on:change={toggleRequired}
     />
     <label for="switch-{question.id}">Required</label>
   </div>
-  <!-- <button class="$btn-bg:$(gray-8) $btn-color:$(color-error) fill sm icon">
-    <span class="lh:0">
-      <Icon icon="mage:copy" class="f:18"></Icon>
-    </span>
-  </button>
-  <button
-    class="$btn-bg:$(color-error) $btn-color:$(color-error) ml:auto outline sm icon"
-  >
-    <span class="lh:0">
-      <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
-    </span>
-  </button> -->
   <div class="flex ai:center gap:16">
-    <!-- <button class="$btn-bg:$(color-neutral) outline sm icon">
-      <span class="lh:0">
-        <Icon icon="fluent:delete-28-regular" class="f:18"></Icon>
-      </span>
-    </button> -->
     <div class=" rel">
       <button class="$btn-bg:$(color-neutral) text sm icon">
         <span class="lh:0">
@@ -185,16 +155,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="flex ai:center rel my:8">
-  <span class="flex:1 h:1 bg:rgb($(gray-5))"></span>
-  <span class="px:8">
-    <button class="$btn-bg:$(gray-4) dashed md">
-      <span class="lh:0 mr:8">
-        <Icon icon="fluent:add-28-filled"></Icon>
-      </span>
-      Add question
-    </button>
-  </span>
-  <span class="flex:1 h:1 bg:rgb($(gray-5))"></span>
-</div> -->

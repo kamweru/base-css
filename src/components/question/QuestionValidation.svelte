@@ -1,6 +1,7 @@
 <script>
   import Icon from "@iconify/svelte";
   import SelectSingleSearch from "../SelectSingleSearch.svelte";
+  import { appStore } from "../../lib/AppStore";
   export let question;
   let newRules = {
       required: {
@@ -83,20 +84,6 @@
         inputType: "checkbox",
       },
       {
-        title: "Email",
-        key: "email",
-        value: "email",
-        defaultValue: "",
-        inputType: "email",
-      },
-      {
-        title: "Phone number",
-        key: "phone",
-        value: "phone",
-        defaultValue: "",
-        inputType: "tel",
-      },
-      {
         title: "Contains capital letter",
         key: "capitalLetter",
         value: "capitalLetter",
@@ -152,60 +139,33 @@
       },
     ],
     selectedValidationRule,
-    matchWidth = true,
     validationRuleObj = null;
   const onChange = ({ detail }) => {
       validationRuleObj = detail;
       question.validationRules[validationRuleObj.value] = detail.defaultValue;
-      // console.log(detail);
-      // question.validationRules[detail.title] = detail.value;
-    },
-    addRule = () => {
-      if (
-        validationRuleObj !== null &&
-        !question.validationRules[validationRuleObj.value]
-      ) {
-        question.validationRules[validationRuleObj.value] =
-          validationRuleObj.defaultValue;
-        validationRuleObj = null;
-        selectedValidationRule = "";
-        //
-      }
-      // validationRuleObj = null;18000
-      // selectedValidationRule = null;
-      console.log(
-        question.validationRules,
-        validationRuleObj,
-        selectedValidationRule
-      );
+      appStore.updateData({
+        collectionName: "questions",
+        document: question,
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     },
     removeRule = (key) => {
-      //, questionIndex = $appStore.questions.findIndex((q) => q.id === question.id);
-      // let tmpRules = delete question.validationRules[key];
-      // console.log(key);
-      // question.validationRules[key] = null;
-      let tmpRules = { ...question.validationRules };
-      question.validationRules = {};
-      for (const validationRule of Object.keys(tmpRules)) {
+      for (const validationRule of Object.keys(question.validationRules)) {
         if (validationRule !== key) {
-          // console.log(validationRule !== key);
-          question.validationRules[validationRule] = tmpRules[validationRule];
+          question.validationRules[validationRule] =
+            question.validationRules[validationRule];
         }
       }
-      // question.validationRules = tmpRules;
-      // console.log(question.validationRules, tmpRules);
+      appStore.updateData({
+        collectionName: "questions",
+        document: question,
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     };
-  // let newRules = {};
-  // validationRules.map(({ value, ...rest }) => {
-  //   newRules[value] = { value, ...rest };
-  // });
-  // console.log(newRules);
-  // console.log(
-  //   validationRules.map(({ title, ...rest }) => ({
-  //     title: capitalizeFirstLetter(title),
-  //     ...rest,
-  //   }))
-  // );
 </script>
 
 <div class="p:7|11">
@@ -214,13 +174,13 @@
       <div class="flex ai:center">
         {newRules[validationRule].title}
       </div>
-      <!-- <div class="flex:1"> -->
       <div class="control-group">
         {#if newRules[validationRule].inputType === "checkbox"}
           <input
             type="checkbox"
             class="switch"
-            bind:value={question.validationRules[validationRule]}
+            value={question.validationRules[validationRule]}
+            bind:checked={question.validationRules[validationRule]}
           />
         {:else}
           <input
@@ -229,19 +189,7 @@
             bind:value={question.validationRules[validationRule]}
           />
         {/if}
-        <!-- {#if newRules[validationRule].inputType === "checkbox"} -->
-        <!-- <input
-          bind:value={question.validationRules[validationRule].dd}
-          class={newRules[validationRule].inputType === "checkbox"
-            ? "switch"
-            : "outline md"}
-          type={newRules[validationRule].inputType === "checkbox"
-            ? "checkbox"
-            : newRules[validationRule].inputType}
-        /> -->
       </div>
-      <!-- {question.validationRules[validationRule]} -->
-      <!-- </div> -->
       <div class="flex ai:center jc:end">
         <button
           class="$btn-bg:$(gray-8) outline sm icon"
@@ -255,7 +203,7 @@
     </div>
   {/each}
   <div class="flex ai:center gap:8">
-    <!-- <div class="color:rgb($(text-light)) f:14">Select Validation Rule</div> -->
+    <div class="color:rgb($(text-light)) f:14">Select Rule</div>
     <div class="flex:1">
       <SelectSingleSearch
         options={validationRules}
@@ -264,35 +212,5 @@
         label="Select validation rule"
       ></SelectSingleSearch>
     </div>
-    <button class="fill md" on:click={addRule}>
-      <span class="lh:0 mr:8">
-        <Icon icon="fluent:add-28-filled"></Icon>
-      </span>
-      Add Rule
-    </button>
   </div>
-  <!-- <div class="flex ai:center"> -->
-  <!-- {#each validationRules as validationRule}
-    <div class="flex ai:center">
-      <div>{capitalizeFirstLetter(validationRule.title)}</div>
-    </div>
-  {/each} -->
-  <!-- {#each Object.keys(validation) as key}
-    <div>{key}</div>
-    {#each validation[key] as validationRule}
-      {#if question.validationRules[validationRule]}
-        {validationRule}
-      {/if}
-    {/each}
-  {/each}
-</div> -->
-  <!-- <div class="control-group">
-    <label for="error-message">Error Message</label>
-    <input
-      type="text"
-      class="outline md"
-      id="error-message"
-      placeholder="Error message"
-    />
-  </div> -->
 </div>

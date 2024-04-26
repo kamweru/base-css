@@ -6,7 +6,6 @@
   let active = false;
 </script>
 
-<!-- <ThemeToggle></ThemeToggle> -->
 <div class="flex h:100%">
   <aside>
     <nav
@@ -135,7 +134,10 @@
         <span class="lh:0 f:20"> <Icon icon="mdi-light:home" /></span>
       </button>
       <button class="lg bg:blue-90 bg:blue-86:hover color:blue-40">
-        light
+        light on light
+      </button>
+      <button class="lg bg:blue-50/.35 bg:blue-86:hover color:blue-86">
+        light on dark
       </button>
       <button class="lg bg:blue-90 bg:blue-86:hover color:blue-40 b:blue-40">
         light outline

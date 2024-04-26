@@ -65,8 +65,8 @@
     {#each options as { title, value, icon, ...rest }}
       <button
         class="{value === selected
-          ? '$btn-bg:$(color-neutral) fill'
-          : '$btn-bg:$(gray-3) text'} lg"
+          ? '$btn-bg:$(color-border) fill'
+          : 'text'} md"
         on:click={() => setSelected({ title, value, ...rest })}
       >
         <span class="flex ai:center gap:4 w:100% pointer-events:none">
