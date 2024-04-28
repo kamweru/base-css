@@ -14,7 +14,6 @@
     folderId;
   const dispatch = createEventDispatcher(),
     changeView = () => {
-      // console.log(viewPath);
       dispatch("changeView");
     },
     onChange = (id) =>
@@ -25,7 +24,6 @@
           console.log(data);
         },
       });
-  //sE#QfJFuf@Hy5yCa
 </script>
 
 <Main>

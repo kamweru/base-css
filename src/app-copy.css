@@ -462,7 +462,7 @@ button.lg {
   margin-bottom: calc(var(--input-size) * 0.5);
   font-weight: var(--label-font-weight);
   display: block;
-  color: rgb(var(--text-light));
+  color: rgb(var(--text-strong));
   font-size: var(--font-size-md);
   white-space: normal;
 }

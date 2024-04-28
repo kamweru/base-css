@@ -8,12 +8,12 @@
         questionIndex = $appStore.questions.findIndex(
           (q) => q.id === question.id
         );
-      $appStore.questions[questionIndex].options = [
-        ...$appStore.questions[questionIndex].options,
+      question.options = [
+        ...question.options,
         {
           id,
-          title: `Option ${$appStore.questions[questionIndex].options.length + 1}`,
-          value: `Option ${$appStore.questions[questionIndex].options.length + 1}`,
+          title: `Option ${question.options.length + 1}`,
+          value: `Option ${question.options.length + 1}`,
         },
       ];
       appStore.updateData({
@@ -28,9 +28,9 @@
       let questionIndex = $appStore.questions.findIndex(
         (q) => q.id === question.id
       );
-      $appStore.questions[questionIndex].options = $appStore.questions[
-        questionIndex
-      ].options.filter((o) => o.id !== option.id);
+      question.options = $appStore.questions[questionIndex].options.filter(
+        (o) => o.id !== option.id
+      );
       appStore.updateData({
         collectionName: "questions",
         document: $appStore.questions[questionIndex],
@@ -44,12 +44,49 @@
       input.select();
     },
     toggleRequired = (e) => {
-      let isChecked = e.target.checked;
+      let isChecked = e.target.checked,
+        questionIndex = $appStore.questions.findIndex(
+          (q) => q.id === question.id
+        );
       if (question.validationRules && !question.validationRules.required) {
         question.validationRules.required = isChecked;
       } else {
         question.validationRules.required = isChecked;
       }
+
+      appStore.updateData({
+        collectionName: "questions",
+        document: $appStore.questions[questionIndex],
+        callback: (data) => {
+          console.log(data);
+        },
+      });
+    },
+    optionChange = (option) => {
+      let optionIndex = question.options.findIndex((o) => o.id === option.id),
+        splitOptionTitle = option.title.split(" "),
+        maxLength = 7,
+        tmpValue = splitOptionTitle.join("_"),
+        sameValues = question.options.filter(
+          (o) => o.value === tmpValue
+        ).length;
+      if (splitOptionTitle.length >= maxLength) {
+        tmpValue = splitOptionTitle.slice(0, maxLength).join("_");
+      }
+      if (sameValues > 0) {
+        tmpValue = `${tmpValue}_${sameValues}`;
+      }
+      question.options[optionIndex].value = tmpValue;
+      appStore.updateData({
+        collectionName: "questions",
+        document:
+          $appStore.questions[
+            $appStore.questions.findIndex((q) => q.id === question.id)
+          ],
+        callback: (data) => {
+          console.log(data);
+        },
+      });
     };
 </script>
 
@@ -79,9 +116,10 @@
               type="text"
               class="underline md"
               placeholder={option.title}
-              bind:value={option.value}
+              bind:value={option.title}
               id={option.id}
               use:callFocus
+              on:change={() => optionChange(option)}
             />
           </div>
           <button

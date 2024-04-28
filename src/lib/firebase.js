@@ -11,6 +11,7 @@ import {
   query,
   where,
   onSnapshot,
+  writeBatch,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -71,11 +72,25 @@ export const deleteDocument = async (collectionName, documentId, callback) => {
   await deleteDoc(docRef).then(() => callback(documentId));
 };
 
-export const deleteMultipleDocuments = async (collectionName, documentIds) => {
-  const promises = documentIds.map((id) =>
-    deleteDoc(doc(FIRESTORE, collectionName, id))
-  );
-  return Promise.all(promises);
+export const deleteMultipleDocuments = async (
+  collectionName,
+  queryPayload,
+  callback
+) => {
+  const batch = writeBatch(FIRESTORE);
+  const collectionRef = collection(FIRESTORE, collectionName),
+    q = query(
+      collectionRef,
+      where(queryPayload.field, queryPayload.operator, queryPayload.value)
+    );
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    batch.delete(doc.ref);
+  });
+  await batch
+    .commit()
+    .then((result) => callback(result))
+    .catch((error) => console.log(error));
 };
 
 /**

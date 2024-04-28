@@ -7,10 +7,7 @@
   import { addDocument } from "../../lib/firebase";
   import { derived } from "svelte/store";
   export let params;
-  // let section
-  let sections = [],
-    questions = [],
-    MmuLogo =
+  let MmuLogo =
       "https://students-personal-details-form.web.app/static/images/mmu-logo-download-C9wO1TvD.webp",
     collapsed = false;
   const addSection = () => {
@@ -19,15 +16,11 @@
         formId: params.id,
         title: "untitled section",
         description: "",
+        placementOrder:
+          $appStore.sections.filter((s) => s.formId === params.id).length + 1,
+        createdAt: Date.now(),
       };
       $appStore.sections = [...$appStore.sections, section];
-      $appStore.update.items = "sections";
-      $appStore.update.updated = false;
-      // appStore.update((s) => {
-      //   if (!s.sections) s.sections = [];
-      //   s.sections = [...s.sections, section];
-      //   return s;
-      // });
       addDocument("sections", section, () => {
         console.log("section added");
       });
@@ -40,12 +33,18 @@
         type: "input",
         dataType: "text",
         placeholder: "untitled question",
-        label: "Name of Secondary School Attended",
+        label: "untitled question",
+        createdAt: Date.now(),
         hint: "",
-        value: "untitled question",
-        defaultValue: "untitled question",
+        value: "",
+        isParent: false,
+        isChild: false,
+        defaultValue: null,
         questionType: "short",
         currentView: "AnswerView",
+        placementOrder:
+          $appStore.questions.filter((q) => q.sectionId === section.id).length +
+          1,
         valid: false,
         validationRules: {
           required: false,
@@ -55,53 +54,32 @@
         },
       };
       $appStore.questions = [...$appStore.questions, question];
-      $appStore.update.items = "questions";
-      $appStore.update.updated = false;
-      // appStore.update((s) => {
-      //   if (!s.questions) s.questions = [];
-      //   s.questions = [...s.questions, question];
-      //   return s;
-      // });
       addDocument("questions", question, () => {
         console.log("question added");
       });
-    };
-  $: if (!$appStore.update.updated) {
-    if ($appStore.update.items === "sections") {
-      sections = [];
-      $appStore.sections.forEach((s) => {
-        if (s.formId === params.id) {
-          sections = [...sections, s];
+    },
+    sections = derived(appStore, ($appStore) => {
+      let result = [];
+      if (!$appStore.sections) return result;
+      for (let section of $appStore.sections) {
+        if (section.formId === params.id) {
+          result = [...result, section];
         }
-      });
-      $appStore.update.items = "";
-    }
-    if ($appStore.update.items === "questions") {
-      questions = [];
-      $appStore.questions.forEach((q) => {
-        if (q.formId === params.id) {
-          questions = [...questions, q];
+      }
+      result.sort((a, b) => a.placementOrder - b.placementOrder);
+      return result;
+    }),
+    questions = derived(appStore, ($appStore) => {
+      let result = [];
+      if (!$appStore.questions) return result;
+      for (let question of $appStore.questions) {
+        if (question.formId === params.id) {
+          result = [...result, question];
         }
-      });
-      $appStore.update.items = "skipLogic";
-    }
-    $appStore.update.updated = true;
-  }
-
-  $appStore.sections.forEach((s) => {
-    if (s.formId === params.id) {
-      sections = [...sections, s];
-    }
-  });
-  $appStore.questions.forEach((q) => {
-    if (q.formId === params.id) {
-      questions = [...questions, q];
-    }
-  });
-  // $: if (!$appStore.update.updated) {
-  //   console.log($appStore.update);
-  // }
-  // console.log($formStore);
+      }
+      result.sort((a, b) => a.placementOrder - b.placementOrder);
+      return result;
+    });
 </script>
 
 <div class="flex flex:col gap:16 mt:16">
@@ -149,13 +127,22 @@
     {/if}
   </div>
 
-  {#if sections && sections.length > 0}
-    {#each sections as section, index}
-      <Section index={index + 1} total={sections.length} bind:section></Section>
-      {#if questions && questions.length > 0}
-        {#each questions as question}
+  {#if $sections && $sections.length > 0}
+    {#each $sections as section, index}
+      <Section
+        total={$sections.length}
+        bind:section={$appStore.sections[
+          $appStore.sections.findIndex((s) => s.id === section.id)
+        ]}
+      ></Section>
+      {#if $questions && $questions.length > 0}
+        {#each $questions as question}
           {#if question.sectionId === section.id}
-            <Question bind:question></Question>
+            <Question
+              bind:question={$appStore.questions[
+                $appStore.questions.findIndex((q) => q.id === question.id)
+              ]}
+            ></Question>
           {/if}
         {/each}
         <div class="flex ai:center rel my:8">

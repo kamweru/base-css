@@ -2,25 +2,28 @@
   import { collection } from "firebase/firestore";
   import { appStore } from "../lib/AppStore";
   import Icon from "@iconify/svelte";
-  import { deleteDocument } from "../lib/firebase";
+  import { deleteDocument, deleteMultipleDocuments } from "../lib/firebase";
   export let section;
-  export let index = 1;
   export let total = 1;
   let collapsed = false;
   const removeSection = () => {
-      // let tempSection = { ...section };
+      let tempSection = { ...section };
       $appStore.questions = $appStore.questions.filter(
         (q) => q.sectionId !== section.id
       );
       $appStore.sections = $appStore.sections.filter(
         (s) => s.id !== section.id
       );
-      $appStore.update.items = "sections";
-      $appStore.update.updated = false;
-      deleteDocument("sections", section.id, () => {
+      deleteDocument("sections", tempSection.id, () => {
         console.log("section deleted");
       });
-      // console.log(tempSection);
+      deleteMultipleDocuments(
+        "questions",
+        { field: "sectionId", operator: "==", value: tempSection.id },
+        (data) => {
+          console.log(data);
+        }
+      );
     },
     onChange = () => {
       appStore.updateData({
@@ -30,12 +33,13 @@
           console.log(data);
         },
       });
+      // console.log(section);
     };
 </script>
 
 <div class="b:1|solid|rgb($(border)) r:5">
   <div class="flex ai:center jc:space-between p:7|11">
-    <div>Section {index} of {total}</div>
+    <div>Section {section.placementOrder} of {total}</div>
     <div class="flex ai:center gap:8">
       <button class="$btn-bg:$(color-neutral) outline sm icon">
         <span class="lh:0">
@@ -107,6 +111,7 @@
             class="underline lg"
             placeholder="Section description (optional)"
             bind:value={section.description}
+            on:change={onChange}
           />
         </div>
       </div>

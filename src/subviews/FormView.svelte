@@ -21,46 +21,7 @@
       { title: "Settings", subview: "FormSettings", id: uuid() },
     ],
     currentTab = tabs[0],
-    sections = [],
-    view;
-  const dispatch = createEventDispatcher(),
-    addSection = () => {
-      sections = [
-        ...sections,
-        {
-          title: "untitled section",
-          description: "",
-          id: uuid(),
-          questions: [],
-        },
-      ];
-    },
-    addQuestion = (section) => {
-      sections[sections.findIndex((s) => s.id === section.id)].questions = [
-        ...sections[sections.findIndex((s) => s.id === section.id)].questions,
-        {
-          id: uuid(),
-          type: "input",
-          dataType: "text",
-          placeholder: "untitled question",
-          label: "Name of Secondary School Attended",
-          hint: "",
-          value: "untitled question",
-          defaultValue: "untitled question",
-          questionType: "short",
-          currentView: "AnswerView",
-          valid: false,
-          validationRules: {
-            // required: false,
-            // minLength: 5,
-          },
-          errors: {
-            messages: [],
-          },
-        },
-      ];
-    };
-  let collapsed = false,
+    view,
     popoverOpen = false,
     form,
     popoverActions = [
@@ -80,7 +41,9 @@
         icon: "fluent:delete-28-regular",
       },
     ];
-  const changeView = async () => {
+
+  const dispatch = createEventDispatcher(),
+    changeView = async () => {
       view = (await import(`./FormView/${currentTab.subview}.svelte`)).default;
     },
     onChange = () =>
@@ -127,11 +90,12 @@
           </div>
         </div>
         <div class="flex ai:center gap:16">
-          <button class="text md icon">
+          <a href="/form/{form.id}" target="_blank">
             <span class="lh:0">
-              <Icon icon="mi:eye" class="f:18"></Icon>
+              <Icon icon="mi:eye" class="f:18 color:rgb($(color-primary))"
+              ></Icon>
             </span>
-          </button>
+          </a>
           <div>
             <button class="text md icon" on:click={() => (popoverOpen = true)}>
               <span class="lh:0">

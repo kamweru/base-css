@@ -4,7 +4,7 @@
   import Icon from "@iconify/svelte";
   import SelectSingleSearch from "./SelectSingleSearch.svelte";
   import { uuid } from "../lib/utils";
-  import { deleteDocument } from "../lib/firebase";
+  import { deleteDocument, deleteMultipleDocuments } from "../lib/firebase";
   export let question;
   let collapsed = false,
     questionTypes = [
@@ -58,11 +58,11 @@
       if (
         ["select-one", "multiple", "dropdown"].includes(question.questionType)
       ) {
-        $appStore.questions[questionIndex]["questionIcon"] =
+        question["questionIcon"] =
           question.questionType === "select-one"
             ? "eva:radio-button-off-fill"
             : "carbon:checkbox";
-        $appStore.questions[questionIndex]["options"] = [
+        question["options"] = [
           {
             id: uuid(),
             title: "Option 1",
@@ -70,22 +70,16 @@
           },
         ];
       } else {
-        if (
-          $appStore.questions[questionIndex] &&
-          $appStore.questions[questionIndex]["questionIcon"]
-        ) {
-          delete $appStore.questions[questionIndex]["questionIcon"];
+        if (question && question["questionIcon"]) {
+          delete question["questionIcon"];
         }
-        if (
-          $appStore.questions[questionIndex] &&
-          $appStore.questions[questionIndex]["options"]
-        ) {
-          delete $appStore.questions[questionIndex]["options"];
+        if (question && question["options"]) {
+          delete question["options"];
         }
       }
       appStore.updateData({
         collectionName: "questions",
-        document: $appStore.questions[questionIndex],
+        document: question,
         callback: (data) => {
           console.log(data);
         },
@@ -99,23 +93,39 @@
       $appStore.questions = $appStore.questions.filter(
         (q) => q.id !== question.id
       );
-      // $appStore.questions.splice(
-      //   $appStore.questions.findIndex((q) => q.id === question.id),
-      //   1
-      // );
-      $appStore.update.items = "questions";
-      $appStore.update.updated = false;
+      if (question.isParent) {
+        $appStore.conditions = $appStore.conditions.filter(
+          (c) => c.parentId !== question.id
+        );
+        deleteMultipleDocuments(
+          "conditions",
+          { field: "parentId", operator: "==", value: question.id },
+          () => {
+            console.log("deleted conditions");
+          }
+        );
+      }
+      if (question.isChild) {
+        $appStore.conditions = $appStore.conditions.filter(
+          (c) => c.childId !== question.id
+        );
+        deleteMultipleDocuments(
+          "conditions",
+          { field: "childId", operator: "==", value: question.id },
+          () => {
+            console.log("deleted conditions");
+          }
+        );
+      }
       deleteDocument("questions", question.id, () => {
         console.log("question deleted");
       });
     },
     onQuestionInputChange = () => {
-      let questionIndex = $appStore.questions.findIndex(
-        (q) => q.id === question.id
-      );
+      question.placeholder = question.label.toLowerCase();
       appStore.updateData({
         collectionName: "questions",
-        document: $appStore.questions[questionIndex],
+        document: question,
         callback: (data) => {
           console.log(data);
         },
@@ -131,7 +141,7 @@
         type="text"
         class="outline md"
         placeholder={question.placeholder}
-        bind:value={question.value}
+        bind:value={question.label}
         on:change={onQuestionInputChange}
       />
     </div>
