@@ -1,0 +1,51 @@
+details {
+  display: block;
+  border: var(--border-width) var(--border-style) rgb(var(--border));
+  border-radius: calc(var(--size) / 4);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height);
+}
+details > summary {
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  height: calc(var(--size) * 2);
+  padding: calc(var(--size) / 4) calc(var(--size) / calc(16 / 15));
+  border-bottom: var(--border-width) var(--border-style) transparent;
+  margin-bottom: 0;
+  transition: all var(--t-dur) var(--t-fun);
+}
+details .content {
+  padding: calc(var(--size) / 4) calc(var(--size) / calc(16 / 15));
+}
+details > summary::after,
+details > summary::before {
+  content: "";
+  position: absolute;
+  right: calc(var(--size) * calc(20 / 16));
+  top: calc(50%);
+  transform: translateY(-50%);
+  width: calc(var(--size) / calc(16 / 12));
+  height: 0;
+  border-bottom: var(--border-width) var(--border-style) rgb(var(--text-strong));
+}
+details > summary::after {
+  transform: rotate(90deg) translateY(-50%);
+  transform-origin: 50% 50%;
+  transition: all var(--t-dur) var(--t-fun);
+}
+details > summary::marker {
+  content: none;
+}
+details[open] {
+  transition: all var(--t-dur) var(--t-fun);
+}
+details[open] > summary {
+  margin-bottom: calc(var(--size) / 4);
+  border-bottom: var(--border-width) var(--border-style) rgb(var(--border));
+  transition: all var(--t-dur) var(--t-fun);
+}
+details[open] > summary::after {
+  transform: rotate(0) translateY(-50%);
+  transition: all var(--t-dur) var(--t-fun);
+}

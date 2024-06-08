@@ -194,6 +194,7 @@
         <span class="loader"></span>
         <div class="spinner"></div>
         <a href="/admin">admin</a>
+        <a href="/">Home</a>
         <div class="control-group">
           <span class="combobox">
             <span class="combobox-input">
@@ -210,13 +211,17 @@
       <button class="new-btn success md">button</button>
       <div class="b:1|solid|rgb($(muted-2)) p:8 grid grid-cols:10 gap:8">
         {#each [0.04, 0.08, 0.1, 0.15, 0.18, 0.24, 0.48, 0.64, 0.78, 0.88] as opacity}
-          <div class="bg:rgb($(black)/{opacity}) w:60 h:40 flex center-content">
-            {opacity}
+          <div
+            class="bg:rgb($(color-black)/{opacity}) w:60 h:40 flex center-content"
+          >
+            b/{opacity}
           </div>
         {/each}
         {#each [0.02, 0.04, 0.08, 0.12, 0.15, 0.18, 0.24, 0.4, 0.64, 0.88] as opacity}
-          <div class="bg:rgb($(white)/{opacity}) w:60 h:40 flex center-content">
-            {opacity}
+          <div
+            class="bg:rgb($(color-white)/{opacity}) w:60 h:40 flex center-content"
+          >
+            w/{opacity}
           </div>
         {/each}
       </div>
@@ -251,15 +256,84 @@
       </div>
       <div class="b:1|solid|rgb($(muted-2)) p:8 grid grid-cols:10 gap:8">
         {#each [0.04, 0.08, 0.1, 0.12, 0.18, 0.25, 0.45, 0.65, 0.85, 0.88] as opacity}
-          <div class="bg:rgb($(black)/{opacity}) w:60 h:40 flex center-content">
-            {opacity}
+          <div
+            class="bg:rgb($(color-black)/{opacity}) w:60 h:40 flex center-content"
+          >
+            b/{opacity}
           </div>
         {/each}
         {#each [0.85, 0.65, 0.45, 0.25, 0.18, 0.15, 0.12, 0.08, 0.04, 0.02] as opacity}
-          <div class="bg:rgb($(white)/{opacity}) w:60 h:40 flex center-content">
-            {opacity}
+          <div
+            class="bg:rgb($(color-white)/{opacity}) w:60 h:40 flex center-content"
+          >
+            w/{opacity}
           </div>
         {/each}
+      </div>
+      <div
+        class="ant-input-number ant-input-number-sm ant-input-number-outlined css-var-rkq ant-input-number-css-var"
+      >
+        <div class="ant-input-number-handler-wrap">
+          <span
+            unselectable="on"
+            role="button"
+            aria-label="Increase Value"
+            aria-disabled="false"
+            class="ant-input-number-handler ant-input-number-handler-up"
+            ><span
+              role="img"
+              aria-label="up"
+              class="anticon anticon-up ant-input-number-handler-up-inner"
+              ><svg
+                viewBox="64 64 896 896"
+                focusable="false"
+                data-icon="up"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                ><path
+                  d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                ></path></svg
+              ></span
+            ></span
+          ><span
+            unselectable="on"
+            role="button"
+            aria-label="Decrease Value"
+            aria-disabled="false"
+            class="ant-input-number-handler ant-input-number-handler-down"
+            ><span
+              role="img"
+              aria-label="down"
+              class="anticon anticon-down ant-input-number-handler-down-inner"
+              ><svg
+                viewBox="64 64 896 896"
+                focusable="false"
+                data-icon="down"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                ><path
+                  d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                ></path></svg
+              ></span
+            ></span
+          >
+        </div>
+        <div class="ant-input-number-input-wrap">
+          <input
+            autocomplete="off"
+            role="spinbutton"
+            aria-valuemin="1"
+            aria-valuemax="100000"
+            aria-valuenow="3"
+            step="1"
+            class="ant-input-number-input"
+            value="3"
+          />
+        </div>
       </div>
       <div class="control-group">
         <input
@@ -313,7 +387,6 @@
             class="upload-list-item p:8 b:1|dashed|rgb($(border)) flex ai:center f:14 gap:8 r:5"
           >
             <div class="inline-flex ai:center color:rgb($(blue))">
-              <!-- <span class="loading-loop"></span> -->
               <span class="loader"></span>
             </div>
             <div class="flex:auto">

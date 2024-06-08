@@ -65,3 +65,73 @@ export const formatDate = (timestamp) => {
   // Return the formatted date
   return day + suffix + " " + month.substring(0, 3) + " " + year;
 };
+
+export const range = (start, stop, step = 1) =>
+  Array(Math.ceil((stop - start) / step))
+    .fill(start)
+    .map((x, y) => x + y * step);
+
+// Button.styles.js (or similar)
+export function createStyleString(stylesObj) {
+  // Generate a unique class name
+  const className = `custom-${Math.random().toString(36).substring(2, 7)}`;
+
+  let cssString = `.${className} {`;
+
+  // Loop through the base styles and add them to the string
+  for (const [property, value] of Object.entries(stylesObj.base)) {
+    cssString += `  ${property}: ${value};\n`;
+  }
+
+  // Loop through pseudo-class styles and add them to the string
+  for (const [pseudoClass, properties] of Object.entries(stylesObj)) {
+    if (pseudoClass !== "base") {
+      cssString += `  ${className}${pseudoClass} {\n`;
+      for (const [property, value] of Object.entries(properties)) {
+        cssString += `    ${property}: ${value};\n`;
+      }
+      cssString += `  }\n`;
+    }
+  }
+
+  cssString += `}`;
+
+  // Return only the class name for component usage
+  return { className, cssString };
+}
+
+export function generateCSS(obj, classNamePrefix = "custom") {
+  // const style = document.createElement("style");
+  // document.head.appendChild(style);
+  // const sheet = style.sheet;
+  let cssString = "";
+  function toCSS(selector, properties) {
+    let css = `\n${selector} {\n`;
+    for (let key in properties) {
+      if (typeof properties[key] === "object") {
+        const nestedSelector = key.replace("&", selector);
+        toCSS(nestedSelector, properties[key]);
+      } else {
+        const cssKey = key.replace(/([A-Z])/g, "-$1").toLowerCase();
+        css += `${cssKey}: ${properties[key]}; \n`;
+      }
+    }
+    css += "}";
+    // sheet.insertRule(css);
+    cssString += css;
+  }
+
+  const className = `${classNamePrefix}-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
+  for (let key in obj) {
+    // toCSS(`.${className}-${key}`, obj[key]);
+    if (key === "base") {
+      toCSS(`.${className}`, obj[key]);
+    } else {
+      toCSS(`.${className}.${key}`, obj[key]);
+    }
+  }
+
+  return { className, cssString };
+}

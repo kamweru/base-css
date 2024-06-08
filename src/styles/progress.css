@@ -1,0 +1,16 @@
+progress.progress {
+  width: 100%;
+  height: calc(var(--default-size) * 0.5);
+}
+progress.progress::-webkit-progress-bar {
+  background-color: rgb(var(--color-invert-7));
+  border-radius: calc(var(--default-size));
+}
+progress.progress::-webkit-progress-value {
+  background-color: rgb(var(--color-primary));
+  border-radius: calc(var(--default-size));
+}
+progress.progress::-moz-progress-bar {
+  background-color: rgb(var(--color-invert-7));
+  border-radius: calc(var(--default-size));
+}

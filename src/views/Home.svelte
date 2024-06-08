@@ -1,27 +1,35 @@
 <script>
-  let btnHeight = 32;
+  import Sidebar from "../lib/components/Sidebar.svelte";
+  let menuItems = [
+      { title: "Button", value: "Button" },
+      { title: "Checkbox", value: "Checkbox" },
+      { title: "Form", value: "Form" },
+      { title: "Input", value: "Input" },
+      { title: "Number Input", value: "NumberInput" },
+      { title: "Progress", value: "Progress" },
+      { title: "Radio", value: "Radio" },
+      { title: "Range", value: "Range" },
+      { title: "Select", value: "Select" },
+      { title: "Switch", value: "Switch" },
+    ],
+    subview,
+    currentMenu = menuItems[0];
+  const loadSubview = async () =>
+      (subview = (
+        await import(`../subviews/${currentMenu.value}.subview.svelte`)
+      ).default),
+    toggleMenu = ({ detail }) => {
+      currentMenu = detail;
+      loadSubview();
+    };
+  loadSubview();
 </script>
 
-<div class="h:100% flex flex:col gap:16">
-  <div>
-    <button class="$btn-height:{btnHeight}px btn" disabled
-      >default button</button
-    >
-    <button class="btn btn-fill">fill button</button>
-    <button class="btn btn-dashed">dashed button</button>
-    <button class="btn btn-text">text button</button>
-    <button class="btn btn-link">link button</button>
-  </div>
-  <div>
-    <button class="$btn-height:{btnHeight}px btn btn-success" disabled
-      >default button</button
-    >
-    <button class="btn btn-fill btn-success">fill button</button>
-    <button class="btn btn-dashed btn-success">dashed button</button>
-    <button class="btn btn-text btn-success">text button</button>
-    <button class="btn btn-link btn-success">link button</button>
-  </div>
-  <div>
-    <input type="number" name="" id="" bind:value={btnHeight} />
+<div class="h:100% flex">
+  <Sidebar {menuItems} on:toggleMenu={toggleMenu} />
+  <div
+    class="h:100% flex:1 flex flex:col gap:16 overflow-y:auto p:20 w:0::scrollbar h:0::scrollbar"
+  >
+    <svelte:component this={subview} />
   </div>
 </div>

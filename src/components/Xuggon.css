@@ -1,0 +1,31 @@
+:root {
+  --min-width: 100px;
+  --btn-height: 45px;
+}
+.button {
+  -webkit-user-select: "none";
+  -moz-user-select: "none";
+  user-select: "none";
+  -webkit-appearance: "none";
+  -moz-appearance: "none";
+  appearance: "none";
+  min-width: var(--min-width);
+  height: var(--btn-height);
+  padding: 8px;
+  border-radius: 5px;
+  border: 2.5px solid #e0e1e4;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  font-family: "Poppins", sans-serif;
+}
+
+.button:hover {
+  background-color: #a92020;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
