@@ -2,7 +2,7 @@
   import { components } from "../lib/components.config";
   import ComponentCss from "../subviews/ComponentCss.svelte";
   import ComponentHtml from "../subviews/ComponentHtml.svelte";
-  import ComponentProperties from "../subviews/ComponentProperties.svelte";
+  import ComponentProperties from "../lib/components/ComponentProperties.svelte";
   import ComponentView from "../subviews/ComponentView.svelte";
   let currentComponent = Object.values(components)[0];
 </script>

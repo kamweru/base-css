@@ -168,14 +168,14 @@
     {#each Object.keys(controls) as controlKey}
       {#if controlKey === "disabled"}
         <div class="flex gap:8 p:8 ai:center">
-          <div>{controls[controlKey].title}</div>
           <input
             type="checkbox"
-            class="switch"
+            class="input switch"
             bind:checked={controls[controlKey].defaultValue}
             value={controls[controlKey].defaultValue}
             on:change={onChange}
           />
+          <div>{controls[controlKey].title}</div>
         </div>
       {:else}
         <div class="p:8 flex flex:col gap:8">
@@ -201,7 +201,7 @@
             <div>Button Text</div>
             <input
               type="text"
-              class="input-outline"
+              class="input input-outline"
               bind:value={buttonProperties.text}
             />
           </div>

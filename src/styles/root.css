@@ -147,3 +147,30 @@ body {
   background-size: calc(var(--default-size) * 2.25)
     calc(var(--default-size) * 2.25);
 }
+.boxes {
+  background-color: rgb(var(--color-success));
+  margin-right: 16px;
+  position: relative;
+  padding: 4px 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.boxes::before,
+.boxes::after {
+  content: "";
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  background-color: transparent;
+  bottom: 0px;
+}
+.boxes::before {
+  border-bottom-right-radius: 50%;
+  left: -8px;
+  box-shadow: 4px 0px 0 0 rgb(var(--color-success));
+}
+.boxes::after {
+  border-bottom-left-radius: 50%;
+  right: -8px;
+  box-shadow: -4px 0px 0 0px rgb(var(--color-success));
+}

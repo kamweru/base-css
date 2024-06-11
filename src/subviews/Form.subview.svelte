@@ -22,7 +22,7 @@
         <label for="">Field A, A super long label text</label>
       </div>
       <div class="form-control">
-        <input type="text" class="outline" />
+        <input type="text" class="input" />
         <div class="form-control-message form-control-error">
           error message, A prime is a natural number greater than 1 that has no
           positive divisors other than 1 and itself.
@@ -34,7 +34,7 @@
         <label for="">Field A, A super long label text</label>
       </div>
       <div class="form-control">
-        <input type="text" class="outline" />
+        <input type="text" class="input" />
         <div class="form-control-message">
           error message, A prime is a natural number greater than 1 that has no
           positive divisors other than 1 and itself.
@@ -46,7 +46,7 @@
         <label for="">Field A, A super long label text</label>
       </div>
       <div class="form-control">
-        <input type="text" class="outline" />
+        <input type="text" class="input" />
         <div class="form-control-message">
           error message, A prime is a natural number greater than 1 that has no
           positive divisors other than 1 and itself.

@@ -15,6 +15,6 @@
     name=""
     id=""
     placeholder="outline"
-    class="input-number outline"
+    class="input input-number input-outline"
   />
 </div>
