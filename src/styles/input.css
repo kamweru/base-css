@@ -1,4 +1,25 @@
-:root {
+/* :root {
+} */
+.input,
+.textarea,
+.select {
+  box-sizing: border-box;
+  outline: none;
+  text-overflow: ellipsis;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  padding: var(--input-padding);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: transparent;
+  background-color: transparent;
+  border-radius: var(--input-border-radius);
   --input-height: calc(var(--default-size) * 2);
   --input-height-sm: calc(var(--default-size) * 1.5);
   --input-height-lg: calc(var(--default-size) * 2.5);
@@ -59,27 +80,6 @@
   );
   --range-slider-thumb-border-color: var(--color-primary);
   --range-slider-thumb-background-color: var(--color-surface);
-}
-.input,
-.textarea,
-.select {
-  box-sizing: border-box;
-  outline: none;
-  text-overflow: ellipsis;
-  list-style: none;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  padding: var(--input-padding);
-  border-width: var(--border-width);
-  border-style: var(--border-style);
-  border-color: transparent;
-  background-color: transparent;
-  border-radius: var(--input-border-radius);
 }
 .input,
 .textarea,

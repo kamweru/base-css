@@ -180,8 +180,8 @@ body {
   opacity: 1;
   background: repeating-linear-gradient(
     -45deg,
-    rgb(var(--color-invert-1)),
-    rgb(var(--color-invert-1)) 8px,
+    rgb(var(--color-surface)),
+    rgb(var(--color-surface)) 8px,
     rgb(var(--color-invert-4)) 4px,
     rgb(var(--color-invert-4)) 10px
   );

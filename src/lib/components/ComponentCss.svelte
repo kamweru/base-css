@@ -1,11 +1,17 @@
 <script>
+  import { appStore } from "../AppStore";
   export let currentComponent;
 </script>
 
 <div class="p:16">
   <pre>
-      <code>
-        {currentComponent} css
-      </code>
+      <code
+      >{Object.keys($appStore.rootStyles[currentComponent])
+        .map(
+          (key) =>
+            `${key}: ${$appStore.rootStyles[currentComponent][key].value}${$appStore.rootStyles[currentComponent][key].units};`
+        )
+        .join("\n")}</code
+    >
       </pre>
 </div>

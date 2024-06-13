@@ -27,6 +27,7 @@
       loadSubview();
     };
   loadSubview();
+  // console.log(currentComponent);
 </script>
 
 <div class="h:100% flex">

@@ -1,5 +1,3 @@
-import { capitalizeFirstLetter } from "./utils";
-
 export const cssUnits = [
   {
     title: "PX",
@@ -41,6 +39,20 @@ const controlTypes = {
       },
     },
     input: {
+      "--default-size": {
+        title: "unit size",
+        value: 1,
+        units: "rem",
+        cssVar: "--default-size",
+      },
+      "--input-height": {
+        title: "input height",
+        value: 32,
+        units: "px",
+        cssVar: "--input-height",
+      },
+    },
+    checkbox: {
       "--default-size": {
         title: "unit size",
         value: 1,
@@ -123,32 +135,13 @@ const controlTypes = {
         styles[controlKey][controlKeyItem] &&
         styles[controlKey][controlKeyItem].default
       ) {
-        // if (controlKeyItem === "baseClass") {
-        //   classesArray.push(styles[controlKey][controlKeyItem]);
-        // } else {
         classesArray.push(styles[controlKey][controlKeyItem].default);
-        // }
       }
       acc[controlKey] = {
         classes: classesArray.join(" "),
         placeholder: "placeholder",
         value: "",
       };
-      // acc[controlKey]["classes"] = acc[controlKey]["classes"].join(" ");
-      // if (controlTypes[controlKeyItem]) {
-      //   acc[controlKey][controlKeyItem] = {
-      //     title: controlKeyItem,
-      //     defaultValue:
-      //       controlTypes[controlKeyItem] === "switch" ? false : "default",
-      //     controlType: controlTypes[controlKeyItem],
-      //     options: Object.keys(styles[controlKey][controlKeyItem]).map(
-      //       (key) => ({
-      //         title: key,
-      //         value: controlTypes[controlKeyItem] === "switch" ? false : key,
-      //       })
-      //     ),
-      //   };
-      // }
     });
     return acc;
   }, {}),
@@ -172,61 +165,5 @@ const controlTypes = {
     });
     return acc;
   }, {});
-// {
-//   button: {
-//     classes: "",
-//     placeholder: "",
-//     value: "",
-//   },
-//   input: {
-//     classes: "",
-//     placeholder: "",
-//     value: "",
-//   },
-// };
-export const components = {
-  button: {
-    // cssVars: [
-    //   {
-    //     title: "unit size",
-    //     value: 1,
-    //     units: "rem",
-    //     cssVar: "--unit-size",
-    //   },
-    //   {
-    //     title: "button height xs",
-    //     value: 30,
-    //     units: "px",
-    //     cssVar: "--button-height-xs",
-    //   },
-    // ],
-  },
-  input: {
-    "--default-size": {
-      title: "unit size",
-      value: 1,
-      units: "rem",
-      cssVar: "--default-size",
-    },
-    "--input-height": {
-      title: "input height",
-      value: 32,
-      units: "px",
-      cssVar: "--input-height",
-    },
-    // "--input-padding": {
-    //   title: "input padding",
-    //   value: 32,
-    //   units: "px",
-    //   cssVar: "--input-padding",
-    // },
-    // "--input-height-sm": {
-    //   title: "input height sm",
-    //   value: 24,
-    //   units: "px",
-    //   cssVar: "--input-height-sm",
-    // },
-  },
-};
 
 export { styles, controls, properties, rootStyles };
