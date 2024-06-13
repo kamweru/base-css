@@ -4,9 +4,9 @@
 </script>
 
 <div
-  class="p:32 flex ai:center jc:center diagonal b:1|solid|rgb($(color-border)) h:100%"
+  class="p:32 flex ai:center jc:center diagonal b:1|solid|rgb($(color-border)) h:100% r:6"
 >
-  <div>
+  <div class="w:3xs">
     {#if currentComponent === "button"}
       <button class={$appStore.properties[currentComponent].classes}
         >Button</button
@@ -18,6 +18,12 @@
         name=""
         id=""
         placeholder={$appStore.properties[currentComponent].placeholder}
+        class={$appStore.properties[currentComponent].classes}
+      />
+    {/if}
+    {#if currentComponent === "checkbox"}
+      <input
+        type="checkbox"
         class={$appStore.properties[currentComponent].classes}
       />
     {/if}

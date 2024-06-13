@@ -233,14 +233,15 @@
     rgb(var(--color-surface));
 }
 
-.input.checkbox:checked {
+.input.checkbox:checked,
+.input.checkbox.checkbox-checked {
   --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23FFF' fill-rule='evenodd' d='M13.488 3.43a.75.75 0 0 1 .081 1.058l-6 7a.75.75 0 0 1-1.1.042l-3.5-3.5A.75.75 0 0 1 4.03 6.97l2.928 2.927l5.473-6.385a.75.75 0 0 1 1.057-.081Z' clip-rule='evenodd'/%3E%3C/svg%3E");
   background: var(--svg) center center / 100% 100% no-repeat;
   background-color: rgb(var(--color-primary));
   border-color: rgb(var(--color-primary));
 }
 
-.input.checkbox-indeterminate::after,
+.input.checkbox.checkbox-indeterminate::after,
 .input.checkbox:indeterminate::after {
   /* --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 12h14'/%3E%3C/svg%3E"); background: var(--svg) center center / 100% 100% no-repeat; background-color: rgb(var(--color-primary)); */ /* border-color: rgb(var(--color-primary)); */
   box-sizing: border-box;
@@ -516,7 +517,7 @@
 .input[disabled],
 .input:disabled {
   color: rgb(var(--color-text-disabled));
-  background-color: rgb(var(--color-bg-disabled));
+  background-color: rgb(var(--color-neutral));
   border-color: rgb(var(--color-border));
   box-shadow: none;
   cursor: not-allowed;

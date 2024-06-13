@@ -24,6 +24,37 @@ const controlTypes = {
     colors: "select",
     states: "switch",
   },
+  rootStyles = {
+    button: {
+      "--default-size": {
+        title: "unit size",
+        value: 1,
+        pixelValue: 16,
+        units: "rem",
+        cssVar: "--default-size",
+      },
+      "--btn-height": {
+        title: "button height",
+        value: 32,
+        units: "px",
+        cssVar: "--btn-height",
+      },
+    },
+    input: {
+      "--default-size": {
+        title: "unit size",
+        value: 1,
+        units: "rem",
+        cssVar: "--default-size",
+      },
+      "--input-height": {
+        title: "input height",
+        value: 32,
+        units: "px",
+        cssVar: "--input-height",
+      },
+    },
+  },
   styles = {
     button: {
       baseClass: {
@@ -68,6 +99,21 @@ const controlTypes = {
         lg: "input-lg",
       },
       states: { disabled: "input-disabled", invalid: "input-invalid" },
+    },
+    checkbox: {
+      baseClass: {
+        default: "input checkbox",
+      },
+      sizes: {
+        sm: "input-sm",
+        default: "",
+        lg: "input-lg",
+      },
+      states: {
+        disabled: "input-disabled",
+        checked: "checkbox-checked",
+        indeterminate: "checkbox-indeterminate",
+      },
     },
   },
   properties = Object.keys(styles).reduce((acc, controlKey) => {
@@ -162,17 +208,17 @@ export const components = {
       units: "rem",
       cssVar: "--default-size",
     },
+    "--input-height": {
+      title: "input height",
+      value: 32,
+      units: "px",
+      cssVar: "--input-height",
+    },
     // "--input-padding": {
     //   title: "input padding",
     //   value: 32,
     //   units: "px",
     //   cssVar: "--input-padding",
-    // },
-    // "--input-height": {
-    //   title: "input height",
-    //   value: 32,
-    //   units: "px",
-    //   cssVar: "--input-height",
     // },
     // "--input-height-sm": {
     //   title: "input height sm",
@@ -183,4 +229,4 @@ export const components = {
   },
 };
 
-export { styles, controls, properties };
+export { styles, controls, properties, rootStyles };

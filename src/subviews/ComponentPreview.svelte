@@ -47,7 +47,7 @@
   <h3 class="capitalize">{currentComponent}</h3>
 </div>
 <div class="flex gap:8">
-  <div class="col-7 b:1|solid|rgb($(color-border)) r:6">
+  <div class="flex:1 b:1|solid|rgb($(color-border)) r:6">
     <div class="flex flex:col h:100%">
       <Tabs
         bind:menuItems={menuItems.left}

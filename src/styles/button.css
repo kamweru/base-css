@@ -23,7 +23,8 @@ button {
   --btn-padding-sm: 0 calc(var(--default-size) * 0.4375);
   --btn-padding-lg: calc(var(--default-size) * 0.4375)
     calc(var(--default-size) * 0.9375);
-  --btn-height: calc(var(--default-size) * 2);
+  --btn-height: calc(1rem * (32 / 16));
+  /* calc(var(--default-size) * 2); */
   --btn-height-sm: calc(var(--default-size) * 1.5);
   --btn-height-lg: calc(var(--default-size) * 2.5);
   --btn-border-radius: calc(var(--default-size) * 0.2);
