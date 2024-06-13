@@ -174,3 +174,15 @@ body {
   right: -8px;
   box-shadow: -4px 0px 0 0px rgb(var(--color-success));
 }
+
+.diagonal {
+  background-color: rgb(var(--color-surface));
+  opacity: 1;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgb(var(--color-invert-1)),
+    rgb(var(--color-invert-1)) 8px,
+    rgb(var(--color-invert-4)) 4px,
+    rgb(var(--color-invert-4)) 10px
+  );
+}

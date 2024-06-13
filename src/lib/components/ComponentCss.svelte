@@ -5,7 +5,7 @@
 <div class="p:16">
   <pre>
       <code>
-        {currentComponent.html}
+        {currentComponent} css
       </code>
       </pre>
 </div>

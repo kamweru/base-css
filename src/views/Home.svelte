@@ -1,6 +1,6 @@
 <script>
-  import { components } from "../lib/components.config";
-  import ComponentCSSVars from "../lib/components/ComponentCSSVars.svelte";
+  import ComponentCSSVars from "../lib/components/ComponentCssVars.svelte";
+  import ComponentPreview from "../subviews/ComponentPreview.svelte";
   import Sidebar from "../lib/components/Sidebar.svelte";
   let menuItems = [
       { title: "Button", value: "Button" },
@@ -16,14 +16,14 @@
     ],
     subview,
     currentMenu = menuItems[0],
-    currentComponent;
+    currentComponent = currentMenu.value.toLocaleLowerCase();
   const loadSubview = async () =>
       (subview = (
         await import(`../subviews/${currentMenu.value}.subview.svelte`)
       ).default),
     toggleMenu = ({ detail }) => {
       currentMenu = detail;
-      currentComponent = components[currentMenu.value.toLocaleLowerCase()];
+      currentComponent = currentMenu.value.toLocaleLowerCase();
       loadSubview();
     };
   loadSubview();
@@ -34,11 +34,12 @@
   <div
     class="h:100% flex:1 flex flex:col gap:16 overflow-y:auto p:20 w:0::scrollbar h:0::scrollbar"
   >
-    <svelte:component this={subview} bind:currentComponent />
+    <!-- <svelte:component this={subview} bind:currentComponent />
     {#if currentComponent}
       <div>
-        <ComponentCSSVars {currentComponent} />
+        <ComponentCSSVars bind:currentComponent />
       </div>
-    {/if}
+    {/if} -->
+    <ComponentPreview bind:currentComponent />
   </div>
 </div>

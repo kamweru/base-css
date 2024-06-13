@@ -1,95 +1,53 @@
-export const buttons = {
-  variants: {
-    default: {
-      classes: "btn",
-      text: "Default Button",
-    },
-    fill: {
-      classes: "btn-fill",
-      text: "Fill Button",
-    },
-    dashed: {
-      classes: "btn-dashed",
-      text: "Dashed Button",
-    },
-    text: {
-      classes: "btn-text",
-      text: "Text Button",
-    },
-    link: {
-      classes: "btn-link",
-      text: "Link Button",
+const controlTypes = {
+    variants: "select",
+    sizes: "select",
+    states: "switch",
+  },
+  styles = {
+    input: {
+      baseClass: "input",
+      variants: {
+        default: "input-outline",
+        outline: "input-outline",
+        fill: "input-fill",
+        borderless: "input-borderless",
+        underline: "input-underline",
+      },
+      sizes: {
+        sm: "input-sm",
+        default: "",
+        lg: "input-lg",
+      },
+      states: { disabled: "input-disabled", invalid: "input-invalid" },
     },
   },
-  sizes: {
-    sm: {
-      classes: "btn-sm",
-      text: "Small Button",
-    },
-    default: {
-      classes: "btn",
-      text: "Default Size Button",
-    },
-    lg: {
-      classes: "btn-lg",
-      text: "Large Button",
-    },
-  },
-  colors: {
-    success: {
-      classes: "btn-success",
-      text: "Success Button",
-    },
-    danger: {
-      classes: "btn-danger",
-      text: "Danger Button",
-    },
-    warning: {
-      classes: "btn-warning",
-      text: "Warning Button",
-    },
-    info: {
-      classes: "btn-info",
-      text: "Info Button",
-    },
-  },
-};
-
-export function generateButtonCombinations(buttons) {
-  const buttonList = [];
-
-  for (const variantKey in buttons.variants) {
-    const variant = buttons.variants[variantKey];
-
-    for (const sizeKey in buttons.sizes) {
-      const size = buttons.sizes[sizeKey];
-
-      // Default size buttons should not get an additional class
-      const sizeClasses = sizeKey === "default" ? "" : size.classes;
-
-      for (const colorKey in buttons.colors) {
-        const color = buttons.colors[colorKey];
-
-        buttonList.push({
-          text: `${variant.text} ${
-            size.text === "Default Size Button" ? "" : size.text
-          } ${color.text}`,
-          classes: `${variant.classes} ${sizeClasses} ${color.classes}`.trim(),
-        });
-      }
-
-      // Add variant without any color
-      buttonList.push({
-        text: `${variant.text} ${
-          size.text === "Default Size Button" ? "" : size.text
-        }`,
-        classes: `${variant.classes} ${sizeClasses}`.trim(),
+  controls = {
+    ...Object.keys(styles).reduce((acc, controlKey) => {
+      acc[controlKey] = {};
+      Object.keys(styles[controlKey]).forEach((key) => {
+        if (controlTypes[key]) {
+          acc[controlKey][key] = {
+            title: key,
+            defaultValue: controlTypes[key] === "switch" ? false : "default",
+            controlType: controlTypes[key],
+            options:
+              controlTypes[key] === "select"
+                ? Object.keys(styles[controlKey][key]).map((key) => ({
+                    title: key,
+                    value: key,
+                  }))
+                : undefined,
+          };
+        }
       });
-    }
-  }
-
-  return buttonList;
-}
-
-export const buttonList = generateButtonCombinations(buttons);
-console.log(buttonList);
+      return acc;
+    }, {}),
+  },
+  properties = {
+    input: {
+      classes: "",
+      placeholder: "",
+      value: "",
+    },
+  };
+console.log(controls);

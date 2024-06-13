@@ -1,7 +1,9 @@
 <script>
   import { capitalizeFirstLetter } from "../lib/utils";
+  import { appStore } from "../lib/AppStore";
   export let currentComponent;
-  let styleVariables = "";
+  let styleVariables = "",
+    previewBox;
   const styles = {
       baseClass: "input",
       variants: {
@@ -69,12 +71,12 @@
         }
       }
     };
-  $: if (currentComponent) {
-    styleVariables = Object.values(currentComponent)
-      .map((c) => `${c.cssVar}: ${c.value}${c.units};`)
-      .join(" ");
-    console.log(styleVariables);
-  }
+  // $: if (currentComponent) {
+  //   styleVariables = Object.values(currentComponent)
+  //     .map((c) => `${c.cssVar}: ${c.value}${c.units};`)
+  //     .join(" ");
+  //   console.log(styleVariables);
+  // }
   // console.log(
   //   currentComponent.cssVars
   //     .map((c) => `${c.cssVar}: ${c.value}${c.units}`)
@@ -83,9 +85,14 @@
 </script>
 
 <div class="flex gap:8">
-  <div class="col-7 b:1|solid|rgb($(color-border)) r:6">
+  <div class="col-7 b:1|solid|rgb($(color-border)) diagonal r:6">
     <div class="flex ai:center jc:center h:100%">
-      <div style={styleVariables}>
+      <div
+        style={Object.values($appStore[currentComponent])
+          .map((c) => `${c.cssVar}: ${c.value}${c.units};`)
+          .join(" ")}
+        class="bg:rgb($(color-bg))"
+      >
         <input
           type="text"
           name=""
