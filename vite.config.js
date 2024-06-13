@@ -33,7 +33,13 @@ function VitePluginReadFiles() {
   };
 }
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [
+    svelte({
+      compilerOptions: {
+        customElement: true,
+      },
+    }),
+  ],
   build: {
     outDir: `${__dirname}/dist`,
     emptyOutDir: true,
