@@ -2,7 +2,7 @@
   import { appStore } from "../../lib/AppStore";
   import Icon from "@iconify/svelte";
   import { uuid } from "../../lib/utils";
-  import SelectSingleSearch from "../SelectSingleSearch.svelte";
+  import SelectSingleSearch from "../../lib/components/select/Select.svelte";
   import { derived } from "svelte/store";
   import { addDocument, deleteDocument } from "../../lib/firebase";
   export let question;

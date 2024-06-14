@@ -16,7 +16,31 @@ export const cssUnits = [
     value: "pt",
   },
 ];
-const controlTypes = {
+const componentTypes = {
+    button: {
+      title: "Button Type",
+      options: [
+        {
+          title: "Text Only",
+          value: "text-only",
+        },
+        {
+          title: "Icon only",
+          value: "icon-only",
+        },
+        {
+          title: "Icon left",
+          value: "icon-left",
+        },
+        {
+          title: "Icon right",
+          value: "icon-right",
+        },
+      ],
+    },
+  },
+  controlTypes = {
+    types: "select",
     variants: "select",
     sizes: "select",
     colors: "select",
@@ -72,6 +96,12 @@ const controlTypes = {
       baseClass: {
         default: "btn",
       },
+      types: {
+        default: "",
+        "icon only": "btn-icon-only",
+        "icon left": "btn-icon-left",
+        "icon right": "btn-icon-right",
+      },
       variants: {
         default: "",
         outline: "btn-outline",
@@ -97,6 +127,11 @@ const controlTypes = {
     input: {
       baseClass: {
         default: "input",
+      },
+      types: {
+        default: "",
+        "icon left": "input-icon-left",
+        "icon right": "input-icon-right",
       },
       variants: {
         default: "input-outline",
@@ -127,9 +162,90 @@ const controlTypes = {
         indeterminate: "checkbox-indeterminate",
       },
     },
+    switch: {
+      baseClass: {
+        default: "input switch",
+      },
+      sizes: {
+        sm: "input-sm",
+        default: "",
+        lg: "input-lg",
+      },
+      states: {
+        disabled: "input-disabled",
+        checked: "switch-checked",
+      },
+    },
+    form: {
+      baseClass: {
+        default: "form",
+      },
+      types: {
+        default: "form-inline",
+        vertical: "form-vertical",
+        horizontal: "form-horizontal",
+      },
+    },
+    progress: {
+      baseClass: {
+        default: "progress",
+      },
+    },
+    radio: {
+      baseClass: {
+        default: "input radio",
+      },
+      sizes: {
+        sm: "input-sm",
+        default: "",
+        lg: "input-lg",
+      },
+      states: {
+        disabled: "input-disabled",
+        checked: "radio-checked",
+      },
+    },
+    range: {
+      baseClass: {
+        default: "input input-range",
+      },
+    },
+    select: {
+      baseClass: {
+        default: "select",
+      },
+      variants: {
+        default: "input-outline",
+        fill: "input-fill",
+        borderless: "input-borderless",
+        underline: "input-underline",
+      },
+      sizes: {
+        sm: "input-sm",
+        default: "",
+        lg: "input-lg",
+      },
+      states: { disabled: "input-disabled", invalid: "input-invalid" },
+    },
+    numberinput: {
+      baseClass: {
+        default: "input input-number",
+      },
+      variants: {
+        default: "input-outline",
+        fill: "input-fill",
+      },
+      sizes: {
+        sm: "input-sm",
+        default: "",
+        lg: "input-lg",
+      },
+      states: { disabled: "input-disabled", invalid: "input-invalid" },
+    },
   },
   properties = Object.keys(styles).reduce((acc, controlKey) => {
     let classesArray = [];
+    // console.log(componentTypes[controlKey].title);
     Object.keys(styles[controlKey]).forEach((controlKeyItem) => {
       if (
         styles[controlKey][controlKeyItem] &&
@@ -141,6 +257,8 @@ const controlTypes = {
         classes: classesArray.join(" "),
         placeholder: "placeholder",
         value: "",
+        text: controlKey,
+        componentType: componentTypes[controlKey]?.options[0]?.value || "",
       };
     });
     return acc;
@@ -166,4 +284,4 @@ const controlTypes = {
     return acc;
   }, {});
 
-export { styles, controls, properties, rootStyles };
+export { styles, controls, properties, rootStyles, componentTypes };

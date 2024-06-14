@@ -1,6 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-  import SelectSingleSearch from "../components/SelectSingleSearch.svelte";
+  import SelectSingleSearch from "../lib/components/select/Select.svelte";
   import ThemeToggle from "../components/ThemeToggle.svelte";
   import { formControls } from "../lib/repo";
   import Card from "../components/Card.svelte";

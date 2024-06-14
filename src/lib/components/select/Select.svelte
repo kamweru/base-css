@@ -1,9 +1,12 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Icon from "@iconify/svelte";
-  import Popover from "./Popover.svelte";
-  export let options = [];
-  export let label = "item label";
+  import Popover from "../popover/Popover.svelte";
+  export let options = [...Array(10).keys()].map((i) => ({
+    title: `Option ${i + 1}`,
+    value: `Option ${i + 1}`,
+  }));
+  export let label = "item label item label item label item label";
   export let selected = "";
   export let matchWidth = false;
   export let id = null;
@@ -35,18 +38,18 @@
   }
 </script>
 
-<div class="control-group min-w:{minW}">
-  <span class="combobox">
-    <span class="combobox-input">
-      <span class="combobox-selection single" class:open>{label}</span>
+<div class="c-select">
+  <span class="c-select-selector">
+    <span class="c-select-selection">
+      <span class="c-select-selection-item" class:open>{label}</span>
     </span>
-    <span class="combobox-arrow $combobox-arrow-icon:$({selectArrowIcon})">
-      <span class="combobox-arrow-icon"></span>
+    <span class="c-select-arrow">
+      <Icon icon="tabler:chevron-down" />
     </span>
   </span>
   <input
     type="text"
-    class="outline md"
+    class="c-select-input"
     {id}
     on:focus={() => {
       open = true;
@@ -58,15 +61,46 @@
     }}
   />
 </div>
-
+<div class="c-select c-select-multiple">
+  <!-- <input
+    type="text"
+    class="c-select-input"
+    {id}
+    on:focus={() => {
+      open = true;
+      selectArrowIcon = "search";
+    }}
+    on:blur={() => {
+      //   open = false;
+      selectArrowIcon = "chevron-down";
+    }}
+  /> -->
+  <span class="c-select-selector">
+    <span class="c-select-selector-items">
+      {#each [...Array(5).keys()] as item}
+        <span class="c-select-selector-item-wrap">
+          <span class="c-select-selection">
+            <span class="c-select-selection-item" class:open>Item {item}</span>
+            <button class="c-select-selection-remove">
+              <Icon icon="tabler:chevron-down" />
+            </button>
+          </span>
+        </span>
+      {/each}
+    </span>
+    <span class="c-select-arrow">
+      <Icon icon="tabler:chevron-down" />
+    </span>
+  </span>
+</div>
 <Popover options={popoverOptions} {matchWidth} bind:open>
   <!-- <div class="wrapper $popover-padding:calc($(size)/8) w:200"> -->
   <div class="flex flex:col">
     {#each options as { title, value, icon, ...rest }}
       <button
-        class="{value === selected
-          ? '$btn-bg:$(color-border) fill'
-          : 'text'} md"
+        class={value === selected
+          ? "$btn-bg:$(color-border) btn btn-fill"
+          : "btn btn-text"}
         on:click={() => setSelected({ title, value, ...rest })}
       >
         <span class="flex ai:center gap:4 w:100% pointer-events:none">
@@ -86,7 +120,5 @@
 </Popover>
 
 <!-- <style>
-  :root {
-    --wrapper-bg: var(--gray-4);
-  }
+  
 </style> -->

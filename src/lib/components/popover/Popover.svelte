@@ -1,6 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { popover } from "../lib/popover";
+  import { popover } from "../../popover";
   export let open = false;
   export let options = {};
   export let matchWidth = false;
@@ -27,9 +27,9 @@
 
 <style>
   :root {
-    --popover-padding: var(--size);
+    --popover-padding: var(--default-size);
     --wrapper-padding: calc(var(--popover-padding) / 3);
-    --wrapper-bg: var(--surface);
+    --wrapper-bg: var(--color-surface);
     /* --wrapper-width: calc(var(--size) * 12.5); */
   }
   .popover {

@@ -19,10 +19,6 @@
           title: "CSS",
           view: "ComponentCss",
         },
-        {
-          title: "Custom Component",
-          view: "CustomComponent",
-        },
       ],
       right: [
         {

@@ -2,7 +2,7 @@
   import router from "page";
   import { createEventDispatcher } from "svelte";
   import Icon from "@iconify/svelte";
-  import SelectSingleSearch from "../components/SelectSingleSearch.svelte";
+  import SelectSingleSearch from "../lib/components/select/Select.svelte";
   import ThemeToggle from "../components/ThemeToggle.svelte";
   import { formControls } from "../lib/repo";
   import Card from "../components/Card.svelte";
@@ -12,7 +12,7 @@
   import Main from "../layout/Main.svelte";
   import Header from "../layout/Header.svelte";
   import { appStore } from "../lib/AppStore";
-  import Popover from "../components/Popover.svelte";
+  import Popover from "../lib/components/popover/Popover.svelte";
   export let params;
   export let viewPath;
   let tabs = [

@@ -1,7 +1,7 @@
 <script>
   import { appStore } from "../../lib/AppStore";
   import { uuid } from "../../lib/utils";
-  import SelectSingleSearch from "../SelectSingleSearch.svelte";
+  import SelectSingleSearch from "../../lib/components/select/Select.svelte";
   export let question;
   let dataTypes = [
     { title: "Date", value: "date", id: uuid() },

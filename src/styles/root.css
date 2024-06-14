@@ -61,6 +61,15 @@
   --color-info: 24 119 255;
   --color-border: 217 217 217;
   --color-surface: 255 255 255;
+  /* gray colors */
+  --gray-1: 246 246 246;
+  --gray-2: 238 238 238;
+  --gray-3: 232 232 232;
+  --gray-4: 222 222 222;
+  --gray-5: 215 215 215;
+  --gray-6: 201 201 201;
+  --gray-7: 144 144 144;
+  --gray-8: 103 103 103;
   /* inverted colors */
   --color-invert-1: var(--color-black) / 0.02;
   --color-invert-2: var(--color-black) / 0.04;

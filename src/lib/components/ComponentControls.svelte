@@ -1,10 +1,22 @@
 <script>
-  import { controls, properties, styles } from "../components.config";
+  import { controls, componentTypes, styles } from "../components.config";
   import { appStore } from "../AppStore";
   export let currentComponent;
   const onChange = () => {
     let classesArray = [styles[currentComponent].baseClass.default];
     for (let controlKey in controls[currentComponent]) {
+      if (controlKey === "types") {
+        if (controls[currentComponent][controlKey].defaultValue !== "default") {
+          $appStore.properties[currentComponent].componentType = controls[
+            currentComponent
+          ][controlKey].defaultValue
+            .split(" ")
+            .join("-");
+        } else {
+          $appStore.properties[currentComponent].componentType =
+            controls[currentComponent][controlKey].defaultValue;
+        }
+      }
       if (controlKey === "states") {
         for (let option of controls[currentComponent][controlKey].options) {
           if (option.value) {
@@ -29,10 +41,24 @@
       }
     }
     $appStore.properties[currentComponent].classes = classesArray.join(" ");
+    // console.log($appStore.properties[currentComponent].classes);
   };
 </script>
 
 <div class="flex flex:col">
+  <!-- <div class="flex flex:col gap:4 p:8">
+    <div class="f:semibold f:16 lh:$(line-height) capitalize">
+      {componentTypes[currentComponent].title}
+    </div>
+    <select
+      class="select input-outline"
+      bind:value={$appStore.properties[currentComponent].componentType}
+    >
+      {#each componentTypes[currentComponent].options as option}
+        <option value={option.value}>{option.title}</option>
+      {/each}
+    </select>
+  </div> -->
   {#each Object.keys(controls[currentComponent]) as controlKey}
     <div class="flex flex:col gap:4 p:8">
       <div class="f:semibold f:16 lh:$(line-height) capitalize">

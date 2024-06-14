@@ -1,9 +1,5 @@
 <svelte:options customElement="my-element" />
 
-<!-- in Svelte 3, do this instead:
-<svelte:options tag="my-element" />
--->
-
 <script>
   export let name = "world";
 </script>
@@ -14,6 +10,7 @@
 <style lang="css">
   h1 {
     color: purple;
+    line-height: 0;
   }
   p {
     color: red;

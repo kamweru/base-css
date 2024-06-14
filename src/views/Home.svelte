@@ -24,10 +24,10 @@
     toggleMenu = ({ detail }) => {
       currentMenu = detail;
       currentComponent = currentMenu.value.toLocaleLowerCase();
+      console.log(currentComponent);
       loadSubview();
     };
   loadSubview();
-  // console.log(currentComponent);
 </script>
 
 <div class="h:100% flex">
@@ -35,12 +35,6 @@
   <div
     class="h:100% flex:1 flex flex:col gap:16 overflow-y:auto p:20 w:0::scrollbar h:0::scrollbar"
   >
-    <!-- <svelte:component this={subview} bind:currentComponent />
-    {#if currentComponent}
-      <div>
-        <ComponentCSSVars bind:currentComponent />
-      </div>
-    {/if} -->
     <ComponentPreview bind:currentComponent />
   </div>
 </div>
