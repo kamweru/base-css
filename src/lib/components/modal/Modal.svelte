@@ -4,6 +4,10 @@
   export let currentComponent;
 </script>
 
+<div>
+  <button class="btn btn-fill" on:click={() => (open = true)}>open modal</button
+  >
+</div>
 <div class="modal" class:open>
   <div class="modal-overlay"></div>
   <div class="modal-wrapper">

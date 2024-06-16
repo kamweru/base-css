@@ -199,6 +199,31 @@ const componentTypes = {
         default: "table-wrapper",
       },
     },
+    popover: {
+      baseClass: {
+        default: "popover",
+      },
+    },
+    dropdown: {
+      baseClass: {
+        default: "dropdown",
+      },
+    },
+    collapse: {
+      baseClass: {
+        default: "collapse",
+      },
+    },
+    divider: {
+      baseClass: {
+        default: "divider",
+      },
+    },
+    modal: {
+      baseClass: {
+        default: "modal",
+      },
+    },
     tabs: {
       baseClass: {
         default: "tabs-wrapper",
