@@ -1,6 +1,7 @@
 <script>
-  export let currentComponent;
   import Tabs from "../lib/components/tabs/Tabs.svelte";
+  import ToggleTheme from "../lib/components/ToggleTheme.svelte";
+  export let currentComponent, componentView;
   let currentTab = {
       right: null,
       left: null,
@@ -41,10 +42,12 @@
     ).default);
   loadTab("left");
   loadTab("right");
+  // console.log(currentComponent);
 </script>
 
-<div>
+<div class="flex jc:space-between">
   <h3 class="capitalize">{currentComponent}</h3>
+  <ToggleTheme />
 </div>
 <div class="flex gap:8">
   <div class="flex:1 b:1|solid|rgb($(color-border)) r:6">
@@ -55,7 +58,11 @@
         on:toggleMenu={() => loadTab("left")}
       />
       <div class="flex:1 p:8">
-        <svelte:component this={currentTab["left"]} bind:currentComponent />
+        <svelte:component
+          this={currentTab["left"]}
+          bind:currentComponent
+          bind:componentView
+        />
       </div>
     </div>
   </div>

@@ -12,7 +12,9 @@
       <input type="text" class="input" />
       <div class="form-control-message form-control-error">
         error message, A prime is a natural number greater than 1 that has no
-        positive divisors other than 1 and itself.
+        positive divisors other than 1 and itself. error message, A prime is a
+        natural number greater than 1 that has no positive divisors other than 1
+        and itself.
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <script>
   import { appStore } from "../AppStore";
-  export let currentComponent;
+  export let currentComponent, componentView;
 </script>
 
 <div class="p:16">

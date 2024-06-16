@@ -338,7 +338,24 @@
     translateX(calc(var(--switch-width-sm) / 2 - var(--switch-orb-offset-sm)));
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
-
+.checkbox-label,
+.checkbox-label label {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  list-style: none;
+  /* font-family: var(--ant-font-family); */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+/* .checkbox-label > span,
+.checkbox-label label > span {
+} */
 .select {
   -webkit-appearance: none;
   -moz-appearance: none;

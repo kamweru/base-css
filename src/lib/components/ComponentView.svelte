@@ -1,28 +1,18 @@
 <script>
-  import Icon from "@iconify/svelte";
-  import { appStore } from "../AppStore";
-  import { sampleData } from "../components.config";
-  import Form from "./form/Form.svelte";
-  import Radio from "./radio/Radio.svelte";
-  import Range from "./range/Range.svelte";
-  import NumberInput from "./numberInput/NumberInput.svelte";
-  import Select from "./select/Select.svelte";
-  import Table from "./table/Table.svelte";
-  import Tabs from "./tabs/Tabs.svelte";
-  import Details from "./details/Details.svelte";
-  import Upload from "./upload/Upload.svelte";
-  export let currentComponent;
+  export let currentComponent, componentView;
 </script>
 
 <div
   class="p:32 flex ai:center jc:center diagonal b:1|solid|rgb($(color-border)) h:100% r:6"
 >
-  <!-- <div class="flex gap:8">
+  <div class="w:50%">
+    <svelte:component this={componentView} bind:currentComponent />
+    <!-- <div class="flex gap:8">
     <div class="spinner"></div>
     <div class="loader"></div>
     <div class="loading-loop"></div>
   </div> -->
-  <!-- <div>
+    <!-- <div>
     {Object.keys($appStore.rootStyles[currentComponent])
       .map(
         (key) =>
@@ -38,8 +28,7 @@
           `${key}: ${$appStore.rootStyles[currentComponent][key].value}${$appStore.rootStyles[currentComponent][key].units};`
       )
       .join(" ")}-->
-  <div class="w:50% flex jc:center">
-    {#if currentComponent === "button"}
+    <!-- {#if currentComponent === "button"}
       <button class={$appStore.properties[currentComponent].classes}>
         {#if $appStore.properties[currentComponent].componentType === "icon-only"}
           <span class="btn-icon"><Icon icon="tabler:check"></Icon></span>
@@ -92,14 +81,7 @@
     {:else if currentComponent === "range"}
       <Range bind:currentComponent></Range>
     {:else if currentComponent === "select"}
-      <!-- <div> -->
       <Select></Select>
-      <!-- </div> -->
-      <!-- <select class={$appStore.properties[currentComponent].classes}>
-        {#each ["Option 1", "Option 2", "Option 3"] as option}
-          <option>{option}</option>
-        {/each}
-      </select> -->
     {:else if currentComponent === "switch"}
       <div class="flex ai:center gap:8">
         <input
@@ -117,6 +99,6 @@
       <Details></Details>
     {:else if currentComponent === "upload"}
       <Upload></Upload>
-    {/if}
+    {/if} -->
   </div>
 </div>

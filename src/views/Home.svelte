@@ -1,5 +1,4 @@
 <script>
-  import ComponentCSSVars from "../lib/components/ComponentCssVars.svelte";
   import ComponentPreview from "../subviews/ComponentPreview.svelte";
   import Sidebar from "../lib/components/Sidebar.svelte";
   let menuItems = [
@@ -17,21 +16,26 @@
       { title: "Tabs", value: "Tabs" },
       { title: "Details", value: "Details" },
       { title: "Upload", value: "Upload" },
+      { title: "Columns", value: "Columns" },
     ].sort((a, b) => a.title.localeCompare(b.title)),
-    subview,
+    componentView,
     currentMenu = menuItems[0],
     currentComponent = currentMenu.value.toLocaleLowerCase();
   const loadSubview = async () =>
-      (subview = (
-        await import(`../subviews/${currentMenu.value}.subview.svelte`)
+      (componentView = (
+        await import(
+          `../lib/components/${currentComponent}/${currentMenu.value}.svelte`
+        )
       ).default),
     toggleMenu = ({ detail }) => {
       currentMenu = detail;
       currentComponent = currentMenu.value.toLocaleLowerCase();
-      console.log(currentComponent);
+      // console.log(currentComponent);
       loadSubview();
+      // console.log(componentView);
     };
   loadSubview();
+  // console.log(currentMenu, currentComponent);
 </script>
 
 <div class="h:100% flex">
@@ -39,6 +43,6 @@
   <div
     class="h:100% flex:1 flex flex:col gap:16 overflow-y:auto p:20 w:0::scrollbar h:0::scrollbar"
   >
-    <ComponentPreview bind:currentComponent />
+    <ComponentPreview bind:currentComponent bind:componentView />
   </div>
 </div>

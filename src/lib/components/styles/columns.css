@@ -113,8 +113,15 @@
   flex: 0 0 calc(100% * calc(23 / var(--col-size)));
   max-width: calc(100% * calc(23 / var(--col-size)));
 }
-.col-24 {
+.col-24,
+.col {
   display: block;
   flex: 0 0 calc(100% * calc(24 / var(--col-size)));
   max-width: calc(100% * calc(24 / var(--col-size)));
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 0;
+  width: 100%;
 }

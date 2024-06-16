@@ -8,6 +8,7 @@
   const close = () => {
     if (open) open = false;
   };
+  export let currentComponent;
 </script>
 
 <div

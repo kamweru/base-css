@@ -6,6 +6,7 @@
     title: `Option ${i + 1}`,
     value: `Option ${i + 1}`,
   }));
+  export let currentComponent;
   export let label = "item label item label item label item label";
   export let selected = "";
   export let matchWidth = false;

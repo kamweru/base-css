@@ -1,6 +1,7 @@
 <script>
   export let open = false;
   import Icon from "@iconify/svelte";
+  export let currentComponent;
 </script>
 
 <div class="modal" class:open>

@@ -209,6 +209,11 @@ const componentTypes = {
         default: "upload",
       },
     },
+    columns: {
+      baseClass: {
+        default: "col",
+      },
+    },
     details: {
       baseClass: {
         default: "details",
