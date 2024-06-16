@@ -195,3 +195,104 @@ body {
     rgb(var(--color-invert-4)) 10px
   );
 }
+
+.loader {
+  width: 1rem;
+  aspect-ratio: 1;
+  --dot-color: var(--color-primary);
+  --right-dot-opacity: 0.3;
+  --top-dot: no-repeat
+    radial-gradient(farthest-side, rgb(var(--dot-color) / 0.3) 80%, #0000);
+  --left-dot: no-repeat
+    radial-gradient(farthest-side, rgb(var(--dot-color) / 0.5) 80%, #0000);
+  --right-dot: no-repeat
+    radial-gradient(farthest-side, rgb(var(--dot-color) / 0.8) 80%, #0000);
+  --bottom-dot: no-repeat
+    radial-gradient(farthest-side, rgb(var(--dot-color) / 1) 80%, #0000);
+  background: var(--top-dot) top, var(--left-dot) left, var(--right-dot) right,
+    var(--bottom-dot) bottom;
+  background-size: 40% 40%;
+  animation: l7 0.8s linear infinite;
+}
+
+.spinner {
+  width: 1rem;
+  aspect-ratio: 1;
+  --border-color: var(--color-primary);
+  border: 2px solid rgb(var(--border-color));
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loading-loop {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-dasharray='15' stroke-dashoffset='15' stroke-linecap='round' stroke-width='2' d='M12 3C16.9706 3 21 7.02944 21 12'%3E%3Canimate fill='freeze' attributeName='stroke-dashoffset' dur='0.3s' values='15;0'/%3E%3CanimateTransform attributeName='transform' dur='1.5s' repeatCount='indefinite' type='rotate' values='0 12 12;360 12 12'/%3E%3C/path%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+option {
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height);
+  height: calc(var(--default-size) * 2);
+  padding: calc(var(--default-size) / 4)
+    calc(var(--default-size) / calc(16 / 15));
+  border-radius: calc(var(--default-size) / 4);
+  background-color: rgb(var(--surface));
+  pointer-events: auto;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+option.active::after {
+  display: inline-block;
+  width: var(--default-size);
+  height: var(--default-size);
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23FFF' fill-rule='evenodd' d='M13.488 3.43a.75.75 0 0 1 .081 1.058l-6 7a.75.75 0 0 1-1.1.042l-3.5-3.5A.75.75 0 0 1 4.03 6.97l2.928 2.927l5.473-6.385a.75.75 0 0 1 1.057-.081Z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  content: "";
+}
+option.active {
+  background-color: rgb(var(--gray-3));
+}
+option:hover {
+  /* background-color: rgb(var(--color-neutral)); */
+  background-color: rgb(var(--gray-2));
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes l7 {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}

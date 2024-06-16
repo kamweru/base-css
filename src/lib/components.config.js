@@ -16,6 +16,9 @@ export const cssUnits = [
     value: "pt",
   },
 ];
+export const sampleData = {
+  tabs: ["Home", "About", "Contact"].map((title) => ({ title, value: title })),
+};
 const componentTypes = {
     button: {
       title: "Button Type",
@@ -189,6 +192,26 @@ const componentTypes = {
     progress: {
       baseClass: {
         default: "progress",
+      },
+    },
+    table: {
+      baseClass: {
+        default: "table-wrapper",
+      },
+    },
+    tabs: {
+      baseClass: {
+        default: "tabs-wrapper",
+      },
+    },
+    upload: {
+      baseClass: {
+        default: "upload",
+      },
+    },
+    details: {
+      baseClass: {
+        default: "details",
       },
     },
     radio: {

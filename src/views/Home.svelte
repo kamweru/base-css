@@ -13,7 +13,11 @@
       { title: "Range", value: "Range" },
       { title: "Select", value: "Select" },
       { title: "Switch", value: "Switch" },
-    ],
+      { title: "Table", value: "Table" },
+      { title: "Tabs", value: "Tabs" },
+      { title: "Details", value: "Details" },
+      { title: "Upload", value: "Upload" },
+    ].sort((a, b) => a.title.localeCompare(b.title)),
     subview,
     currentMenu = menuItems[0],
     currentComponent = currentMenu.value.toLocaleLowerCase();

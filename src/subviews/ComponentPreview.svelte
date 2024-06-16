@@ -1,6 +1,6 @@
 <script>
   export let currentComponent;
-  import Tabs from "../lib/components/Tabs.svelte";
+  import Tabs from "../lib/components/tabs/Tabs.svelte";
   let currentTab = {
       right: null,
       left: null,

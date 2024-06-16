@@ -1,7 +1,4 @@
 <script>
-  import Button from "../components/Button.svelte";
-  import Editor from "../components/Editor.svelte";
-  import ThemeToggle from "../components/ThemeToggle.svelte";
   import Icon from "@iconify/svelte";
   let active = false;
 </script>
@@ -17,7 +14,6 @@
       class="bg:rgb($(strong)) h:100% flex flex:col ai:center jc:start w:3xs"
     >
       <div class="p:16 bg:rgb($(bold)) w:full flex ai:center gap:8">
-        <ThemeToggle></ThemeToggle>
         <div
           class="bg:rgb($(muted)) inline-flex ai:center h:32 rounded rel w:80"
         >
