@@ -1,3 +1,7 @@
+<script>
+  export let currentComponent;
+</script>
+
 <div class="flex flex:col gap:8 w:100%">
   <div class="divider divider-with-text">
     <span class="divider-text">Divider</span>

@@ -1,14 +1,11 @@
 <script>
   export let open = false;
+  export let style = "";
   import Icon from "@iconify/svelte";
   export let currentComponent;
 </script>
 
-<div>
-  <button class="btn btn-fill" on:click={() => (open = true)}>open modal</button
-  >
-</div>
-<div class="modal" class:open>
+<div {style} class="modal" class:open>
   <div class="modal-overlay"></div>
   <div class="modal-wrapper">
     <div class="modal-inner">

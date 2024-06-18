@@ -22,6 +22,17 @@
       { title: "Dropdown", value: "Dropdown" },
       { title: "Collapse", value: "Collapse" },
       { title: "Divider", value: "Divider" },
+      { title: "card", value: "Card" },
+      { title: "list", value: "List" },
+      { title: "alert", value: "Alert" },
+      { title: "badge", value: "Badge" },
+      { title: "pop confirm", value: "PopConfirm" },
+      { title: "message", value: "Message" },
+      { title: "notification", value: "Notification" },
+      { title: "tag", value: "Tag" },
+      { title: "menu", value: "Menu" },
+      { title: "rate", value: "Rate" },
+      { title: "float button", value: "Float Button" },
     ].sort((a, b) => a.title.localeCompare(b.title)),
     componentView,
     currentMenu = menuItems[0],
@@ -44,7 +55,9 @@
 </script>
 
 <div class="h:100% flex">
-  <Sidebar {menuItems} on:toggleMenu={toggleMenu} />
+  <div class="col-3 overflow-y:auto p:20 w:0::scrollbar h:0::scrollbar">
+    <Sidebar {menuItems} on:toggleMenu={toggleMenu} />
+  </div>
   <div
     class="h:100% flex:1 flex flex:col gap:16 overflow-y:auto p:20 w:0::scrollbar h:0::scrollbar"
   >

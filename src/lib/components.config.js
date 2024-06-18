@@ -219,6 +219,61 @@ const componentTypes = {
         default: "divider",
       },
     },
+    card: {
+      baseClass: {
+        default: "card",
+      },
+    },
+    list: {
+      baseClass: {
+        default: "list",
+      },
+    },
+    alert: {
+      baseClass: {
+        default: "alert",
+      },
+    },
+    badge: {
+      baseClass: {
+        default: "badge",
+      },
+    },
+    popconfirm: {
+      baseClass: {
+        default: "popconfirm",
+      },
+    },
+    message: {
+      baseClass: {
+        default: "message",
+      },
+    },
+    notification: {
+      baseClass: {
+        default: "notification",
+      },
+    },
+    tag: {
+      baseClass: {
+        default: "tag",
+      },
+    },
+    menu: {
+      baseClass: {
+        default: "menu",
+      },
+    },
+    rate: {
+      baseClass: {
+        default: "rate",
+      },
+    },
+    floatbutton: {
+      baseClass: {
+        default: "floatbutton",
+      },
+    },
     modal: {
       baseClass: {
         default: "modal",

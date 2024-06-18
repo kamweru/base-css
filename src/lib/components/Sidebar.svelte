@@ -9,7 +9,7 @@
   };
 </script>
 
-<div class="col-3 br:1|solid|rgb($(color-border))">
+<div class="br:1|solid|rgb($(color-border))">
   <div class="flex flex:col gap:8">
     <div class="p:8">
       <div class="f:semibold f:16 lh:$(line-height) capitalize">Components</div>
@@ -18,7 +18,7 @@
       {#each menuItems as menuItem}
         <li class="flex mb:4 mb:0:last">
           <button
-            class="btn btn-text w:100%"
+            class="btn btn-text w:100% capitalize"
             class:active={currentMenu.title === menuItem.title}
             on:click={() => toggleMenu(menuItem)}
           >

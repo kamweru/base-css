@@ -9,7 +9,7 @@
   <Popover bind:open matchWidth={true}>
     <ul>
       {#each [1, 2, 3] as item}
-        <li>{item}</li>
+        <li>item {item}</li>
       {/each}
     </ul>
   </Popover>
