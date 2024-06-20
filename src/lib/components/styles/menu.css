@@ -1,0 +1,61 @@
+.menu,
+.menu-submenu,
+.menu-group-list {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none;
+  border-bottom: var(--border-width) var(--border-style)
+    rgb(var(--color-border));
+  /* background-color: rgb(var(--color-surface)); */
+}
+.menu.menu-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+.menu .menu-submenu.menu-submenu-horizontal,
+.menu .menu-group-list {
+  border: none;
+}
+.menu.menu.menu-horizontal .menu-item {
+  flex: none;
+  display: inline-block;
+}
+.menu .menu-item,
+.menu .menu-submenu-item,
+.menu .menu-group-list .menu-item {
+  position: relative;
+  padding-inline: var(--padding);
+  cursor: pointer;
+}
+
+.menu .menu-item .menu-item-icon {
+  margin-inline-end: var(--margin-xs);
+}
+.menu .menu-item.active {
+  color: rgb(var(--color-primary));
+  border-bottom: var(--border-width) var(--border-style)
+    rgb(var(--color-primary));
+}
+.menu .menu-group-list .menu-item {
+  padding: calc(var(--font-size-sm) * 0.5) var(--padding);
+  margin-inline: var(--margin-xs);
+  margin-block: var(--margin-xs);
+  width: calc(100% - var(--margin-xs) * 2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.menu .menu-group-list .menu-item:hover {
+  background-color: rgb(var(--color-primary-hover));
+}
+.menu .menu-item-group .menu-group-title {
+  padding: var(--padding-xs) var(--padding);
+  color: rgb(var(--color-invert-9));
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+/* .menu .menu-item:hover .menu-submenu {
+  display: flex;
+  flex-direction: column;
+} */

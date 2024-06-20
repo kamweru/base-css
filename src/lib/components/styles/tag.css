@@ -1,4 +1,10 @@
 .tag {
+  --tag-default-bg: rgb(var(--color-surface));
+  --tag-default-color: rgb(var(--color-text));
+  --tag-default-border: rgb(var(--color-border));
+  --tag-default-border-color: rgb(var(--color-border));
+  --tag-default-hover-bg: rgb(var(--color-surface-hover));
+  --tag-default-hover-color: rgb(var(--color-text-hover));
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,7 +18,7 @@
   margin-inline-end: var(--margin-xs);
   padding-inline: calc(8px - var(--border-width));
   white-space: nowrap;
-  /* background: var(--ant-tag-default-bg); */
+  background: var(--tag-default-bg);
   border: var(--border-width) var(--border-style) rgb(var(--color-border));
   border-radius: var(--border-radius-sm);
   opacity: 1;
@@ -30,15 +36,12 @@
   border: none;
   outline: none;
   cursor: pointer;
-}
-.tag .tag-close-icon {
   margin-inline-start: calc(var(--padding-xxs) - var(--border-width));
   font-size: calc(var(--font-size-sm) - var(--border-width) * 2);
   color: rgb(var(--color-invert-8));
-  cursor: pointer;
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
-.tag .tag-close-icon:hover {
+.tag .tag-close-btn:hover {
   color: rgb(var(--color-text));
 }
 

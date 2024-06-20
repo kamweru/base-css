@@ -5,7 +5,7 @@
 <div
   class="p:32 flex ai:center jc:center diagonal b:1|solid|rgb($(color-border)) h:100% r:6"
 >
-  <div class="w:50% flex ai:center jc:center h:100%">
+  <div class=" flex:1 min-h:300 rel">
     <svelte:component this={componentView} bind:currentComponent />
     <!-- <div class="flex gap:8">
     <div class="spinner"></div>

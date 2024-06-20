@@ -9,10 +9,8 @@
   <span class={$appStore.properties[currentComponent].classes}>Tag 1</span>
   <span class={$appStore.properties[currentComponent].classes}
     >Tag 1
-    <button class="tag-close-btn">
-      <span class="icon tag-close-icon">
-        <Icon icon="tabler:x" />
-      </span>
+    <button class="icon tag-close-btn">
+      <Icon icon="ic:baseline-close"></Icon>
     </button>
   </span>
 
@@ -21,8 +19,5 @@
       <Icon icon="tabler:plus" />
     </span>
     <span>Tag 1</span>
-    <!-- <span class="icon tag-close-icon">
-      <Icon icon="tabler:x" />
-    </span> -->
   </span>
 </div>

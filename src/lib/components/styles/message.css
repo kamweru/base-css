@@ -1,0 +1,28 @@
+.message {
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-xs);
+  border-radius: var(--border-radius);
+  position: relative;
+  background-color: rgb(var(--color-surface));
+  box-shadow: var(--shadow-10);
+}
+.message .message-content {
+  display: flex;
+  align-items: center;
+}
+.message .message-icon,
+.message.message-info .message-icon {
+  margin-inline-end: var(--margin-xs);
+  color: rgb(var(--color-info-text));
+}
+
+.message.message-success .message-icon {
+  color: rgb(var(--color-success-text));
+}
+.message.message-danger .message-icon {
+  color: rgb(var(--color-danger-text));
+}
+.message.message-warning .message-icon {
+  color: rgb(var(--color-warning-text));
+}

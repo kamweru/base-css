@@ -1,0 +1,20 @@
+.list {
+  background-color: rgb(var(--color-surface));
+  border-radius: var(--border-radius);
+}
+.list .list-header,
+.list .list-footer {
+  padding: var(--padding-xs) var(--padding);
+}
+.list .list-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.list .list-header,
+.list .list-item {
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+.list .list-items .list-item {
+  padding: var(--padding-xs) var(--padding);
+}

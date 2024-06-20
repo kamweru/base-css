@@ -1,0 +1,21 @@
+.popconfirm {
+}
+.popconfirm .popconfirm-inner {
+  display: flex;
+  align-items: self-start;
+  padding: var(--padding-xs);
+  word-wrap: break-word;
+}
+.popconfirm .popconfirm-icon {
+  margin-inline-end: var(--margin-xs);
+  font-size: calc(var(--font-size-lg) * 1.25);
+  color: rgb(var(--color-danger-text));
+}
+
+.popconfirm .popconfirm-content .popconfirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-xs);
+  margin-top: var(--margin-xs);
+}

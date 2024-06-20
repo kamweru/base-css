@@ -1,0 +1,37 @@
+.notification {
+  display: flex;
+  align-items: start;
+  padding: var(--padding-xs);
+  border-radius: var(--border-radius);
+  position: relative;
+  background-color: rgb(var(--color-surface));
+  box-shadow: var(--shadow-10);
+  word-wrap: break-word;
+}
+.notification .notification-icon {
+  flex: none;
+  margin-inline-end: var(--margin-xs);
+  font-size: calc(var(--font-size-lg) * 1.5);
+}
+.notification .notification-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.notification .notification-content .notification-title {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+}
+.notification .notification-close-btn {
+  flex: none;
+  margin-inline-start: var(--margin-xs);
+  padding: 0;
+  font-size: var(--font-size-lg);
+  line-height: var(--font-size-lg);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

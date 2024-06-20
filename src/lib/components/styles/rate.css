@@ -1,0 +1,25 @@
+.rate {
+  position: relative;
+}
+.rate .rate-label {
+  color: rgb(var(--color-neutral));
+  float: right;
+}
+.rate .rate-input {
+  display: none;
+}
+.rate > .rate-input:checked ~ .rate-label,
+.rate:not(:checked) > .rate-label:hover,
+.rate:not(:checked) > .rate-label:hover ~ .rate-label {
+  color: rgb(var(--color-warning));
+}
+/* .rate > .rate-input:checked + .rate-label:hover,
+.rate > .rate-input:checked ~ .rate-label:hover,
+.rate > .rate-label:hover ~ .rate-input:checked ~ .rate-label,
+.rate > .rate-input:checked ~ .rate-label:hover ~ .rate-label {
+  color: rgb(var(--color-neutral));
+} */
+.rate .rate-label {
+  cursor: pointer;
+  font-size: 1.5em;
+}
