@@ -6,6 +6,7 @@
 </script>
 
 <div class="flex flex:col gap:8">
+  <option value="" class="active">option item</option>
   <div
     class="{$appStore.properties[currentComponent][
       'classes'

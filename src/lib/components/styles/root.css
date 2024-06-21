@@ -265,7 +265,7 @@ option {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size);
   line-height: var(--line-height);
   height: calc(var(--default-size) * 2);
   padding: calc(var(--default-size) / 4)

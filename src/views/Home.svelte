@@ -33,6 +33,7 @@
       { title: "menu", value: "Menu" },
       { title: "rate", value: "Rate" },
       { title: "float button", value: "FloatButton" },
+      { title: "Breadcrumb", value: "Breadcrumb" },
     ].sort((a, b) => a.title.localeCompare(b.title)),
     componentView,
     currentMenu = menuItems[0],

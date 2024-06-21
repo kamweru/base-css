@@ -239,6 +239,11 @@ const componentTypes = {
         default: "badge",
       },
     },
+    breadcrumb: {
+      baseClass: {
+        default: "breadcrumb",
+      },
+    },
     popconfirm: {
       baseClass: {
         default: "popconfirm",

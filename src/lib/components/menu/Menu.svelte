@@ -1,5 +1,4 @@
 <script>
-  import { child } from "firebase/database";
   import { appStore } from "../../AppStore";
   import Popover from "../popover/Popover.svelte";
   import "../styles/menu.css";
