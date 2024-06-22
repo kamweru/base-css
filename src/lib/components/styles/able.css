@@ -1,0 +1,12 @@
+.able {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.able .able-content {
+  flex: 1;
+  overflow: auto;
+  padding: var(--padding);
+}

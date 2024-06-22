@@ -229,6 +229,11 @@ const componentTypes = {
         default: "list",
       },
     },
+    able: {
+      baseClass: {
+        default: "able",
+      },
+    },
     alert: {
       baseClass: {
         default: "alert",
