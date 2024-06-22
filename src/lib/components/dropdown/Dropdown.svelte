@@ -1,6 +1,5 @@
 <script>
   import Popover from "../popover/Popover.svelte";
-  export let currentComponent;
   let open = false;
 </script>
 

@@ -1,13 +1,11 @@
 <script>
   import Icon from "@iconify/svelte";
-  import { appStore } from "../../AppStore";
   import Popover from "../popover/Popover.svelte";
   import "../styles/popconfirm.css";
-  export let currentComponent;
   let open = false;
 </script>
 
-<div class={$appStore.properties[currentComponent].classes}>
+<div class="popconfirm">
   <button class="btn btn-danger" on:click={() => (open = true)}
     >Delete Task</button
   >

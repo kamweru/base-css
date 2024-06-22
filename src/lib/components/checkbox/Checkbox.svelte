@@ -1,15 +1,9 @@
 <script>
-  import { appStore } from "../../AppStore";
-  export let currentComponent;
 </script>
 
 <div class="flex flex:col gap:8">
   <div class="flex ai:center gap:8">
-    <input
-      type="checkbox"
-      id="with-label"
-      class={$appStore.properties[currentComponent].classes}
-    />
+    <input type="checkbox" id="with-label" class="input checkbox" />
     <label for="with-label" class="o:-1">I agree to the terms</label>
   </div>
   <label class="cursor:pointer user-select:none flex ai:center">

@@ -1,6 +1,5 @@
 <script>
   import Icon from "@iconify/svelte";
-  export let currentComponent;
   let open = false;
 </script>
 

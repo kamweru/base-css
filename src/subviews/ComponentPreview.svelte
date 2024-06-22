@@ -66,7 +66,7 @@
       </div>
     </div>
   </div>
-  <div class="col-4 b:1|solid|rgb($(color-border)) r:6">
+  <div class="col-5 b:1|solid|rgb($(color-border)) r:6">
     <Tabs
       bind:menuItems={menuItems.right}
       bind:currentMenu={currentMenu["right"]}

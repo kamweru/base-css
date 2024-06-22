@@ -1,104 +1,54 @@
 <script>
-  import { controls, componentTypes, styles } from "../components.config";
+  import Select from "./select/Select.svelte";
   import { appStore } from "../AppStore";
+  import Switch from "./switch/Switch.svelte";
+  import Input from "./input/Input.svelte";
   export let currentComponent;
-  const onChange = () => {
-    let classesArray = [styles[currentComponent].baseClass.default];
-    for (let controlKey in controls[currentComponent]) {
-      if (controlKey === "types") {
-        if (controls[currentComponent][controlKey].defaultValue !== "default") {
-          $appStore.properties[currentComponent].componentType = controls[
-            currentComponent
-          ][controlKey].defaultValue
-            .split(" ")
-            .join("-");
-        } else {
-          $appStore.properties[currentComponent].componentType =
-            controls[currentComponent][controlKey].defaultValue;
-        }
-      }
-      if (controlKey === "states") {
-        for (let option of controls[currentComponent][controlKey].options) {
-          if (option.value) {
-            classesArray.push(
-              styles[currentComponent][controlKey][option.title]
-            );
-          }
-        }
-      } else {
-        if (
-          controls[currentComponent][controlKey].defaultValue &&
-          styles[currentComponent][controlKey][
-            controls[currentComponent][controlKey].defaultValue
-          ] !== ""
-        ) {
-          classesArray.push(
-            styles[currentComponent][controlKey][
-              controls[currentComponent][controlKey].defaultValue
-            ]
-          );
-        }
-      }
-    }
-    $appStore.properties[currentComponent].classes = classesArray.join(" ");
-    // console.log($appStore.properties[currentComponent].classes);
-  };
 </script>
 
 <div class="flex flex:col">
   <!-- <div class="flex flex:col gap:4 p:8">
-    <div class="f:semibold f:16 lh:$(line-height) capitalize">
-      {componentTypes[currentComponent].title}
+    <div class="f:16 lh:$(line-height) capitalize">
+      {$appStore.config.view.title}
     </div>
-    <select
-      class="select input-outline"
-      bind:value={$appStore.properties[currentComponent].componentType}
-    >
-      {#each componentTypes[currentComponent].options as option}
-        <option value={option.value}>{option.title}</option>
-      {/each}
-    </select>
+    <Select
+      bind:selected={$appStore.config.view.value}
+      options={$appStore.config.view.options}
+      inputSize="sm"
+    />
   </div> -->
-  {#each Object.keys(controls[currentComponent]) as controlKey}
-    <div class="flex flex:col gap:4 p:8">
-      <div class="f:semibold f:16 lh:$(line-height) capitalize">
-        {controls[currentComponent][controlKey].title}
+  {#each $appStore.config.component[currentComponent].classProps as classProp}
+    <div class="flex flex:col p:4|8">
+      <div class="f:$(font-size) lh:$(line-height) capitalize">
+        {classProp.title}
       </div>
-      {#if controls[currentComponent][controlKey].controlType === "select"}
-        <select
-          name=""
-          id=""
-          class="select input-outline"
-          bind:value={controls[currentComponent][controlKey].defaultValue}
-          on:change={onChange}
-        >
-          {#each controls[currentComponent][controlKey].options as option}
-            <option value={option.value}>{option.title}</option>
-          {/each}
-        </select>
-      {:else}
-        {#each controls[currentComponent][controlKey].options as option}
-          <div class="flex ai:center gap:8">
-            <input
-              type="checkbox"
-              class="input switch"
-              value={option.value}
-              bind:checked={option.value}
-              on:change={onChange}
-            />
-            <div class="capitalize">{option.title}</div>
-          </div>
-        {/each}
+      <Select
+        bind:selected={classProp.value}
+        options={classProp.options}
+        inputSize="sm"
+      />
+    </div>
+  {/each}
+  {#each $appStore.config.component[currentComponent].otherProps as otherProp}
+    <div class="flex flex:col p:4|8">
+      {#if otherProp.controlType === "switch"}
+        <Switch
+          size="sm"
+          bind:value={otherProp.value}
+          label={otherProp.title}
+        />
       {/if}
-      <!-- <div>
-        {controls[currentComponent][controlKey].controlType}
-      </div> -->
-      <!-- <label>{controls[currentComponent][controlKey].title}</label>
-      <input
-        type="number"
-        bind:value={controls[currentComponent][controlKey].defaultValue}
+      {#if otherProp.controlType === "input"}
+        <div class="f:$(font-size) lh:$(line-height) capitalize">
+          {otherProp.title}
+        </div>
+        <Input size="sm" bind:value={otherProp.value} />
+      {/if}
+      <!-- <Select
+        bind:selected={otherProp.value}
+        options={otherProp.options}
+        inputSize="sm"
       /> -->
-      <!-- <span>{field.units}</span> -->
     </div>
   {/each}
 </div>

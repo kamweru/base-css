@@ -1,9 +1,7 @@
 <script>
-  import { appStore } from "../../AppStore";
   import Popover from "../popover/Popover.svelte";
   import "../styles/menu.css";
   import Icon from "@iconify/svelte";
-  export let currentComponent;
   let menuitems = [
       {
         label: "Navigation One",
@@ -59,9 +57,7 @@
     open = false;
 </script>
 
-<menu
-  class="{$appStore.properties[currentComponent]['classes']} menu-horizontal"
->
+<menu class="menu menu-horizontal">
   {#each menuitems as item}
     {#if item.children}
       <li

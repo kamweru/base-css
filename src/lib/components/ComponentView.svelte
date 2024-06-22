@@ -1,12 +1,50 @@
 <script>
+  import { appStore } from "../AppStore";
+
   export let currentComponent, componentView;
+
+  // let currentView;
+  //  const loadSubview = async () =>
+  //     (componentView = (
+  //       await import(
+  //         `./${currentComponent}/${currentMenu.value}.svelte`
+  //       )
+  //     ).default);
 </script>
 
 <div
   class="p:32 flex ai:center jc:center diagonal b:1|solid|rgb($(color-border)) h:100% r:6"
 >
-  <div class=" flex:1 min-h:300 rel">
-    <svelte:component this={componentView} bind:currentComponent />
+  <!-- {JSON.stringify({
+    ...$appStore.config.component[currentComponent].otherProps.reduce(
+      (acc, val) => ((acc[val.title] = val.value), acc),
+      {}
+    ),
+  })} -->
+  <div class="flex:1 min-h:300 rel">
+    <svelte:component
+      this={componentView}
+      {...{
+        rootStyles: $appStore.config.component[currentComponent].cssVariables
+          .reduce((acc, val) => {
+            val.options.map((o) => {
+              acc.push(
+                `--${currentComponent}-${val.title}-${o.title}: ${o.value}${val.units};`
+              );
+            });
+            return acc;
+          }, [])
+          .join(" "),
+        ...$appStore.config.component[currentComponent].classProps.reduce(
+          (acc, val) => ((acc[val.title] = val.value), acc),
+          {}
+        ),
+        ...$appStore.config.component[currentComponent].otherProps.reduce(
+          (acc, val) => ((acc[val.title] = val.value), acc),
+          {}
+        ),
+      }}
+    />
     <!-- <div class="flex gap:8">
     <div class="spinner"></div>
     <div class="loader"></div>

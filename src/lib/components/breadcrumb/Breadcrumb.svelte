@@ -18,7 +18,7 @@
   ];
 </script>
 
-<nav class={$appStore.properties[currentComponent]["classes"]}>
+<nav class="breadcrumb">
   <ol>
     {#each breadcrumbs as breadcrumb}
       <li>

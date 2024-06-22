@@ -1,6 +1,5 @@
 <script>
   let active = false;
-  export let currentComponent;
 </script>
 
 <div class="upload">

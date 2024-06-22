@@ -1,21 +1,7 @@
-export const cssUnits = [
-  {
-    title: "PX",
-    value: "px",
-  },
-  {
-    title: "REM",
-    value: "rem",
-  },
-  {
-    title: "EM",
-    value: "em",
-  },
-  {
-    title: "PT",
-    value: "pt",
-  },
-];
+export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
+  title: v,
+  value: v,
+}));
 export const sampleData = {
   tabs: ["Home", "About", "Contact"].map((title) => ({ title, value: title })),
 };
@@ -91,6 +77,34 @@ const componentTypes = {
         value: 32,
         units: "px",
         cssVar: "--input-height",
+      },
+    },
+    able: {
+      padding: {
+        title: "padding",
+        units: "px",
+        variables: [
+          {
+            title: "xs",
+            value: 4,
+          },
+          {
+            title: "sm",
+            value: 8,
+          },
+          {
+            title: "md",
+            value: 16,
+          },
+          {
+            title: "lg",
+            value: 20,
+          },
+          {
+            title: "xl",
+            value: 24,
+          },
+        ],
       },
     },
   },
@@ -233,6 +247,13 @@ const componentTypes = {
       baseClass: {
         default: "able",
       },
+      sizes: {
+        xs: "able-xs",
+        sm: "able-sm",
+        default: "",
+        lg: "able-lg",
+        xl: "able-xl",
+      },
     },
     alert: {
       baseClass: {
@@ -361,6 +382,417 @@ const componentTypes = {
       states: { disabled: "input-disabled", invalid: "input-invalid" },
     },
   },
+  componentProperties = {
+    able: {
+      size: {
+        value: "md",
+        options: ["xs", "sm", "md", "lg", "xl"].map((v) => ({
+          title: v,
+          value: v,
+        })),
+      },
+      orientation: {
+        value: "horizontal",
+        options: ["horizontal", "vertical"].map((v) => ({
+          title: v,
+          value: v,
+        })),
+      },
+    },
+  },
+  config = {
+    view: {
+      title: "View",
+      value: "single",
+      options: ["all", "single"].map((v) => ({ title: v, value: v })),
+    },
+    component: {
+      able: {
+        classProps: [
+          {
+            title: "size",
+            value: "md",
+            options: ["xs", "sm", "md", "lg", "xl"].map((v) => ({
+              title: v,
+              value: v,
+            })),
+          },
+          {
+            title: "direction",
+            value: "horizontal",
+            options: ["horizontal", "vertical"].map((v) => ({
+              title: v,
+              value: v,
+            })),
+          },
+        ],
+        cssVariables: [
+          {
+            title: "padding",
+            units: "px",
+            options: [
+              {
+                title: "xs",
+                value: 4,
+              },
+              {
+                title: "sm",
+                value: 8,
+              },
+              {
+                title: "md",
+                value: 16,
+              },
+              {
+                title: "lg",
+                value: 20,
+              },
+              {
+                title: "xl",
+                value: 24,
+              },
+            ],
+          },
+          {
+            title: "border-radius",
+            units: "px",
+            options: [
+              {
+                title: "xs",
+                value: 2,
+              },
+              {
+                title: "sm",
+                value: 4,
+              },
+              {
+                title: "md",
+                value: 6,
+              },
+              {
+                title: "lg",
+                value: 8,
+              },
+              {
+                title: "xl",
+                value: 12,
+              },
+            ],
+          },
+          {
+            title: "font-size",
+            units: "px",
+            options: [
+              {
+                title: "xs",
+                value: 10,
+              },
+              {
+                title: "sm",
+                value: 12,
+              },
+              {
+                title: "md",
+                value: 16,
+              },
+              {
+                title: "lg",
+                value: 20,
+              },
+              {
+                title: "xl",
+                value: 24,
+              },
+            ],
+          },
+        ],
+        attributes: [
+          {
+            title: "inner text",
+            value: "inner text content",
+          },
+        ],
+        otherProps: [],
+      },
+      alert: {
+        classProps: [
+          {
+            title: "type",
+            value: "default",
+            options: ["default", "info", "success", "warning", "error"].map(
+              (v) => ({
+                title: v,
+                value: v,
+              })
+            ),
+          },
+        ],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [
+          {
+            title: "message",
+            value: "message content",
+            controlType: "input",
+          },
+          {
+            title: "description",
+            value: "description content",
+            controlType: "input",
+          },
+          {
+            title: "closable",
+            value: false,
+            controlType: "switch",
+          },
+          {
+            title: "showIcon",
+            value: false,
+            controlType: "switch",
+          },
+        ],
+      },
+      badge: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      breadcrumb: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      button: {
+        classProps: [
+          {
+            title: "type",
+            value: "default",
+            options: ["default", "dashed", "fill", "text", "link"].map((v) => ({
+              title: v,
+              value: v,
+            })),
+          },
+          {
+            title: "size",
+            value: "default",
+            options: ["sm", "default", "lg"].map((v) => ({
+              title: v,
+              value: v,
+            })),
+          },
+          {
+            title: "color",
+            value: "default",
+            options: ["default", "success", "warning", "danger", "info"].map(
+              (v) => ({
+                title: v,
+                value: v,
+              })
+            ),
+          },
+          {
+            title: "buttonContent",
+            value: "textOnly",
+            options: ["textOnly", "iconOnly", "iconLeft", "iconRight"].map(
+              (v) => ({
+                title: v,
+                value: v,
+              })
+            ),
+          },
+        ],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [
+          {
+            title: "buttonText",
+            value: "Settings",
+            controlType: "input",
+          },
+          {
+            title: "btnCircle",
+            value: false,
+            controlType: "switch",
+          },
+          {
+            title: "disabled",
+            value: false,
+            controlType: "switch",
+          },
+        ],
+      },
+      card: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      checkbox: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      collapse: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      columns: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      details: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      divider: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      dropdown: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      floatbutton: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      form: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      input: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      list: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      menu: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      message: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      modal: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      notification: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      numberinput: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      popconfirm: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      popover: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      progress: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      radio: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      range: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      rate: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      select: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      switch: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      table: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      tabs: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      tag: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+      upload: {
+        classProps: [],
+        cssVariables: [],
+        attributes: [],
+        otherProps: [],
+      },
+    },
+  },
   properties = Object.keys(styles).reduce((acc, controlKey) => {
     let classesArray = [];
     // console.log(componentTypes[controlKey].title);
@@ -402,4 +834,12 @@ const componentTypes = {
     return acc;
   }, {});
 
-export { styles, controls, properties, rootStyles, componentTypes };
+export {
+  config,
+  styles,
+  controls,
+  properties,
+  rootStyles,
+  componentTypes,
+  componentProperties,
+};

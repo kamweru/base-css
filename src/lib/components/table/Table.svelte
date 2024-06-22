@@ -1,5 +1,4 @@
 <script>
-  export let currentComponent;
 </script>
 
 <div class="table-wrapper">

@@ -6,9 +6,9 @@
     title: `Option ${i + 1}`,
     value: `Option ${i + 1}`,
   }));
-  export let currentComponent;
   export let label = "item label item label item label item label";
   export let selected = "";
+  export let inputSize = "md";
   export let matchWidth = false;
   export let id = null;
   export let minW = 200;
@@ -19,7 +19,17 @@
       matchWidth: true,
     },
     open = false,
-    selectedObj = null;
+    selectedObj = null,
+    inputSizes = {
+      sm: "input-sm",
+      md: "",
+      lg: "input-lg",
+    },
+    selectSizes = {
+      sm: "c-select-sm",
+      md: "",
+      lg: "c-select-lg",
+    };
   const dispatch = createEventDispatcher(),
     setSelected = (obj) => {
       open = false;
@@ -41,7 +51,7 @@
 </script>
 
 <div class="flex flex:col gap:8">
-  <div class="c-select">
+  <div class="c-select {selectSizes[inputSize]}">
     <span class="c-select-selector">
       <span class="c-select-selection">
         <span class="c-select-selection-item" class:open>{label}</span>
@@ -52,7 +62,7 @@
     </span>
     <input
       type="text"
-      class="input c-select-input"
+      class="input {inputSizes[inputSize]} c-select-input"
       {id}
       on:focus={() => {
         open = true;
@@ -94,7 +104,7 @@
   </div> -->
   <Popover options={popoverOptions} {matchWidth} bind:open>
     <!-- <div class="wrapper $popover-padding:calc($(size)/8) w:200"> -->
-    <div class="flex flex:col">
+    <div class="flex flex:col c-select-options">
       {#each options as { title, value, icon, ...rest }}
         <option
           {value}

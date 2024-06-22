@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  export let currentComponent;
   export let menuItems = ["Home", "About", "Contact"].map((title) => ({
     title,
     value: title,

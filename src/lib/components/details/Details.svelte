@@ -1,5 +1,4 @@
 <script>
-  export let currentComponent;
 </script>
 
 <details class="w:3xs details">

@@ -1,10 +1,8 @@
 <script>
-  import { appStore } from "../../AppStore";
   import "../styles/list.css";
-  export let currentComponent;
 </script>
 
-<div class={$appStore.properties[currentComponent].classes}>
+<div class="list">
   <div class="list-header">
     <span class="">List title</span>
   </div>

@@ -6,12 +6,16 @@
 <div class="p:16">
   <pre>
       <code
-      >{Object.keys($appStore.rootStyles[currentComponent])
-        .map(
-          (key) =>
-            `${key}: ${$appStore.rootStyles[currentComponent][key].value}${$appStore.rootStyles[currentComponent][key].units};`
-        )
-        .join("\n")}</code
+      >{$appStore.config.component[currentComponent].cssVariables
+        .reduce((acc, val) => {
+          val.options.map((o) => {
+            acc.push(
+              `\n--${currentComponent}-${val.title}-${o.title}: ${o.value}${val.units};`
+            );
+          });
+          return acc;
+        }, [])
+        .join("")}</code
     >
       </pre>
 </div>

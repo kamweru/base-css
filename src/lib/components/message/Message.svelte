@@ -1,8 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-  import { appStore } from "../../AppStore";
   import "../styles/message.css";
-  export let currentComponent;
   let messages = [
     "",
     "mesage-info",
@@ -14,7 +12,7 @@
 
 <div class="flex flex:col gap:8">
   {#each messages as message}
-    <div class="{$appStore.properties[currentComponent].classes} {message}">
+    <div class="message {message}">
       <div class="message-content">
         <span class="icon message-icon">
           <Icon icon="akar-icons:info-fill" />

@@ -1,5 +1,4 @@
 <script>
-  export let currentComponent;
 </script>
 
 <div class="flex flex:col gap:8 w:100%">

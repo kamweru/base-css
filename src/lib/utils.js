@@ -135,3 +135,18 @@ export function generateCSS(obj, classNamePrefix = "custom") {
 
   return { className, cssString };
 }
+
+export function createCSSVariableString(obj, currentComponent) {
+  let output = [];
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && key !== "title" && key !== "units") {
+      const property = obj[key];
+      property.variables.forEach((variable) => {
+        output.push(
+          `--${currentComponent}-${key}-${variable.title}: ${variable.value}${property.units};`
+        );
+      });
+    }
+  }
+  return output.join(" ");
+}

@@ -1,9 +1,30 @@
 <script>
-  import { appStore } from "../../AppStore";
   import "../styles/able.css";
-  export let currentComponent;
+  export let rootStyles = "";
+  export let size = "md";
+  export let direction = "horizontal";
+  let classes = {
+    default: "able",
+    sizes: {
+      xs: "able-xs",
+      sm: "able-sm",
+      md: "able-md",
+      lg: "able-lg",
+      xl: "able-xl",
+    },
+    direction: {
+      horizontal: "able-horizontal",
+      vertical: "able-vertical",
+    },
+  };
 </script>
 
-<div class={$appStore.properties[currentComponent]["classes"]}>
-  <div class="able-content">text content of element</div>
+<div
+  class="{classes.default} {classes.sizes[size]} {classes.direction[direction]}"
+  style={rootStyles}
+>
+  <div class="able-content">
+    <span>first span content of element</span>
+    <span>second span content of element</span>
+  </div>
 </div>

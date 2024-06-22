@@ -1,11 +1,9 @@
 <script>
   import Icon from "@iconify/svelte";
-  import { appStore } from "../../AppStore";
   import "../styles/notification.css";
-  export let currentComponent;
 </script>
 
-<div class={$appStore.properties[currentComponent].classes}>
+<div class="notification">
   <span class="icon notification-icon">
     <Icon icon="akar-icons:info-fill" />
   </span>

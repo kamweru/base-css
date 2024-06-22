@@ -32,13 +32,9 @@
       { title: "tag", value: "Tag" },
       { title: "menu", value: "Menu" },
       { title: "rate", value: "Rate" },
-<<<<<<< HEAD
       { title: "float button", value: "FloatButton" },
       { title: "Breadcrumb", value: "Breadcrumb" },
-=======
-      { title: "float button", value: "Float Button" },
       { title: "able", value: "Able" },
->>>>>>> 5b840f5 (add new component)
     ].sort((a, b) => a.title.localeCompare(b.title)),
     componentView,
     currentMenu = menuItems[0],
@@ -46,6 +42,7 @@
   const loadSubview = async () =>
       (componentView = (
         await import(
+          // `../lib/demo/${currentComponent}/${currentMenu.value}Demo.svelte`
           `../lib/components/${currentComponent}/${currentMenu.value}.svelte`
         )
       ).default),
@@ -57,7 +54,17 @@
       // console.log(componentView);
     };
   loadSubview();
-  // console.log(currentMenu, currentComponent);
+  // console.log(
+  //   menuItems.reduce((acc, val) => {
+  //     acc[val.value.toLocaleLowerCase()] = {
+  //       classProps: [],
+  //       cssVariables: [],
+  //       attributes: [],
+  //       otherProps: [],
+  //     };
+  //     return acc;
+  //   }, {})
+  // );
 </script>
 
 <div class="h:100% flex">

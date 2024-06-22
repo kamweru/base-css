@@ -1,9 +1,7 @@
 <script>
-  import { appStore } from "../../AppStore";
-  export let currentComponent;
 </script>
 
-<form action="" class={$appStore.properties[currentComponent].classes}>
+<form action="" class="form">
   <div class="form-control-group">
     <div class="form-label">
       <label for="">Field A, A super long label text</label>

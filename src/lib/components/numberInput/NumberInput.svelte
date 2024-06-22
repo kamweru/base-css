@@ -1,14 +1,18 @@
 <script>
-  import { appStore } from "../../AppStore";
-  export let currentComponent;
   export let value = 3;
+  export let step = 1;
+  export let inputSize = "md";
+  let inputSizes = {
+    sm: "input-sm",
+    md: "",
+    lg: "input-lg",
+  };
   const increment = () => {
-      $appStore.properties[currentComponent].value += 1;
+      value += step;
     },
     decrement = () => {
-      $appStore.properties[currentComponent].value -= 1;
+      value -= step;
     };
-  $appStore.properties[currentComponent].value = value;
 </script>
 
 <div class="input-number-wrap">
@@ -28,8 +32,8 @@
   </div>
   <input
     type="number"
-    value={$appStore.properties[currentComponent].value}
+    {value}
     placeholder="3"
-    class={$appStore.properties[currentComponent].classes}
+    class="input input-number {inputSizes[inputSize]}"
   />
 </div>

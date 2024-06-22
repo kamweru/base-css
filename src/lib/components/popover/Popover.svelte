@@ -8,16 +8,8 @@
   const close = () => {
     if (open) open = false;
   };
-  export let currentComponent;
 </script>
 
-{#if currentComponent}
-  <div>
-    <button class="btn btn-fill" on:click={() => (open = true)}
-      >show popover</button
-    >
-  </div>
-{/if}
 <div
   transition:fade={{ duration: 150 }}
   class="popover"

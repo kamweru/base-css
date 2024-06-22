@@ -2,92 +2,47 @@
   import { appStore } from "../../AppStore";
   import Icon from "@iconify/svelte";
   import "../styles/alert.css";
-  export let currentComponent;
+  export let message = "message text";
+  export let description = null;
+  export let type = "default";
+  export let closable = false;
+  export let showIcon = false;
+  let classes = {
+      default: "alert",
+      types: {
+        default: "alert-default",
+        info: "alert-info",
+        success: "alert-success",
+        warning: "alert-warning",
+        error: "alert-danger",
+      },
+    },
+    alertClasses = "";
+  $: if (type) {
+    alertClasses = `${classes.default} ${classes.types[type]}`;
+    if (description) {
+      alertClasses += " alert-with-description";
+    }
+  }
 </script>
 
 <div class="flex flex:col gap:8">
-  <option value="" class="active">option item</option>
-  <div
-    class="{$appStore.properties[currentComponent][
-      'classes'
-    ]} alert-warning alert-with-description"
-    role="alert"
-  >
-    <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
+  <div class={alertClasses} role="alert">
+    {#if showIcon}
+      <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
+    {/if}
     <div class="alert-content">
-      <div class="alert-message">Warning</div>
-      <div class="alert-description">
-        This is a warning notice about something.
-      </div>
+      <div class="alert-message">{message}</div>
+      {#if description}
+        <div class="alert-description">
+          {description}
+        </div>
+      {/if}
     </div>
-    <button class="alert-close-btn">
-      <Icon icon="tabler:x" />
-    </button>
-  </div>
-
-  <div
-    class="{$appStore.properties[currentComponent]['classes']} alert-warning"
-  >
-    <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
-    <div class="alert-content">
-      <div class="alert-message">Warning</div>
-      <!-- <div class="alert-description">
-      This is a warning notice about something.
-    </div> -->
-    </div>
-    <button class="alert-close-btn">
-      <Icon icon="tabler:x" />
-      <!-- <span class="btn-icon"><Icon icon="tabler:x" /></span> -->
-    </button>
-  </div>
-  <div class="{$appStore.properties[currentComponent]['classes']} alert-info">
-    <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
-    <div class="alert-content">
-      <div class="alert-message">Info</div>
-      <!-- <div class="alert-description">
-      This is a warning notice about something.
-    </div> -->
-    </div>
-    <button class="alert-close-btn">
-      <Icon icon="tabler:x" />
-      <!-- <span class="btn-icon"><Icon icon="tabler:x" /></span> -->
-    </button>
-  </div>
-  <div
-    class="{$appStore.properties[currentComponent]['classes']} alert-success"
-  >
-    <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
-    <div class="alert-content">
-      <div class="alert-message">Success</div>
-      <!-- <div class="alert-description">
-      This is a warning notice about something.
-    </div> -->
-    </div>
-    <button class="alert-close-btn">
-      <Icon icon="tabler:x" />
-      <!-- <span class="btn-icon"><Icon icon="tabler:x" /></span> -->
-    </button>
-  </div>
-  <div class="{$appStore.properties[currentComponent]['classes']} alert-danger">
-    <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
-    <div class="alert-content">
-      <div class="alert-message">Danger</div>
-    </div>
-    <button class="alert-close-btn">
-      <Icon icon="tabler:x" />
-    </button>
-  </div>
-  <div class="{$appStore.properties[currentComponent]['classes']} alert-danger">
-    <div class="alert-content">
-      <div class="alert-message">Danger</div>
-    </div>
-  </div>
-  <div class="{$appStore.properties[currentComponent]['classes']} alert-danger">
-    <div class="alert-content">
-      <div class="alert-message">Danger</div>
-    </div>
-    <button class="alert-close-btn">
-      <Icon icon="tabler:x" />
-    </button>
+    {#if closable}
+      <button class="alert-close-btn">
+        <Icon icon="tabler:x" />
+      </button>
+    {/if}
   </div>
 </div>
