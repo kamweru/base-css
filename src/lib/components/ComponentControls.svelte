@@ -3,6 +3,7 @@
   import { appStore } from "../AppStore";
   import Switch from "./switch/Switch.svelte";
   import Input from "./input/Input.svelte";
+  import NumberInput from "./numberinput/NumberInput.svelte";
   export let currentComponent;
 </script>
 
@@ -43,6 +44,12 @@
           {otherProp.title}
         </div>
         <Input size="sm" bind:value={otherProp.value} />
+      {/if}
+      {#if otherProp.controlType === "number"}
+        <div class="f:$(font-size) lh:$(line-height) capitalize">
+          {otherProp.title}
+        </div>
+        <NumberInput bind:value={otherProp.value} inputSize="sm" />
       {/if}
       <!-- <Select
         bind:selected={otherProp.value}

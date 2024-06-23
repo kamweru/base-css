@@ -35,5 +35,6 @@
     {value}
     placeholder="3"
     class="input input-number {inputSizes[inputSize]}"
+    on:change={(e) => (value = parseInt(e.target.value))}
   />
 </div>

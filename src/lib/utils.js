@@ -150,3 +150,28 @@ export function createCSSVariableString(obj, currentComponent) {
   }
   return output.join(" ");
 }
+
+export function transformPayload(payload) {
+  const { items, extras, keyConnector } = payload;
+  const [titles, values] = items;
+  if (keyConnector === "-") {
+    return titles.map((title, index) => {
+      const key = title.toLowerCase().replace(/\s+/g, keyConnector);
+      const value = values[index];
+      const { units } = extras[0];
+      return { title, key, value, units };
+    });
+  }
+  if (keyConnector === "camel") {
+    return items.map((title) => {
+      const key = title
+        .split(" ")
+        .map((word, index) =>
+          index === 0 ? word.toLowerCase() : capitalizeFirstLetter(word)
+        )
+        .join("");
+      return { title, key, value: key };
+    });
+  }
+  return;
+}

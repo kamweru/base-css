@@ -1,19 +1,22 @@
 .alert {
-  --alert-default-padding: 8px 12px;
-  --alert-default-border-radius: 4px;
+  --alert-padding-x: 12px;
+  --alert-padding-y: 8px;
+  --alert-border-radius: 4px;
   display: flex;
   align-items: center;
-  padding: var(--alert-default-padding);
+  padding: var(--alert-padding-y) var(--alert-padding-x);
   border-width: var(--border-width);
   border-style: var(--border-style);
-  border-radius: var(--alert-default-border-radius);
+  border-radius: var(--alert-border-radius);
+  color: rgb(var(--color-text));
   word-wrap: break-word;
   position: relative;
 }
 .alert,
 .alert.alert-default {
   border-color: var(--border-color);
-  background-color: rgb(var(--color-surface));
+  border-color: var(--border-color);
+  background-color: rgb(var(--gray-1));
 }
 .alert.alert-with-description {
   align-items: flex-start;

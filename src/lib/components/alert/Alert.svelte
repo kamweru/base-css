@@ -1,7 +1,7 @@
 <script>
-  import { appStore } from "../../AppStore";
   import Icon from "@iconify/svelte";
   import "../styles/alert.css";
+  export let cssVariables = "";
   export let message = "message text";
   export let description = null;
   export let type = "default";
@@ -26,23 +26,21 @@
   }
 </script>
 
-<div class="flex flex:col gap:8">
-  <div class={alertClasses} role="alert">
-    {#if showIcon}
-      <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
-    {/if}
-    <div class="alert-content">
-      <div class="alert-message">{message}</div>
-      {#if description}
-        <div class="alert-description">
-          {description}
-        </div>
-      {/if}
-    </div>
-    {#if closable}
-      <button class="alert-close-btn">
-        <Icon icon="tabler:x" />
-      </button>
+<div class={alertClasses} style={cssVariables} role="alert">
+  {#if showIcon}
+    <span class="alert-icon"><Icon icon="tabler:check"></Icon></span>
+  {/if}
+  <div class="alert-content">
+    <div class="alert-message">{message}</div>
+    {#if description}
+      <div class="alert-description">
+        {description}
+      </div>
     {/if}
   </div>
+  {#if closable}
+    <button class="alert-close-btn">
+      <Icon icon="tabler:x" />
+    </button>
+  {/if}
 </div>

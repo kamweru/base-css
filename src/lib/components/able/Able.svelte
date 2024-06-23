@@ -1,6 +1,6 @@
 <script>
   import "../styles/able.css";
-  export let rootStyles = "";
+  export let cssVariables = "";
   export let size = "md";
   export let direction = "horizontal";
   let classes = {
@@ -21,7 +21,7 @@
 
 <div
   class="{classes.default} {classes.sizes[size]} {classes.direction[direction]}"
-  style={rootStyles}
+  style={cssVariables}
 >
   <div class="able-content">
     <span>first span content of element</span>

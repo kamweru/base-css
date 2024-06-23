@@ -6,27 +6,32 @@
   export let currentComponent;
 </script>
 
-<div class="flex flex:col gap:8">
+<!-- <div class="flex flex:col gap:8"> -->
+<div class="flex flex:wrap jc:space-between p:8">
   {#each $appStore.config.component[currentComponent].cssVariables as cssVariable}
-    <div class="flex flex:col p:4|8">
-      <div class="flex ai:center jc:space-between">
-        <div class="f:semibold f:$(font-size) lh:$(line-height) capitalize">
+    <!-- <div class="flex flex:col p:4|8"> -->
+    <!-- <div class="f:$(font-size) lh:$(line-height) capitalize">
+        {cssVariable.title}
+      </div> -->
+    {#if cssVariable.options && cssVariable.options.length > 0}
+      {#each cssVariable.options as option}
+        <div class="flex flex:col">
+          <div class="f:$(font-size-sm) lh:$(line-height-sm)">
+            {cssVariable.title}
+            {option.title}
+          </div>
+          <NumberInput bind:value={option.value} inputSize="sm" />
+        </div>
+      {/each}
+    {:else if cssVariable.value}
+      <div class="flex flex:col">
+        <div class="f:$(font-size-sm) lh:$(line-height-sm)">
           {cssVariable.title}
         </div>
-        <Select
-          bind:selected={cssVariable.units}
-          options={cssUnits}
-          inputSize="sm"
-        ></Select>
+        <NumberInput bind:value={cssVariable.value} inputSize="sm" />
       </div>
-      <div class="grid grid-cols:3 gap:8">
-        {#each cssVariable.options as option}
-          <div class="flex flex:col">
-            <div class="f:$(font-size) lh:$(line-height)">{option.title}</div>
-            <NumberInput bind:value={option.value} inputSize="sm" />
-          </div>
-        {/each}
-      </div>
-    </div>
+    {/if}
+    <!-- </div> -->
+    <!-- </div> -->
   {/each}
 </div>

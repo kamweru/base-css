@@ -1,53 +1,30 @@
-const controlTypes = {
-    variants: "select",
-    sizes: "select",
-    states: "switch",
+let payload = {
+  title: [
+    "content height",
+    "count height",
+    "count height sm",
+    "count border radius",
+    "count border radius sm",
+    "dot height",
+  ],
+  value: [40, 20, 16, 12, 8, 8],
+  units: "px",
+  key: (payload) => {
+    console.log(payload);
   },
-  styles = {
-    input: {
-      baseClass: "input",
-      variants: {
-        default: "input-outline",
-        outline: "input-outline",
-        fill: "input-fill",
-        borderless: "input-borderless",
-        underline: "input-underline",
-      },
-      sizes: {
-        sm: "input-sm",
-        default: "",
-        lg: "input-lg",
-      },
-      states: { disabled: "input-disabled", invalid: "input-invalid" },
-    },
-  },
-  controls = {
-    ...Object.keys(styles).reduce((acc, controlKey) => {
-      acc[controlKey] = {};
-      Object.keys(styles[controlKey]).forEach((key) => {
-        if (controlTypes[key]) {
-          acc[controlKey][key] = {
-            title: key,
-            defaultValue: controlTypes[key] === "switch" ? false : "default",
-            controlType: controlTypes[key],
-            options:
-              controlTypes[key] === "select"
-                ? Object.keys(styles[controlKey][key]).map((key) => ({
-                    title: key,
-                    value: key,
-                  }))
-                : undefined,
-          };
-        }
+};
+let finalPayload = [];
+Object.keys(payload).map((key) => {
+  if (Array.isArray(payload[key])) {
+    payload[key].map((v, index) => {
+      console.log(v, index);
+      finalPayload.push({
+        [key]: v,
+        // units: payload["units"],
+        // key: payload["key"],
       });
-      return acc;
-    }, {}),
-  },
-  properties = {
-    input: {
-      classes: "",
-      placeholder: "",
-      value: "",
-    },
-  };
-console.log(controls);
+    });
+  }
+  // console.log(typeof payload[key]);
+});
+console.log(finalPayload);

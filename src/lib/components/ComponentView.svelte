@@ -25,22 +25,27 @@
     <svelte:component
       this={componentView}
       {...{
-        rootStyles: $appStore.config.component[currentComponent].cssVariables
+        cssVariables: $appStore.config.component[currentComponent].cssVariables
           .reduce((acc, val) => {
-            val.options.map((o) => {
+            if (val.options && val.options.length > 0)
+              val.options.map((o) => {
+                acc.push(
+                  `--${currentComponent}-${val.key}-${o.key}: ${o.value}${val.units};`
+                );
+              });
+            else
               acc.push(
-                `--${currentComponent}-${val.title}-${o.title}: ${o.value}${val.units};`
+                `--${currentComponent}-${val.key}: ${val.value}${val.units};`
               );
-            });
             return acc;
           }, [])
           .join(" "),
         ...$appStore.config.component[currentComponent].classProps.reduce(
-          (acc, val) => ((acc[val.title] = val.value), acc),
+          (acc, val) => ((acc[val.key] = val.value), acc),
           {}
         ),
         ...$appStore.config.component[currentComponent].otherProps.reduce(
-          (acc, val) => ((acc[val.title] = val.value), acc),
+          (acc, val) => ((acc[val.key] = val.value), acc),
           {}
         ),
       }}

@@ -1,6 +1,7 @@
 <script>
   import Icon from "@iconify/svelte";
   export let buttonText = "button text";
+  export let cssVariables = "";
   export let type = "default";
   export let size = "default";
   export let color = "default";
@@ -42,6 +43,7 @@
     .colors[color]} {classes.buttonContents[buttonContent]} {btnCircle
     ? 'btn-circle'
     : ''} {disabled ? 'btn-disabled' : ''}"
+  style={cssVariables}
   {disabled}
 >
   {#if buttonContent === "iconOnly"}
