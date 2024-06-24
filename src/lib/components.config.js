@@ -1,4 +1,4 @@
-import { transformPayload } from "./utils";
+import { transformPayload, camel, hypenate } from "./utils";
 export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
   title: v,
   value: v,
@@ -19,21 +19,21 @@ const config = {
           title: "size",
           key: "size",
           value: "md",
-          options: ["xs", "sm", "md", "lg", "xl"].map((v) => ({
-            title: v,
-            key: v,
-            value: v,
-          })),
+          options: transformPayload({
+            title: ["xs", "sm", "md", "lg", "xl"],
+            value: "title",
+            key: "title",
+          }),
         },
         {
           title: "direction",
           key: "direction",
           value: "horizontal",
-          options: ["horizontal", "vertical"].map((v) => ({
-            title: v,
-            key: v,
-            value: v,
-          })),
+          options: transformPayload({
+            title: ["horizontal", "vertical"],
+            value: "title",
+            key: "title",
+          }),
         },
       ],
       cssVariables: [
@@ -41,97 +41,31 @@ const config = {
           title: "padding",
           key: "padding",
           units: "px",
-          options: [
-            {
-              title: "xs",
-              key: "xs",
-              value: 4,
-            },
-            {
-              title: "sm",
-              key: "sm",
-              value: 8,
-            },
-            {
-              title: "md",
-              key: "md",
-              value: 16,
-            },
-            {
-              title: "lg",
-              key: "lg",
-              value: 20,
-            },
-            {
-              title: "xl",
-              key: "xl",
-              value: 24,
-            },
-          ],
+          options: transformPayload({
+            title: ["xs", "sm", "md", "lg", "xl"],
+            value: [4, 8, 16, 20, 24],
+            key: "title",
+          }),
         },
         {
           title: "border radius",
           key: "border-radius",
           units: "px",
-          options: [
-            {
-              title: "xs",
-              key: "xs",
-              value: 2,
-            },
-            {
-              title: "sm",
-              key: "sm",
-              value: 4,
-            },
-            {
-              title: "md",
-              key: "md",
-              value: 6,
-            },
-            {
-              title: "lg",
-              key: "lg",
-              value: 8,
-            },
-            {
-              title: "xl",
-              key: "xl",
-              value: 12,
-            },
-          ],
+          options: transformPayload({
+            title: ["xs", "sm", "md", "lg", "xl"],
+            value: [2, 4, 6, 8, 12],
+            key: "title",
+          }),
         },
         {
           title: "font size",
           key: "font-size",
           units: "px",
-          options: [
-            {
-              title: "xs",
-              key: "xs",
-              value: 10,
-            },
-            {
-              title: "sm",
-              key: "sm",
-              value: 12,
-            },
-            {
-              title: "md",
-              key: "md",
-              value: 16,
-            },
-            {
-              title: "lg",
-              key: "lg",
-              value: 20,
-            },
-            {
-              title: "xl",
-              key: "xl",
-              value: 24,
-            },
-          ],
+          options: transformPayload({
+            title: ["xs", "sm", "md", "lg", "xl"],
+            value: [10, 12, 16, 20, 24],
+            key: "title",
+          }),
         },
       ],
       otherProps: [],
@@ -142,13 +76,11 @@ const config = {
           title: "type",
           key: "type",
           value: "default",
-          options: ["default", "info", "success", "warning", "error"].map(
-            (v) => ({
-              title: v,
-              key: v,
-              value: v,
-            })
-          ),
+          options: transformPayload({
+            title: ["default", "info", "success", "warning", "error"],
+            value: "title",
+            key: (title) => hypenate(title),
+          }),
         },
       ],
       cssVariables: [
@@ -162,46 +94,19 @@ const config = {
           title: "padding",
           key: "padding",
           units: "px",
-          options: [
-            {
-              title: "x",
-              key: "x",
-              value: 12,
-            },
-            {
-              title: "y",
-              key: "y",
-              value: 8,
-            },
-          ],
+          options: transformPayload({
+            title: ["x", "y"],
+            value: [12, 8],
+            key: (title) => hypenate(title),
+          }),
         },
       ],
-      otherProps: [
-        {
-          title: "message",
-          key: "message",
-          value: "message content",
-          controlType: "input",
-        },
-        {
-          title: "description",
-          key: "description",
-          value: "description content",
-          controlType: "input",
-        },
-        {
-          title: "closable",
-          key: "closable",
-          value: false,
-          controlType: "switch",
-        },
-        {
-          title: "show icon",
-          key: "showIcon",
-          value: false,
-          controlType: "switch",
-        },
-      ],
+      otherProps: transformPayload({
+        title: ["message", "description", "closable", "show icon"],
+        value: ["message content", "description content", false, false],
+        controlType: ["input", "input", "switch", "switch"],
+        key: (title) => camel(title),
+      }),
     },
     badge: {
       classProps: [
@@ -209,65 +114,61 @@ const config = {
           title: "type",
           key: "type",
           value: "dot",
-          options: ["dot", "withNumber"].map((v) => ({
-            title: v,
-            key: v,
-            value: v,
-          })),
+          options: transformPayload({
+            title: ["dot", "with number"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
         },
         {
           title: "size",
           key: "size",
           value: "md",
-          options: ["md", "sm"].map((v) => ({
-            title: v,
-            key: v,
-            value: v,
-          })),
+          options: transformPayload({
+            title: ["md", "sm"],
+            value: "title",
+            key: (title) => hypenate(title),
+          }),
         },
         {
           title: "badge content",
           key: "content",
           value: "box",
-          options: ["box", "text"].map((v) => ({
-            title: v,
-            key: v,
-            value: v,
-          })),
+          options: transformPayload({
+            title: ["box", "text"],
+            value: "title",
+            key: (title) => hypenate(title),
+          }),
         },
       ],
       cssVariables: transformPayload({
-        items: [
-          [
-            "content height",
-            "count height",
-            "count height sm",
-            "count border radius",
-            "count border radius sm",
-            "dot height",
-          ],
-          [40, 20, 16, 12, 8, 8],
+        title: [
+          "content height",
+          "count height",
+          "count height sm",
+          "count border radius",
+          "count border radius sm",
+          "dot height",
         ],
-        extras: [{ units: "px" }],
-        keyConnector: "-",
+        value: [40, 20, 16, 12, 8, 8],
+        units: "px",
+        key: (title) => hypenate(title),
       }),
-      otherProps: [
-        {
-          title: "badge count",
-          key: "badgeCount",
-          value: 12,
-          controlType: "number",
-        },
-        {
-          title: "badge content",
-          key: "badgeContent",
-          value: "text content",
-          controlType: "input",
-        },
-      ],
+      otherProps: transformPayload({
+        title: ["badge count", "badge content"],
+        value: [12, "text content"],
+        key: (title) => camel(title),
+        controlType: ["number", "input"],
+      }),
     },
     breadcrumb: {
-      classProps: [],
+      classProps: [
+        {
+          title: "separator",
+          key: "separator",
+          value: "/",
+        },
+      ],
       cssVariables: [],
       otherProps: [],
     },
@@ -278,8 +179,9 @@ const config = {
           key: "type",
           value: "default",
           options: transformPayload({
-            items: ["default", "dashed", "fill", "text", "link"],
-            keyConnector: "camel",
+            title: ["default", "dashed", "fill", "text", "link"],
+            value: "title",
+            key: (title) => camel(title),
           }),
         },
         {
@@ -287,8 +189,9 @@ const config = {
           key: "size",
           value: "default",
           options: transformPayload({
-            items: ["sm", "default", "lg"],
-            keyConnector: "camel",
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
           }),
         },
         {
@@ -296,55 +199,111 @@ const config = {
           key: "color",
           value: "default",
           options: transformPayload({
-            items: ["default", "success", "warning", "danger", "info"],
-            keyConnector: "camel",
+            title: ["default", "success", "warning", "danger", "info"],
+            value: "title",
+            key: (title) => camel(title),
           }),
         },
         {
-          title: "buttonContent",
+          title: "button content",
           key: "buttonContent",
           value: "textOnly",
           options: transformPayload({
-            items: ["text only", "icon only", "icon left", "icon right"],
-            keyConnector: "camel",
+            title: ["text only", "icon only", "icon left", "icon right"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
           }),
         },
       ],
-      cssVariables: [],
-      otherProps: [
-        {
-          title: "button text",
-          key: "buttonText",
-          value: "Settings",
-          controlType: "input",
-        },
-        {
-          title: "Circle button",
-          key: "btnCircle",
-          value: false,
-          controlType: "switch",
-        },
-        {
-          title: "disabled",
-          key: "disabled",
-          value: false,
-          controlType: "switch",
-        },
-      ],
+      cssVariables: transformPayload({
+        title: [
+          "padding inline",
+          "padding inline lg",
+          "padding inline sm",
+          "padding block",
+          "padding block sm",
+          "padding block lg",
+          "height",
+          "height sm",
+          "height lg",
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+        ],
+        value: [15, 15, 7, 4, 0, 7, 32, 24, 40, 6, 4, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
+      otherProps: transformPayload({
+        title: ["button text", "button circle", "disabled"],
+        value: ["settings", false, false],
+        controlType: ["input", "switch", "switch"],
+        key: (title) => camel(title),
+      }),
     },
     card: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: ["padding", "padding sm", "border radius"],
+        value: [16, 12, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     checkbox: {
       classProps: [],
       cssVariables: [],
-      otherProps: [],
+      otherProps: transformPayload({
+        title: ["checked", "indeterminate", "disabled"],
+        value: [false, false, false],
+        controlType: ["switch", "switch", "switch"],
+        key: (title) => camel(title),
+      }),
     },
     collapse: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "padding inline",
+          "padding block",
+          "padding block lg",
+          "padding inline lg",
+          "padding inline sm",
+          "padding block sm",
+          "min height",
+          "min height sm",
+          "min height lg",
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+        ],
+        value: [15, 4, 7, 15, 7, 0, 32, 24, 40, 6, 4, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     columns: {
@@ -353,12 +312,58 @@ const config = {
       otherProps: [],
     },
     details: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "padding inline",
+          "padding block",
+          "padding block lg",
+          "padding inline lg",
+          "padding inline sm",
+          "padding block sm",
+          "min height",
+          "min height sm",
+          "min height lg",
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+        ],
+        value: [15, 4, 7, 15, 7, 0, 32, 24, 40, 6, 4, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     divider: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "default",
+          options: transformPayload({
+            title: [
+              "default",
+              "with text",
+              "vertical",
+              "text right",
+              "text left",
+            ],
+            value: (title) => camel(title),
+            key: (title) => hypenate(title),
+          }),
+        },
+      ],
       cssVariables: [],
       otherProps: [],
     },

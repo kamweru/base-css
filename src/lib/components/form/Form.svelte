@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="form-actions">
-    <button class="btn btn-text">Cancel</button>
-    <button class="btn btn-fill">Submit</button>
+    <button class="button button-text">Cancel</button>
+    <button class="button button-fill">Submit</button>
   </div>
 </form>

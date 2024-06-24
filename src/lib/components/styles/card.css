@@ -1,9 +1,10 @@
 .card {
-  --card-header-bg: transparent;
-  --card-header-font-size: 16px;
-  --card-header-font-size-sm: 14px;
-  --card-header-height: 56px;
-  --card-header-height-sm: 38px;
+  --card-head-bg: transparent;
+  --card-head-height: 56px;
+  --card-head-height-sm: 38px;
+  --card-padding: 16px;
+  --card-padding-sm: 12px;
+  --card-border-radius: 8px;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -11,9 +12,12 @@
   font-size: var(--font-size);
   line-height: var(--line-height);
   list-style: none;
-  /* font-family: var(--font-family); */
+  font-family: var(--font-family);
   position: relative;
-  border-radius: var(--border-radius-lg);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: rgb(var(--color-border));
+  border-radius: var(--card-border-radius);
   background-color: rgb(var(--color-surface));
   padding: 0;
   margin: 0;
@@ -22,12 +26,20 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  min-height: var(--card-header-height);
-  padding: 0 var(--padding);
+  min-height: var(--card-head-height);
+  padding: 0 var(--card-padding);
   position: relative;
   border-bottom: 1px solid rgb(var(--color-border));
-  background-color: var(--card-header-bg);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  background-color: var(--card-head-bg);
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+}
+.card.card-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+.card.card-sm .card-head {
+  min-height: var(--card-head-height-sm);
+  padding: 0 var(--card-padding-sm);
 }
 
 .card .card-head .card-head-content {
@@ -41,20 +53,21 @@
 }
 
 .card .card-body {
-  padding: var(--padding);
-  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  padding: var(--card-padding);
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 }
 .card .card-footer {
   border-top: 1px solid rgb(var(--color-border));
-  padding: var(--padding);
+  padding: var(--card-padding);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+}
+.card.card-sm .card-body,
+.card.card-sm .card-footer {
+  padding: var(--card-padding-sm);
 }
 .card .card-footer .card-footer-content {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: var(--gap-sm);
+  text-align: end;
 }

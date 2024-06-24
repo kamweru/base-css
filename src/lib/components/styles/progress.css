@@ -1,4 +1,5 @@
 progress.progress {
+  /* display: inline-block; */
   width: 100%;
   height: calc(var(--default-size) * 0.5);
 }

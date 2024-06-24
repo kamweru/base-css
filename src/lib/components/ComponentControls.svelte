@@ -7,7 +7,7 @@
   export let currentComponent;
 </script>
 
-<div class="flex flex:col">
+<div class="flex flex:col min-h:3xs">
   <!-- <div class="flex flex:col gap:4 p:8">
     <div class="f:16 lh:$(line-height) capitalize">
       {$appStore.config.view.title}
@@ -23,11 +23,15 @@
       <div class="f:$(font-size) lh:$(line-height) capitalize">
         {classProp.title}
       </div>
-      <Select
-        bind:selected={classProp.value}
-        options={classProp.options}
-        inputSize="sm"
-      />
+      {#if classProp.options && classProp.options.length > 0}
+        <Select
+          bind:selected={classProp.value}
+          options={classProp.options}
+          inputSize="sm"
+        />
+      {:else}
+        <Input size="sm" bind:value={classProp.value} />
+      {/if}
     </div>
   {/each}
   {#each $appStore.config.component[currentComponent].otherProps as otherProp}

@@ -6,54 +6,75 @@
   export let size = "default";
   export let color = "default";
   export let buttonContent = "textOnly";
-  export let btnCircle = false;
+  export let buttonCircle = false;
   export let disabled = false;
   let classes = {
-    default: "btn",
+    default: "button",
     types: {
-      default: "btn-default",
-      dashed: "btn-dashed",
-      fill: "btn-fill",
-      text: "btn-text",
-      link: "btn-link",
+      default: "button-default",
+      dashed: "button-dashed",
+      fill: "button-fill",
+      text: "button-text",
+      link: "button-link",
     },
     sizes: {
-      sm: "btn-sm",
+      sm: "button-sm",
       default: "",
-      lg: "btn-lg",
+      lg: "button-lg",
     },
     colors: {
       default: "",
-      success: "btn-success",
-      warning: "btn-warning",
-      danger: "btn-danger",
-      info: "btn-info",
+      success: "button-success",
+      warning: "button-warning",
+      danger: "button-danger",
+      info: "button-info",
     },
     buttonContents: {
       textOnly: "",
-      iconOnly: "btn-icon-only",
-      iconLeft: "btn-icon-left",
-      iconRight: "btn-icon-right",
+      iconOnly: "button-icon-only",
+      iconLeft: "button-icon-left",
+      iconRight: "button-icon-right",
     },
   };
+  // console.log(
+  //   [
+  //     classes.default,
+  //     classes.types[type],
+  //     classes.sizes[size],
+  //     classes.colors[color],
+  //     classes.buttonContents[buttonContent],
+  //     buttonCircle ? "button-circle" : "",
+  //     disabled ? "button-disabled" : "",
+  //   ]
+  //     .join(" ")
+  //     .trim().length
+  // );
 </script>
 
 <button
-  class="{classes.default} {classes.types[type]} {classes.sizes[size]} {classes
-    .colors[color]} {classes.buttonContents[buttonContent]} {btnCircle
-    ? 'btn-circle'
-    : ''} {disabled ? 'btn-disabled' : ''}"
+  class={[
+    classes.default,
+    classes.types[type],
+    classes.sizes[size],
+    classes.colors[color],
+    classes.buttonContents[buttonContent],
+    buttonCircle ? "button-circle" : "",
+    disabled ? "button-disabled" : "",
+  ]
+    .join(" ")
+    .trim()
+    .replace(/\s+/g, " ")}
   style={cssVariables}
   {disabled}
 >
   {#if buttonContent === "iconOnly"}
-    <span class="btn-icon"><Icon icon="tabler:check"></Icon></span>
+    <span class="button-icon"><Icon icon="tabler:check"></Icon></span>
   {:else if buttonContent === "iconLeft"}
-    <span class="btn-icon"><Icon icon="tabler:check"></Icon></span>
+    <span class="button-icon"><Icon icon="tabler:check"></Icon></span>
     <span> {buttonText}</span>
   {:else if buttonContent === "iconRight"}
     <span> {buttonText}</span>
-    <span class="btn-icon"><Icon icon="tabler:check"></Icon></span>
+    <span class="button-icon"><Icon icon="tabler:check"></Icon></span>
   {:else}
     {buttonText}
   {/if}

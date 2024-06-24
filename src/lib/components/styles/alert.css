@@ -14,8 +14,7 @@
 }
 .alert,
 .alert.alert-default {
-  border-color: var(--border-color);
-  border-color: var(--border-color);
+  border-color: rgb(var(--color-border));
   background-color: rgb(var(--gray-1));
 }
 .alert.alert-with-description {

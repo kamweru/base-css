@@ -12,16 +12,14 @@
   //     ).default);
 </script>
 
-<div
-  class="p:32 flex ai:center jc:center diagonal b:1|solid|rgb($(color-border)) h:100% r:6"
->
+<div class="p:32 w:100% h:100% r:6">
   <!-- {JSON.stringify({
     ...$appStore.config.component[currentComponent].otherProps.reduce(
       (acc, val) => ((acc[val.title] = val.value), acc),
       {}
     ),
   })} -->
-  <div class="flex:1 min-h:300 rel">
+  <div class="m:auto rel">
     <svelte:component
       this={componentView}
       {...{

@@ -457,7 +457,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 100%;
+  /* width: 100%; */
   cursor: pointer;
   border-color: transparent;
   background-color: transparent;

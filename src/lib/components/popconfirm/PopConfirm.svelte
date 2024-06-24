@@ -6,7 +6,7 @@
 </script>
 
 <div class="popconfirm">
-  <button class="btn btn-danger" on:click={() => (open = true)}
+  <button class="button button-danger" on:click={() => (open = true)}
     >Delete Task</button
   >
   <Popover bind:open>
@@ -22,8 +22,9 @@
           Are you sure you want to delete this task?
         </div>
         <div class="popconfirm-actions">
-          <button class="btn btn-sm">No</button>
-          <button class="btn btn-fill btn-danger btn-sm">Yes</button>
+          <button class="button button-sm">No</button>
+          <button class="button button-fill button-danger button-sm">Yes</button
+          >
         </div>
       </div>
     </div>

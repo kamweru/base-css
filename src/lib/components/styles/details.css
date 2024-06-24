@@ -1,4 +1,16 @@
 .details {
+  --details-border-radius: 6px;
+  --details-border-radius-sm: 4px;
+  --details-border-radius-lg: 8px;
+  --details-padding-inline: 15px;
+  --details-padding-block: 4px;
+  --details-padding-inline-sm: 7px;
+  --details-padding-block-sm: 0;
+  --details-padding-inline-lg: 15px;
+  --details-padding-block-lg: 7px;
+  --details-min-height: 32px;
+  --details-min-height-sm: 24px;
+  --details-min-height-lg: 40px;
   display: block;
   border: var(--border-width) var(--border-style) rgb(var(--color-border));
   border-radius: calc(var(--default-size) / 4);

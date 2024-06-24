@@ -1,4 +1,5 @@
 .popconfirm {
+  position: relative;
 }
 .popconfirm .popconfirm-inner {
   display: flex;

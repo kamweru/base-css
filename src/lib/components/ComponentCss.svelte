@@ -10,7 +10,7 @@
         .reduce((acc, val) => {
           val.options.map((o) => {
             acc.push(
-              `\n--${currentComponent}-${val.title}-${o.title}: ${o.value}${val.units};`
+              `\n--${currentComponent}-${val.key}-${o.key}: ${o.value}${val.units};`
             );
           });
           return acc;

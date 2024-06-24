@@ -1,21 +1,39 @@
 <script>
+  export let type = "default";
+  let classes = {
+      default: "divider",
+      types: {
+        default: "",
+        withText: "divider-with-text",
+        vertical: "divider-vertical",
+        textRight: "divider-with-text-right",
+        textLeft: "divider-with-text-left",
+      },
+    },
+    items = 3;
 </script>
 
-<div class="flex flex:col gap:8 w:100%">
-  <div class="divider divider-with-text">
-    <span class="divider-text">Divider</span>
+{#if type === "vertical"}
+  {#each Array(items) as _, i}
+    item {i + 1}
+    {#if i < items - 1}
+      <div
+        class={[classes.default, classes.types[type]]
+          .join(" ")
+          .trim()
+          .replace(/\s+/g, " ")}
+      ></div>
+    {/if}
+  {/each}
+{:else}
+  <div
+    class={[classes.default, classes.types[type]]
+      .join(" ")
+      .trim()
+      .replace(/\s+/g, " ")}
+  >
+    {#if ["withText", "textRight", "textLeft"].includes(type)}
+      <span class="divider-text">Divider Text</span>
+    {/if}
   </div>
-  <div class="divider"></div>
-  <div class="block">
-    Item <div class="divider divider-vertical"></div>
-    Item 2
-    <div class="divider divider-vertical"></div>
-    <a href="#">Link item</a>
-  </div>
-  <div class="divider divider-with-text-right">
-    <span class="divider-text">Divider with text right</span>
-  </div>
-  <div class="divider divider-with-text-left">
-    <span class="divider-text">Divider with text left</span>
-  </div>
-</div>
+{/if}

@@ -23,7 +23,7 @@
           <NumberInput bind:value={option.value} inputSize="sm" />
         </div>
       {/each}
-    {:else if cssVariable.value}
+    {:else}
       <div class="flex flex:col">
         <div class="f:$(font-size-sm) lh:$(line-height-sm)">
           {cssVariable.title}

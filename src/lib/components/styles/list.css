@@ -1,5 +1,8 @@
 .list {
   background-color: rgb(var(--color-surface));
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: rgb(var(--color-border));
   border-radius: var(--border-radius);
 }
 .list .list-header,

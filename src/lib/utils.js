@@ -151,7 +151,55 @@ export function createCSSVariableString(obj, currentComponent) {
   return output.join(" ");
 }
 
-export function transformPayload(payload) {
+export const hypenate = (string) => string.toLowerCase().replace(/\s+/g, "-"),
+  camel = (string) =>
+    string
+      .split(" ")
+      .map((word, index) =>
+        index === 0 ? word.toLowerCase() : capitalizeFirstLetter(word)
+      )
+      .join(""),
+  transformPayload = (payload) => {
+    let result = [];
+    const mapper = (key, items) => {
+      if (result.length === 0) {
+        for (let i = 0; i < items.length; i++) {
+          result.push({
+            [key]: items[i],
+          });
+        }
+      } else {
+        for (let i = 0; i < items.length; i++) {
+          result[i][key] = items[i];
+        }
+      }
+    };
+    Object.keys(payload).map((key) => {
+      if (Array.isArray(payload[key])) {
+        mapper(key, payload[key]);
+      } else {
+        if (payload[payload[key]]) {
+          result.map((item, index) => {
+            item[key] = payload[payload[key]][index];
+          });
+        } else {
+          if (typeof payload[key] === "string") {
+            result.map((item) => {
+              item[key] = payload[key];
+            });
+          }
+          if (typeof payload[key] === "function") {
+            result.map((item) => {
+              item[key] = payload[key](item.title);
+            });
+          }
+        }
+      }
+    });
+    return result;
+  };
+
+export function transformPayload1(payload) {
   const { items, extras, keyConnector } = payload;
   const [titles, values] = items;
   if (keyConnector === "-") {

@@ -18,7 +18,7 @@
       {#each menuItems as menuItem}
         <li class="flex mb:4 mb:0:last">
           <button
-            class="btn btn-text w:100% capitalize"
+            class="button button-text w:100% capitalize"
             class:active={currentMenu.title === menuItem.title}
             on:click={() => toggleMenu(menuItem)}
           >

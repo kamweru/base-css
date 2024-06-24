@@ -3,12 +3,20 @@
   let open = false;
 </script>
 
-<div>
-  <button class="btn btn-fill" on:click={() => (open = true)}>Dropdown</button>
+<div class="w:min">
+  <a
+    href=""
+    class="button button-fill color:inherit"
+    on:click|preventDefault={() => (open = true)}>Dropdown</a
+  >
   <Popover bind:open matchWidth={true}>
     <ul>
       {#each [1, 2, 3] as item}
-        <li>item {item}</li>
+        <li
+          class="p:$(padding-sm) flex ai:center cursor:pointer bg:rgb($(color-invert-3)):hover"
+        >
+          <a href="" class="flex:auto color:rgb($(color-text))">item {item}</a>
+        </li>
       {/each}
     </ul>
   </Popover>
