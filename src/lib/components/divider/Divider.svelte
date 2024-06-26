@@ -1,11 +1,12 @@
 <script>
   export let type = "default";
+  export let cssVariables = "";
   let classes = {
       default: "divider",
       types: {
         default: "",
-        withText: "divider-with-text",
         vertical: "divider-vertical",
+        textCenter: "divider-with-text",
         textRight: "divider-with-text-right",
         textLeft: "divider-with-text-left",
       },
@@ -15,13 +16,13 @@
 
 {#if type === "vertical"}
   {#each Array(items) as _, i}
-    item {i + 1}
-    {#if i < items - 1}
+    item {i + 1}{#if i < items - 1}
       <div
         class={[classes.default, classes.types[type]]
           .join(" ")
           .trim()
           .replace(/\s+/g, " ")}
+        style={cssVariables}
       ></div>
     {/if}
   {/each}
@@ -31,8 +32,9 @@
       .join(" ")
       .trim()
       .replace(/\s+/g, " ")}
+    style={cssVariables}
   >
-    {#if ["withText", "textRight", "textLeft"].includes(type)}
+    {#if ["textCenter", "textRight", "textLeft"].includes(type)}
       <span class="divider-text">Divider Text</span>
     {/if}
   </div>

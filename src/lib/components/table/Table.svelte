@@ -1,7 +1,8 @@
 <script>
+  export let cssVariables = "";
 </script>
 
-<div class="table-wrapper">
+<div class="table-wrapper" style={cssVariables}>
   <table>
     <thead>
       <tr>

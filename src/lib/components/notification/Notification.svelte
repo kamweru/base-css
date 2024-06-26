@@ -1,9 +1,10 @@
 <script>
   import Icon from "@iconify/svelte";
   import "../styles/notification.css";
+  export let cssVariables = "";
 </script>
 
-<div class="notification">
+<div class="notification" style={cssVariables}>
   <span class="icon notification-icon">
     <Icon icon="akar-icons:info-fill" />
   </span>

@@ -1,8 +1,9 @@
 <script>
   import "../styles/list.css";
+  export let cssVariables = "";
 </script>
 
-<div class="list">
+<div class="list" style={cssVariables}>
   <div class="list-header">
     <span class="">List title</span>
   </div>

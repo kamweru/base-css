@@ -35,6 +35,8 @@
       { title: "float button", value: "FloatButton" },
       { title: "Breadcrumb", value: "Breadcrumb" },
       { title: "able", value: "Able" },
+      { title: "option", value: "Option" },
+      { title: "field", value: "Field" },
     ].sort((a, b) => a.title.localeCompare(b.title)),
     componentView,
     currentMenu = menuItems[0],

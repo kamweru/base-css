@@ -1,9 +1,15 @@
 .message {
+  --message-border-radius: 6px;
+  --message-padding-inline: 12px;
+  --message-padding-block: 8px;
+  --message-icon-margin-inline: 8px;
   display: flex;
   flex-direction: column;
-  padding: var(--padding-xs);
-  border-radius: var(--border-radius);
+  padding: var(--message-padding-block) var(--message-padding-inline);
+  border-radius: var(--message-border-radius);
   position: relative;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
   background-color: rgb(var(--color-surface));
   box-shadow: var(--shadow-10);
 }
@@ -13,7 +19,7 @@
 }
 .message .message-icon,
 .message.message-info .message-icon {
-  margin-inline-end: var(--margin-xs);
+  margin-inline-end: var(--message-icon-margin-inline);
   color: rgb(var(--color-info-text));
 }
 

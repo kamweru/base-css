@@ -2,11 +2,12 @@
   import Icon from "@iconify/svelte";
   import Popover from "../popover/Popover.svelte";
   import "../styles/popconfirm.css";
+  export let cssVariables = "";
   let open = false;
 </script>
 
-<div class="popconfirm">
-  <button class="button button-danger" on:click={() => (open = true)}
+<div class="popconfirm" style={cssVariables}>
+  <button class="button button-danger button-sm" on:click={() => (open = true)}
     >Delete Task</button
   >
   <Popover bind:open>

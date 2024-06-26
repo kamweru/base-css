@@ -1,4 +1,5 @@
 .tag {
+  --tag-margin-inline: 8px;
   --tag-default-bg: rgb(var(--color-surface));
   --tag-default-color: rgb(var(--color-text));
   --tag-default-border: rgb(var(--color-border));
@@ -15,7 +16,7 @@
   /* font-family: var(--ant-font-family); */
   display: inline-block;
   height: auto;
-  margin-inline-end: var(--margin-xs);
+  margin-inline-end: var(--tag-margin-inline);
   padding-inline: calc(8px - var(--border-width));
   white-space: nowrap;
   background: var(--tag-default-bg);

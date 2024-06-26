@@ -1,23 +1,28 @@
 <script>
+  import "../styles/option.css";
   export let cssVariables = "";
   export let size = "default";
+  export let value = "";
+  export let optionText = "Option Text";
+  export let active = false;
   let classes = {
-    default: "details",
+    default: "option",
     sizes: {
-      sm: "details-sm",
+      sm: "option-sm",
       default: "",
-      lg: "details-lg",
+      lg: "option-lg",
     },
   };
 </script>
 
-<details
+<option
   class={[classes.default, classes.sizes[size]]
     .join(" ")
     .trim()
     .replace(/\s+/g, " ")}
+  {value}
+  class:active
   style={cssVariables}
 >
-  <summary class="summary"> summary</summary>
-  <div class="content">content</div>
-</details>
+  {optionText}
+</option>

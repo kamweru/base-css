@@ -1,4 +1,7 @@
 .tabs-wrapper {
+  --tabs-item-margin-bottom: -1px;
+  --tabs-horizontal-line-height: 56px;
+  --tabs-padding-inline: 16px;
   display: flex;
   align-items: center;
   border-bottom: var(--border-width) var(--border-style)
@@ -8,13 +11,13 @@
   cursor: pointer;
   outline: none;
   border-bottom: var(--border-width) var(--border-style) transparent;
-  padding-block: calc(var(--default-size) / calc(16 / 14));
-  margin-inline: calc(var(--default-size) / calc(16 / 15));
+  padding-inline: var(--tabs-padding-inline);
   text-decoration: none;
   font-size: var(--font-size);
-  line-height: var(--line-height);
+  line-height: var(--tabs-horizontal-line-height);
   color: rgb(var(--color-text));
-  margin-bottom: calc(var(--default-size) / -16);
+  margin-bottom: var(--tabs-item-margin-bottom);
+  transition: color var(--transition-duration) var(--transition-timing-function);
 }
 .tabs-wrapper .tab-item:hover {
   color: rgb(var(--color-primary));
@@ -22,4 +25,5 @@
 .tabs-wrapper .tab-item.active {
   border-color: rgb(var(--color-primary));
   color: rgb(var(--color-primary));
+  text-shadow: 0 0 0.25px currentcolor;
 }

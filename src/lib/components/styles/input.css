@@ -578,8 +578,6 @@
   --button-color: var(--mantine-color-white);
   */
 .c-select {
-  /* background-color: aquamarine; */
-  /* border: 1px solid rgb(var(--color-warning)); */
   position: relative;
 }
 .c-select .c-select-selector {
@@ -634,7 +632,15 @@
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
 }
+.c-select.c-select-sm .c-select-selector .c-select-arrow {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
 .c-select.c-select-lg .c-select-selection-item {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+}
+.c-select.c-select-lg .c-select-selector .c-select-arrow {
   font-size: var(--font-size-lg);
   line-height: var(--line-height-lg);
 }

@@ -169,7 +169,16 @@ const config = {
           value: "/",
         },
       ],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "separator margin inline",
+          "link border radius",
+          "link padding inline",
+        ],
+        value: [8, 4, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     button: {
@@ -243,6 +252,16 @@ const config = {
     },
     card: {
       classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "with head", "with footer", "head and footer"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
         {
           title: "size",
           key: "size",
@@ -354,8 +373,8 @@ const config = {
           options: transformPayload({
             title: [
               "default",
-              "with text",
               "vertical",
+              "text center",
               "text right",
               "text left",
             ],
@@ -364,21 +383,79 @@ const config = {
           }),
         },
       ],
-      cssVariables: [],
+      cssVariables: [
+        ...transformPayload({
+          title: ["text margin inline", "vertical margin inline"],
+          value: [8, 8],
+          units: "px",
+          key: (title) => hypenate(title),
+        }),
+        ...transformPayload({
+          title: ["text padding inline"],
+          value: [1],
+          units: "em",
+          key: (title) => hypenate(title),
+        }),
+        ...transformPayload({
+          title: ["orientation margin"],
+          value: [0.05],
+          step: "0.01",
+          key: (title) => hypenate(title),
+        }),
+      ],
       otherProps: [],
     },
     dropdown: {
+      classProps: [],
+      cssVariables: [],
+      otherProps: [
+        {
+          title: "trigger action",
+          key: "triggerAction",
+          value: "click",
+          controlType: "radio",
+          options: transformPayload({
+            title: ["click", "hover"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+    },
+    field: {
       classProps: [],
       cssVariables: [],
       otherProps: [],
     },
     floatbutton: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "bottom position",
+          "right position",
+          "width",
+          "square border radius",
+          "icon font size",
+        ],
+        value: [48, 32, 40, 8, 24],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     form: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "vertical",
+          options: transformPayload({
+            title: ["vertical", "inline", "horizontal"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: [],
       otherProps: [],
     },
@@ -389,27 +466,79 @@ const config = {
     },
     list: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+          "padding inline",
+          "padding block",
+          "padding inline sm",
+          "padding block sm",
+          "padding block lg",
+          "padding inline lg",
+        ],
+        value: [8, 4, 16, 20, 12, 12, 7, 16, 24],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     menu: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "horizontal line height",
+          "item padding inline",
+          "icon margin inline",
+        ],
+        value: [56, 20, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     message: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "border radius",
+          "padding inline",
+          "padding block",
+          "icon margin inline",
+        ],
+        value: [6, 12, 8, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     modal: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["border radius"],
+        value: [6],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     notification: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "padding inline",
+          "padding block",
+          "border radius",
+          "icon font size",
+          "icon margin inline end",
+          "close button padding",
+          "close button border radius",
+        ],
+        value: [16, 12, 8, 24, 12, 3, 4],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     numberinput: {
@@ -417,19 +546,55 @@ const config = {
       cssVariables: [],
       otherProps: [],
     },
+    option: {
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: [],
+      otherProps: transformPayload({
+        title: ["active"],
+        value: [false],
+        controlType: ["switch"],
+        key: (title) => camel(title),
+      }),
+    },
     popconfirm: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["padding", "icon size", "margin inline", "margin block"],
+        value: [16, 20, 8, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     popover: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["wrapper padding", "wrapper border radius"],
+        value: [4, 6],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     progress: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["height", "border radius", "value border radius"],
+        value: [8, 16, 16],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     radio: {
@@ -444,7 +609,12 @@ const config = {
     },
     rate: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["label font size"],
+        value: [20],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     select: {
@@ -459,22 +629,42 @@ const config = {
     },
     table: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["cell padding inline", "cell padding block"],
+        value: [12, 16],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     tabs: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["item margin bottom"],
+        value: [-1],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     tag: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["margin inline"],
+        value: [8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     upload: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["padding inline", "padding block", "border radius"],
+        value: [16, 12, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
   },

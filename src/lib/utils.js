@@ -223,3 +223,25 @@ export function transformPayload1(payload) {
   }
   return;
 }
+export const clickOutside = (node, _options = {}) => {
+  const { cb } = _options;
+  const options = { include: [], ..._options };
+  function detect({ target }) {
+    if (
+      !node.contains(target) ||
+      options.include.some((i) => target.isSameNode(i))
+    ) {
+      if (cb) {
+        cb();
+      } else node.dispatchEvent(new CustomEvent("outsideclick"));
+    }
+  }
+  // use the same options object for both methods
+  const listenerOptions = { passive: true, capture: true };
+  document.addEventListener("click", detect, listenerOptions);
+  return {
+    destroy() {
+      document.removeEventListener("click", detect, listenerOptions);
+    },
+  };
+};

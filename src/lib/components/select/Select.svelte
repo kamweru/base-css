@@ -29,6 +29,11 @@
       sm: "c-select-sm",
       md: "",
       lg: "c-select-lg",
+    },
+    optionSizes = {
+      sm: "option-sm",
+      md: "",
+      lg: "option-lg",
     };
   const dispatch = createEventDispatcher(),
     setSelected = (obj) => {
@@ -51,29 +56,6 @@
 </script>
 
 <div class="flex flex:col gap:8">
-  <div class="c-select {selectSizes[inputSize]}">
-    <span class="c-select-selector">
-      <span class="c-select-selection">
-        <span class="c-select-selection-item" class:open>{label}</span>
-      </span>
-      <span class="c-select-arrow">
-        <Icon icon="tabler:chevron-down" />
-      </span>
-    </span>
-    <input
-      type="text"
-      class="input {inputSizes[inputSize]} c-select-input"
-      {id}
-      on:focus={() => {
-        open = true;
-        selectArrowIcon = "search";
-      }}
-      on:blur={() => {
-        //   open = false;
-        selectArrowIcon = "chevron-down";
-      }}
-    />
-  </div>
   <!-- <div class="c-select c-select-multiple">
     <span class="c-select-selector">
       <span class="c-select-selector-items">
@@ -103,35 +85,41 @@
     </span>
   </div> -->
   <Popover options={popoverOptions} {matchWidth} bind:open>
-    <!-- <div class="wrapper $popover-padding:calc($(size)/8) w:200"> -->
-    <div class="flex flex:col c-select-options">
-      {#each options as { title, value, icon, ...rest }}
+    <div class="c-select {selectSizes[inputSize]}" slot="trigger">
+      <span class="c-select-selector">
+        <span class="c-select-selection">
+          <span class="c-select-selection-item" class:open>{label}</span>
+        </span>
+        <span class="icon c-select-arrow">
+          <Icon icon="tabler:chevron-down" />
+        </span>
+      </span>
+      <input
+        type="text"
+        class="input {inputSizes[inputSize]} c-select-input"
+        {id}
+        on:focus={() => {
+          open = true;
+          selectArrowIcon = "search";
+        }}
+        on:blur={() => {
+          //   open = false;
+          selectArrowIcon = "chevron-down";
+        }}
+      />
+    </div>
+    <div class="flex flex:col c-select-options" slot="content">
+      {#each options as option}
         <option
-          {value}
-          on:click={() => setSelected({ title, value, ...rest })}
-          class:active={value === selected}>{title}</option
+          value={option.value}
+          on:click={() => setSelected(option)}
+          class={["option", optionSizes[inputSize]]
+            .join(" ")
+            .trim()
+            .replace(/\s+/g, " ")}
+          class:active={option.value === selected}>{option.title}</option
         >
-        <!-- <button
-          class={value === selected
-            ? "$btn-bg:$(color-border) btn btn-fill"
-            : "btn btn-text"}
-          on:click={() => setSelected({ title, value, ...rest })}
-        >
-          <span class="flex ai:center gap:4 w:100% pointer-events:none">
-            {#if icon}
-              <Icon {icon} class="ml:-4 mr:8 f:18" />
-            {/if}
-            {title}
-            {#if value === selected}
-              <Icon icon="lucide:check" class="f:18 ml:auto mr:-4"></Icon>
-            {/if}
-          </span>
-        </button> -->
       {/each}
-      <!-- </div> -->
     </div>
   </Popover>
 </div>
-<!-- <style>
-  
-</style> -->

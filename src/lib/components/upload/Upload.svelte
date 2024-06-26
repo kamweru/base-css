@@ -1,8 +1,9 @@
 <script>
+  export let cssVariables = "";
   let active = false;
 </script>
 
-<div class="upload">
+<div class="upload" style={cssVariables}>
   <span class="upload-drag-area">
     <span
       class="upload-btn"

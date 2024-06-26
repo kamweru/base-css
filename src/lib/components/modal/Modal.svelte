@@ -1,18 +1,30 @@
 <script>
+  import { clickOutside } from "../../utils";
   export let open = false;
-  export let rootStyles = "";
+  export let cssVariables = "";
   import Icon from "@iconify/svelte";
 </script>
 
-<div style={rootStyles} class="modal" class:open>
+<a href="" class="modal-trigger" on:click|preventDefault={() => (open = true)}>
+  <slot name="trigger">
+    <span>Open Modal</span>
+  </slot>
+</a>
+<div style={cssVariables} class="modal" class:open>
   <div class="modal-overlay"></div>
   <div class="modal-wrapper">
     <div class="modal-inner">
-      <div class="modal-dialog">
+      <div
+        class="modal-dialog"
+        use:clickOutside
+        on:outsideclick={() => (open = false)}
+      >
         <button class="modal-close-btn" on:click={() => (open = false)}>
-          <Icon icon="ic:baseline-close"></Icon>
+          <span class="icon"> <Icon icon="ic:baseline-close"></Icon></span>
         </button>
-        <slot />
+        <slot name="content">
+          <div>Modal Title</div>
+        </slot>
       </div>
     </div>
   </div>

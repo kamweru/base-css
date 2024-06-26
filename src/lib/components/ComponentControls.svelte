@@ -4,10 +4,11 @@
   import Switch from "./switch/Switch.svelte";
   import Input from "./input/Input.svelte";
   import NumberInput from "./numberinput/NumberInput.svelte";
+  import Radio from "./radio/Radio.svelte";
   export let currentComponent;
 </script>
 
-<div class="flex flex:col min-h:3xs">
+<div class="flex flex:col ">
   <!-- <div class="flex flex:col gap:4 p:8">
     <div class="f:16 lh:$(line-height) capitalize">
       {$appStore.config.view.title}
@@ -55,11 +56,18 @@
         </div>
         <NumberInput bind:value={otherProp.value} inputSize="sm" />
       {/if}
-      <!-- <Select
-        bind:selected={otherProp.value}
-        options={otherProp.options}
-        inputSize="sm"
-      /> -->
+      {#if otherProp.controlType === "radio"}
+        <div class="f:$(font-size) lh:$(line-height) capitalize">
+          {otherProp.title}
+        </div>
+        {#each otherProp.options as option}
+          <Radio
+            bind:group={otherProp.value}
+            value={option.value}
+            label={option.title}
+          />
+        {/each}
+      {/if}
     </div>
   {/each}
 </div>

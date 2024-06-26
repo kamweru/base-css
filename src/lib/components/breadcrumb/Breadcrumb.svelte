@@ -1,6 +1,7 @@
 <script>
   import "../styles/breadcrumb.css";
   export let separator = "/";
+  export let cssVariables = "";
   let breadcrumbs = [
     {
       title: "Home",
@@ -17,7 +18,7 @@
   ];
 </script>
 
-<nav class="breadcrumb">
+<nav class="breadcrumb" style={cssVariables}>
   <ol>
     {#each breadcrumbs as breadcrumb}
       <li>
@@ -35,7 +36,7 @@
     {/each}
   </ol>
 </nav>
-<div class="b:1|solid|rgb($(muted-2)) p:8 grid grid-cols:10 gap:8">
+<!-- <div class="b:1|solid|rgb($(muted-2)) p:8 grid grid-cols:10 gap:8">
   {#each [0.04, 0.08, 0.096, 0.12, 0.15, 0.18, 0.24, 0.48, 0.64, 0.88] as opacity}
     <div class="bg:rgb($(color-black)/{opacity}) w:60 h:40 flex center-content">
       b/{opacity}
@@ -68,4 +69,4 @@
       --gray-{index + 1}: {opacity};
     </div>
   {/each}
-</div>
+</div> -->

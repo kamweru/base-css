@@ -20,15 +20,23 @@
             {cssVariable.title}
             {option.title}
           </div>
-          <NumberInput bind:value={option.value} inputSize="sm" />
+          <NumberInput
+            bind:value={option.value}
+            inputSize="sm"
+            step={cssVariable.step ? cssVariable.step : 1}
+          />
         </div>
       {/each}
     {:else}
       <div class="flex flex:col">
         <div class="f:$(font-size-sm) lh:$(line-height-sm)">
-          {cssVariable.title}
+          {cssVariable.title} - {typeof cssVariable.step}
         </div>
-        <NumberInput bind:value={cssVariable.value} inputSize="sm" />
+        <NumberInput
+          bind:value={cssVariable.value}
+          inputSize="sm"
+          step={cssVariable.step ? cssVariable.step : 1}
+        />
       </div>
     {/if}
     <!-- </div> -->

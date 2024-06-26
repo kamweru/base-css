@@ -1,10 +1,6 @@
-:root {
-  --popover-padding: var(--default-size);
-  --wrapper-padding: calc(var(--popover-padding) / 3);
-  --wrapper-bg: var(--color-surface);
-  /* --wrapper-width: calc(var(--size) * 12.5); */
-}
 .popover {
+  --popover-wrapper-padding: 4px;
+  --popover-wrapper-border-radius: 6px;
   position: absolute;
   transform-origin: top left;
   -webkit-user-select: none;
@@ -21,9 +17,8 @@
 }
 .popover .wrapper {
   position: relative;
-  /* width: var(--wrapper-width); */
-  background-color: rgb(var(--wrapper-bg));
+  background-color: rgb(var(--color-surface));
   box-shadow: var(--shadow-10);
-  border-radius: calc(var(--default-size) / 2.5);
-  padding: var(--wrapper-padding);
+  border-radius: var(--popover-wrapper-border-radius);
+  padding: var(--popover-wrapper-padding);
 }

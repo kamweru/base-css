@@ -2,6 +2,7 @@
   import Popover from "../popover/Popover.svelte";
   import "../styles/menu.css";
   import Icon from "@iconify/svelte";
+  export let cssVariables = "";
   let menuitems = [
       {
         label: "Navigation One",
@@ -54,15 +55,16 @@
         label: "Navigation Four - Link",
       },
     ],
-    open = false;
+    open = false,
+    activeMenu = menuitems[0].key;
 </script>
 
-<menu class="menu menu-horizontal">
+<menu class="menu menu-horizontal" style={cssVariables}>
   {#each menuitems as item}
     {#if item.children}
       <li
         class="menu-item"
-        class:active={item.key === "mail"}
+        class:active={item.key === activeMenu}
         on:mouseenter={() => (open = true)}
         on:mouseleave={() => (open = false)}
       >
@@ -92,13 +94,19 @@
         </Popover>
       </li>
     {:else}
-      <li class="menu-item" class:active={item.key === "mail"}>
-        {#if item.icon}
-          <span class="icon menu-item-icon">
-            <Icon icon={item.icon} />
-          </span>
-        {/if}
-        <span>{item.label}</span>
+      <li class="menu-item" class:active={item.key === activeMenu}>
+        <a
+          href=""
+          class="color:inherit"
+          on:click|preventDefault={() => (activeMenu = item.key)}
+        >
+          {#if item.icon}
+            <span class="icon menu-item-icon">
+              <Icon icon={item.icon} />
+            </span>
+          {/if}
+          <span>{item.label}</span>
+        </a>
       </li>
     {/if}
   {/each}

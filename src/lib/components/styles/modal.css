@@ -1,10 +1,12 @@
 .modal {
-  --modal-border-radius: calc(var(--default-size) * 0.3125);
+  --modal-border-radius: 6px;
+  --modal-close-button-padding: 3px;
+  --modal-close-button-border-radius: 5px;
   pointer-events: none;
   position: fixed;
   inset: 0;
   opacity: 0;
-  transform: scale(1, 0);
+  transform: scale(0, 0);
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
 .modal.open {
@@ -44,7 +46,17 @@
   right: 10px;
   top: 10px;
   font-size: 20px;
+  line-height: 1;
+  color: rgb(var(--color-text));
+  border-radius: var(--modal-close-button-border-radius);
+  padding: var(--modal-close-button-padding);
+  display: inline-flex;
+  align-items: center;
   z-index: 1;
+}
+.modal .modal-close-btn:hover {
+  cursor: pointer;
+  background-color: rgb(var(--color-bg-text-hover));
 }
 
 /** Overlay */

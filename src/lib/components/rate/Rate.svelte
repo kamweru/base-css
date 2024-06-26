@@ -1,9 +1,10 @@
 <script>
   import "../styles/rate.css";
+  export let cssVariables = "";
   let rating = 0;
 </script>
 
-<div class="rate">
+<div class="rate" style={cssVariables}>
   {#each Array(5) as _, i}
     <input
       type="radio"

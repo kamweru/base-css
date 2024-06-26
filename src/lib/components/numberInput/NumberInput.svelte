@@ -8,10 +8,10 @@
     lg: "input-lg",
   };
   const increment = () => {
-      value += step;
+      value += parseFloat(step);
     },
     decrement = () => {
-      value -= step;
+      value -= parseFloat(step);
     };
 </script>
 
@@ -33,8 +33,9 @@
   <input
     type="number"
     {value}
+    {step}
     placeholder="3"
     class="input input-number {inputSizes[inputSize]}"
-    on:change={(e) => (value = parseInt(e.target.value))}
+    on:change={(e) => (value = parseFloat(e.target.value))}
   />
 </div>

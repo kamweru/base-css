@@ -34,6 +34,9 @@ button.button,
   vertical-align: middle;
   background: 0 0;
   pointer-events: auto;
+  /* inline-size: -moz-fit-content;
+  inline-size: -webkit-fill-available;
+  inline-size: fit-content; */
   cursor: pointer;
   -webkit-user-select: none; /* Safari */
   user-select: none;

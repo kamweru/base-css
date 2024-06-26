@@ -1,21 +1,35 @@
 <script>
   import Popover from "../popover/Popover.svelte";
+  import "../styles/dropdown.css";
+  export let triggerAction = "click";
   let open = false;
 </script>
 
-<div class="w:min">
+<div class="w:min dropdown">
   <a
     href=""
-    class="button button-fill color:inherit"
-    on:click|preventDefault={() => (open = true)}>Dropdown</a
+    class="dropdown-trigger"
+    on:mouseover={() => {
+      if (triggerAction === "hover") open = true;
+    }}
+    on:click|preventDefault={() => {
+      if (triggerAction === "click") open = true;
+    }}
   >
+    <slot name="trigger">
+      <div class="flex ai:center gap:8">
+        <span>Dropdown</span>
+        <span>∨</span>
+      </div>
+    </slot>
+  </a>
   <Popover bind:open matchWidth={true}>
-    <ul>
+    <ul class="dropdown-menu">
       {#each [1, 2, 3] as item}
-        <li
-          class="p:$(padding-sm) flex ai:center cursor:pointer bg:rgb($(color-invert-3)):hover"
-        >
-          <a href="" class="flex:auto color:rgb($(color-text))">item {item}</a>
+        <li class="dropdown-menu-item">
+          <span class="dropdown-menu-item-content">
+            <a href="" class=" color:rgb($(color-text))">item {item}</a></span
+          >
         </li>
       {/each}
     </ul>

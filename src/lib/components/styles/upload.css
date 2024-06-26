@@ -1,5 +1,17 @@
 .upload {
+  --upload-padding-inline: 16px;
+  --upload-padding-block: 12px;
+  --upload-border-radius: 8px;
+  --upload-icon-font-size: 24px;
+  --upload-button-icon-margin-inline-end: 12px;
+  --upload-button-close-button-padding: 3px;
+  --upload-button-close-button-border-radius: 4px;
+  --upload-button-close-button-margin-inline-start: 8px;
   position: relative;
+  display: inline-block;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: rgb(var(--color-text));
 }
 .upload-drag-area {
   display: block;
@@ -20,9 +32,9 @@
   align-items: center;
   /* height: calc(var(--default-size) * 9.5); */
   border: var(--border-width) dashed rgb(var(--color-border));
-  border-radius: calc(var(--default-size) / 2);
+  border-radius: var(--upload-border-radius);
   background-color: rgb(var(--gray-2));
-  padding: var(--default-size);
+  padding: var(--upload-padding-block) var(--upload-padding-inline);
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
 .upload-drag-area .upload-btn:hover,

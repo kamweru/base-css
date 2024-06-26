@@ -19,7 +19,7 @@
       {}
     ),
   })} -->
-  <div class="m:auto rel">
+  <div class="m:auto rel h:100%">
     <svelte:component
       this={componentView}
       {...{
@@ -33,7 +33,7 @@
               });
             else
               acc.push(
-                `--${currentComponent}-${val.key}: ${val.value}${val.units};`
+                `--${currentComponent}-${val.key}: ${val.value}${val.units ? val.units : ""};`
               );
             return acc;
           }, [])

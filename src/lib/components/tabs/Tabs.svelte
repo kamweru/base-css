@@ -4,6 +4,7 @@
     title,
     value: title,
   }));
+  export let cssVariables = "";
   export let currentMenu = menuItems[0];
   const dispatch = createEventDispatcher(),
     toggleMenu = (menuItem) => {
@@ -12,7 +13,7 @@
     };
 </script>
 
-<nav class="tabs-wrapper">
+<nav class="tabs-wrapper" style={cssVariables}>
   {#each menuItems as menuItem}
     <a
       href={"#" + menuItem.title}
