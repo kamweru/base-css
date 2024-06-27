@@ -1,4 +1,4 @@
-.tabs-wrapper {
+.tabs {
   --tabs-item-margin-bottom: -1px;
   --tabs-horizontal-line-height: 56px;
   --tabs-padding-inline: 16px;
@@ -7,7 +7,7 @@
   border-bottom: var(--border-width) var(--border-style)
     rgb(var(--color-border));
 }
-.tabs-wrapper .tab-item {
+.tabs .tab-item {
   cursor: pointer;
   outline: none;
   border-bottom: var(--border-width) var(--border-style) transparent;
@@ -19,10 +19,10 @@
   margin-bottom: var(--tabs-item-margin-bottom);
   transition: color var(--transition-duration) var(--transition-timing-function);
 }
-.tabs-wrapper .tab-item:hover {
+.tabs .tab-item:hover {
   color: rgb(var(--color-primary));
 }
-.tabs-wrapper .tab-item.active {
+.tabs .tab-item.active {
   border-color: rgb(var(--color-primary));
   color: rgb(var(--color-primary));
   text-shadow: 0 0 0.25px currentcolor;

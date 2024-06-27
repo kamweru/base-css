@@ -1,11 +1,12 @@
 <script>
   import Popover from "../popover/Popover.svelte";
   import "../styles/dropdown.css";
+  export let cssVariables = "";
   export let triggerAction = "click";
   let open = false;
 </script>
 
-<div class="w:min dropdown">
+<div class="w:min dropdown" style={cssVariables}>
   <a
     href=""
     class="dropdown-trigger"

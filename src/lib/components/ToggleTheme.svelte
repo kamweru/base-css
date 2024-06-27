@@ -34,7 +34,7 @@
 <input
   type="checkbox"
   id="check-3"
-  class="input switch input-sm"
+  class="switch switch-sm"
   checked={$theme === DARK}
   bind:value={$theme}
   on:change={toggleSelection}

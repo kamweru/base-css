@@ -30,7 +30,7 @@
     {:else}
       <div class="flex flex:col">
         <div class="f:$(font-size-sm) lh:$(line-height-sm)">
-          {cssVariable.title} - {typeof cssVariable.step}
+          {cssVariable.title}
         </div>
         <NumberInput
           bind:value={cssVariable.value}

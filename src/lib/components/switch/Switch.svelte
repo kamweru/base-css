@@ -1,13 +1,14 @@
 <script>
   import { uuid } from "../../utils";
+  import "../styles/switch.css";
   export let id = uuid(8);
   export let label = "label";
   export let value = false;
-  export let size = "md";
+  export let size = "sm";
   let sizes = {
-    sm: "input-sm",
+    sm: "switch-sm",
     md: "",
-    lg: "input-lg",
+    lg: "switch-lg",
   };
 </script>
 
@@ -15,11 +16,16 @@
   <input
     type="checkbox"
     {id}
-    class="input switch {sizes[size]}"
+    class="switch switch-sm"
     bind:checked={value}
     {value}
   />
   <label for={id} class="f:$(font-size) lh:$(line-height) capitalize"
     >{label}</label
   >
+
+  <!-- <input type="checkbox" {id} class="switch" bind:checked={value} {value} />
+  <label for={id} class="f:$(font-size) lh:$(line-height) capitalize"
+    >{label}</label
+  > -->
 </div>

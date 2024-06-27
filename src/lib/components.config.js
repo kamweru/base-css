@@ -282,8 +282,34 @@ const config = {
       otherProps: [],
     },
     checkbox: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "size",
+          "size sm",
+          "size lg",
+          "border-radius",
+          "border radius sm",
+          "border radius lg",
+          "span padding inline",
+          "span padding inline sm",
+          "span padding inline lg",
+        ],
+        value: [16, 14, 24, 4, 3, 5, 8, 6, 12],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: transformPayload({
         title: ["checked", "indeterminate", "disabled"],
         value: [false, false, false],
@@ -407,7 +433,12 @@ const config = {
     },
     dropdown: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: ["padding block", "padding inline", "menu item border radius"],
+        value: [5, 12, 4],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [
         {
           title: "trigger action",
@@ -543,7 +574,27 @@ const config = {
     },
     numberinput: {
       classProps: [],
-      cssVariables: [],
+      cssVariables: transformPayload({
+        title: [
+          "handler wrap width",
+          "button arrow size",
+          "height",
+          "height sm",
+          "height lg",
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+          "padding inline",
+          "padding block",
+          "padding inline sm",
+          "padding block sm",
+          "padding inline lg",
+          "padding block lg",
+        ],
+        value: [22, 5, 32, 24, 40, 6, 4, 8, 11, 4, 7, 0, 15, 7],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     option: {

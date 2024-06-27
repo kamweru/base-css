@@ -303,6 +303,26 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* input.input,
+textarea.textarea,
+select.select {
+  box-sizing: border-box;
+  outline: none;
+  text-overflow: ellipsis;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  border-color: transparent;
+  background-color: transparent;
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+} */
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

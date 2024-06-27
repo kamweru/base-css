@@ -1,4 +1,5 @@
 <script>
+  import "../styles/select.css";
   import { createEventDispatcher } from "svelte";
   import Icon from "@iconify/svelte";
   import Popover from "../popover/Popover.svelte";
@@ -26,9 +27,9 @@
       lg: "input-lg",
     },
     selectSizes = {
-      sm: "c-select-sm",
+      sm: "select-sm",
       md: "",
-      lg: "c-select-lg",
+      lg: "select-lg",
     },
     optionSizes = {
       sm: "option-sm",
@@ -56,21 +57,21 @@
 </script>
 
 <div class="flex flex:col gap:8">
-  <!-- <div class="c-select c-select-multiple">
-    <span class="c-select-selector">
-      <span class="c-select-selector-items">
+  <!-- <div class="select select-multiple">
+    <span class="select-selector">
+      <span class="select-selector-items">
         {#each [...Array(5).keys()] as item}
-          <span class="c-select-selector-item-wrap">
-            <span class="c-select-selection">
-              <span class="c-select-selection-item" class:open>Item {item}</span
+          <span class="select-selector-item-wrap">
+            <span class="select-selection">
+              <span class="select-selection-item" class:open>Item {item}</span
               >
-              <button class="c-select-selection-remove">
+              <button class="select-selection-remove">
                 <Icon icon="ic:baseline-close" />
               </button>
             </span>
           </span>
         {/each}
-        <div class="c-select-selector-search">
+        <div class="select-selector-search">
           <div class="inline-flex rel w:80">
             <input
               type="text"
@@ -79,24 +80,24 @@
           </div>
         </div>
       </span>
-      <span class="c-select-arrow">
+      <span class="select-arrow">
         <Icon icon="tabler:chevron-down" />
       </span>
     </span>
   </div> -->
   <Popover options={popoverOptions} {matchWidth} bind:open>
-    <div class="c-select {selectSizes[inputSize]}" slot="trigger">
-      <span class="c-select-selector">
-        <span class="c-select-selection">
-          <span class="c-select-selection-item" class:open>{label}</span>
+    <div class="select {selectSizes[inputSize]}" slot="trigger">
+      <span class="select-selector">
+        <span class="select-selection">
+          <span class="select-selection-item" class:open>{label}</span>
         </span>
-        <span class="icon c-select-arrow">
+        <span class="icon select-arrow">
           <Icon icon="tabler:chevron-down" />
         </span>
       </span>
       <input
         type="text"
-        class="input {inputSizes[inputSize]} c-select-input"
+        class="select-input"
         {id}
         on:focus={() => {
           open = true;
@@ -108,15 +109,12 @@
         }}
       />
     </div>
-    <div class="flex flex:col c-select-options" slot="content">
+    <div class="select-options" slot="content">
       {#each options as option}
         <option
           value={option.value}
           on:click={() => setSelected(option)}
-          class={["option", optionSizes[inputSize]]
-            .join(" ")
-            .trim()
-            .replace(/\s+/g, " ")}
+          class="select-option"
           class:active={option.value === selected}>{option.title}</option
         >
       {/each}

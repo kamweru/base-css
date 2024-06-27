@@ -13,7 +13,7 @@
     };
 </script>
 
-<nav class="tabs-wrapper" style={cssVariables}>
+<nav class="tabs" style={cssVariables}>
   {#each menuItems as menuItem}
     <a
       href={"#" + menuItem.title}
