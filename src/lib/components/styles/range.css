@@ -2,11 +2,11 @@
   --range-slider-track-background-color: var(--color-border);
   --range-slider-track-height: 4px;
   --range-slider-thumb-size: 10px;
+  --range-slider-track-border-radius: 16px;
   --range-slider-thumb-margin-top: calc(
     calc(var(--range-slider-track-height) - var(--range-slider-thumb-size)) *
       0.5
   );
-  --range-slider-track-border-radius: 16px;
   --range-slider-thumb-border-width: calc(
     var(--range-slider-track-height) * 0.125
   );

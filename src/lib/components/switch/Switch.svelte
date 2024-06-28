@@ -1,14 +1,18 @@
 <script>
   import { uuid } from "../../utils";
   import "../styles/switch.css";
+  export let cssVariables = "";
   export let id = uuid(8);
   export let label = "label";
   export let value = false;
   export let size = "sm";
-  let sizes = {
-    sm: "switch-sm",
-    md: "",
-    lg: "switch-lg",
+  let classes = {
+    default: "switch",
+    sizes: {
+      sm: "switch-sm",
+      md: "",
+      lg: "switch-lg",
+    },
   };
 </script>
 
@@ -16,7 +20,11 @@
   <input
     type="checkbox"
     {id}
-    class="switch switch-sm"
+    class={[classes.default, classes.sizes[size]]
+      .join(" ")
+      .trim()
+      .replace(/\s+/g, " ")}
+    style={cssVariables}
     bind:checked={value}
     {value}
   />

@@ -635,7 +635,28 @@ const config = {
       otherProps: [],
     },
     numberinput: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: [
           "handler wrap width",
@@ -711,17 +732,76 @@ const config = {
       otherProps: [],
     },
     radio: {
-      classProps: [],
-      cssVariables: [],
-      otherProps: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "size",
+          "size sm",
+          "size lg",
+          "span padding inline",
+          "span padding inline sm",
+          "span padding inline lg",
+        ],
+        value: [16, 14, 24, 8, 6, 12],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
+      otherProps: transformPayload({
+        title: ["checked", "disabled"],
+        value: [false, false],
+        controlType: ["switch", "switch"],
+        key: (title) => camel(title),
+      }),
     },
     range: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "slider track height",
+          "slider thumb size",
+          "slider track border radius",
+        ],
+        value: [4, 10, 16],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     rate: {
-      classProps: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["label font size"],
         value: [20],
@@ -731,13 +811,70 @@ const config = {
       otherProps: [],
     },
     select: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "height",
+          "handler-wrap-width",
+          "button-arrow-size",
+          "height",
+          "height-sm",
+          "height-lg",
+          "border-radius",
+          "border-radius-sm",
+          "border-radius-lg",
+          "padding-inline",
+          "padding-block",
+          "padding-inline-sm",
+          "padding-block-sm",
+          "padding-inline-lg",
+          "padding-block-lg",
+        ],
+        value: [32, 22, 5, 32, 24, 40, 6, 4, 8, 11, 4, 7, 0, 15, 7],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     switch: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "width",
+          "height",
+          "width-sm",
+          "height-sm",
+          "handle-size",
+          "handle-size-sm",
+          "handle-offset",
+          "handle-offset-sm",
+        ],
+        value: [40, 22, 28, 16, 18, 12, 2, 1],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     table: {

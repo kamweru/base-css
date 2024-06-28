@@ -3,11 +3,19 @@
   export let cssVariables = "";
   export let value = 3;
   export let step = 1;
-  export let inputSize = "md";
-  let inputSizes = {
-    sm: "numberinput-sm",
-    md: "",
-    lg: "numberinput-lg",
+  export let size = "default";
+  export let type = "outline";
+  let classes = {
+    default: "numberinput",
+    sizes: {
+      sm: "numberinput-sm",
+      md: "",
+      lg: "numberinput-lg",
+    },
+    types: {
+      outline: "numberinput-outline",
+      fill: "numberinput-fill",
+    },
   };
   const increment = () => {
       value += parseFloat(step);
@@ -18,7 +26,13 @@
 </script>
 
 <!-- <div class="flex flex:col gap:8"> -->
-<div class="numberinput {inputSizes[inputSize]}" style={cssVariables}>
+<div
+  class={[classes.default, classes.sizes[size], classes.types[type]]
+    .join(" ")
+    .trim()
+    .replace(/\s+/g, " ")}
+  style={cssVariables}
+>
   <div class="numberinput-handler-wrap">
     <button
       class="numberinput-handler numberinput-handler-up"
