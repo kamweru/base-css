@@ -491,12 +491,63 @@ const config = {
       otherProps: [],
     },
     input: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill", "underline", "borderless"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "height",
+          "height sm",
+          "height lg",
+          "padding block",
+          "padding inline",
+          "padding block sm",
+          "padding inline sm",
+          "padding block lg",
+          "padding inline lg",
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+        ],
+        value: [32, 24, 40, 4, 11, 0, 7, 7, 15, 6, 4, 8],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
+
       otherProps: [],
     },
     list: {
-      classProps: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: [
           "border radius",
@@ -530,7 +581,18 @@ const config = {
       otherProps: [],
     },
     message: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "info",
+          options: transformPayload({
+            title: ["info", "warning", "success", "danger"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: [
           "border radius",

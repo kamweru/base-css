@@ -1,9 +1,24 @@
 <script>
   import "../styles/list.css";
   export let cssVariables = "";
+  export let size = "default";
+  let classes = {
+    default: "list",
+    sizes: {
+      sm: "list-sm",
+      default: "",
+      lg: "list-lg",
+    },
+  };
 </script>
 
-<div class="list" style={cssVariables}>
+<div
+  class={[classes.default, classes.sizes[size]]
+    .join(" ")
+    .trim()
+    .replace(/\s+/g, " ")}
+  style={cssVariables}
+>
   <div class="list-header">
     <span class="">List title</span>
   </div>
