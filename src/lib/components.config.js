@@ -4,7 +4,26 @@ export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
   value: v,
 }));
 export const sampleData = {
-  tabs: ["Home", "About", "Contact"].map((title) => ({ title, value: title })),
+  features: [
+    {
+      title: "30+ Free Components & Examples",
+      description:
+        "Hundreds of component examples for all your website needs that meet accessibility criteria.",
+      icon: "mage:file-2",
+    },
+    {
+      title: "Universal Framework Compatibility",
+      description:
+        "Base CSS is fully compatible wherever CSS is in action, from React to Vue and beyond.",
+      icon: "grommet-icons:multiple",
+    },
+    {
+      title: "Dark Mode",
+      description:
+        "All components include a dark variant that lets you style your site differently when dark mode is enabled.",
+      icon: "tdesign:mode-dark",
+    },
+  ],
 };
 export const alertIcons = {
   info: "raphael:info",

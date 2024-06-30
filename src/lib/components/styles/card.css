@@ -22,6 +22,17 @@
   padding: 0;
   margin: 0;
 }
+.card.card-no-bg {
+  --card-head-bg: transparent;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0;
+}
+.card.card.card-no-bg .card-head {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0;
+}
 .card .card-head {
   display: flex;
   justify-content: center;

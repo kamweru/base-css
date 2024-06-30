@@ -5,6 +5,21 @@ export const routes = [
     view: "Home",
   },
   {
+    path: "/preview",
+    name: "Preview",
+    view: "Preview",
+  },
+  {
+    path: "/docs",
+    name: "Documentation",
+    view: "Documentation",
+  },
+  {
+    path: "/builder",
+    name: "Builder",
+    view: "Builder",
+  },
+  {
     path: "/home-old",
     name: "Home Old",
     view: "HomeOld",
