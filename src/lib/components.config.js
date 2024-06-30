@@ -6,6 +6,12 @@ export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
 export const sampleData = {
   tabs: ["Home", "About", "Contact"].map((title) => ({ title, value: title })),
 };
+export const alertIcons = {
+  info: "raphael:info",
+  warning: "ic:round-warning",
+  danger: "material-symbols:error",
+  success: "mdi:success-circle",
+};
 const config = {
   view: {
     title: "View",
@@ -75,9 +81,9 @@ const config = {
         {
           title: "type",
           key: "type",
-          value: "default",
+          value: "info",
           options: transformPayload({
-            title: ["default", "info", "success", "warning", "error"],
+            title: ["info", "success", "warning", "danger"],
             value: "title",
             key: (title) => hypenate(title),
           }),
@@ -454,12 +460,68 @@ const config = {
       ],
     },
     field: {
-      classProps: [],
-      cssVariables: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "vertical",
+          options: transformPayload({
+            title: ["vertical", "horizontal"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
+      cssVariables: transformPayload({
+        title: [
+          "border radius",
+          "border radius sm",
+          "border radius lg",
+          "padding inline",
+          "padding inline sm",
+          "padding inline lg",
+          "padding block",
+          "padding block sm",
+          "padding block lg",
+          "margin inline",
+          "margin inline sm",
+          "margin inline lg",
+          "margin block",
+          "margin block sm",
+          "margin block lg",
+          "height",
+          "height sm",
+          "height lg",
+        ],
+        value: [8, 4, 12, 8, 4, 12, 8, 4, 12, 8, 4, 12, 8, 4, 12, 32, 24, 40],
+        units: "px",
+        key: (title) => hypenate(title),
+      }),
       otherProps: [],
     },
     floatbutton: {
-      classProps: [],
+      classProps: [
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: [
           "bottom position",
@@ -482,6 +544,16 @@ const config = {
           value: "vertical",
           options: transformPayload({
             title: ["vertical", "inline", "horizontal"],
+            value: (title) => camel(title),
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["default", "sm", "lg"],
             value: (title) => camel(title),
             key: (title) => camel(title),
           }),
@@ -532,8 +604,12 @@ const config = {
         units: "px",
         key: (title) => hypenate(title),
       }),
-
-      otherProps: [],
+      otherProps: transformPayload({
+        title: ["disabled", "invalid"],
+        value: [false, false],
+        controlType: ["switch", "switch"],
+        key: (title) => camel(title),
+      }),
     },
     list: {
       classProps: [
@@ -567,7 +643,28 @@ const config = {
       otherProps: [],
     },
     menu: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill", "underline", "borderless"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "default",
+          options: transformPayload({
+            title: ["sm", "default", "lg"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: [
           "horizontal line height",
@@ -607,7 +704,18 @@ const config = {
       otherProps: [],
     },
     modal: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill", "underline", "borderless"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["border radius"],
         value: [6],
@@ -617,7 +725,18 @@ const config = {
       otherProps: [],
     },
     notification: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: [
           "padding inline",
@@ -702,7 +821,18 @@ const config = {
       }),
     },
     popconfirm: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["padding", "icon size", "margin inline", "margin block"],
         value: [16, 20, 8, 8],
@@ -722,7 +852,18 @@ const config = {
       otherProps: [],
     },
     progress: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["height", "border radius", "value border radius"],
         value: [8, 16, 16],
@@ -822,6 +963,16 @@ const config = {
             key: (title) => camel(title),
           }),
         },
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
       ],
       cssVariables: transformPayload({
         title: [
@@ -878,7 +1029,28 @@ const config = {
       otherProps: [],
     },
     table: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["cell padding inline", "cell padding block"],
         value: [12, 16],
@@ -888,7 +1060,28 @@ const config = {
       otherProps: [],
     },
     tabs: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+        {
+          title: "size",
+          key: "size",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["item margin bottom"],
         value: [-1],
@@ -898,7 +1091,18 @@ const config = {
       otherProps: [],
     },
     tag: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["margin inline"],
         value: [8],
@@ -908,7 +1112,18 @@ const config = {
       otherProps: [],
     },
     upload: {
-      classProps: [],
+      classProps: [
+        {
+          title: "type",
+          key: "type",
+          value: "outline",
+          options: transformPayload({
+            title: ["outline", "fill"],
+            value: "title",
+            key: (title) => camel(title),
+          }),
+        },
+      ],
       cssVariables: transformPayload({
         title: ["padding inline", "padding block", "border radius"],
         value: [16, 12, 8],

@@ -19,9 +19,9 @@
   --field-height-lg: 40px;
   font-size: var(--font-size);
   line-height: var(--line-height);
-  border-width: var(--border-width);
+  /* border-width: var(--border-width);
   border-style: var(--border-style);
-  border-color: rgb(var(--color-border));
+  border-color: rgb(var(--color-border)); */
 }
 .field,
 .field.field-vertical {
@@ -34,7 +34,7 @@
 }
 .field .field-label,
 .field.field-vertical .field-label {
-  margin-bottom: var(--field-margin-block);
+  /* margin-bottom: var(--field-margin-block); */
 }
 .field .field-label > label,
 .field.field-vertical .field-label > label {

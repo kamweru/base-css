@@ -7,7 +7,8 @@
 </script>
 
 <!-- <div class="flex flex:col gap:8"> -->
-<div class="flex flex:wrap jc:space-between p:8">
+<div class="grid grid-cols:2 gap:8 p:8">
+  <!-- <div class="flex flex:wrap jc:space-between p:8"> -->
   {#each $appStore.config.component[currentComponent].cssVariables as cssVariable}
     <!-- <div class="flex flex:col p:4|8"> -->
     <!-- <div class="f:$(font-size) lh:$(line-height) capitalize">

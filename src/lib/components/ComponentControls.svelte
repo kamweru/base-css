@@ -8,17 +8,7 @@
   export let currentComponent;
 </script>
 
-<div class="flex flex:col ">
-  <!-- <div class="flex flex:col gap:4 p:8">
-    <div class="f:16 lh:$(line-height) capitalize">
-      {$appStore.config.view.title}
-    </div>
-    <Select
-      bind:selected={$appStore.config.view.value}
-      options={$appStore.config.view.options}
-      inputSize="sm"
-    />
-  </div> -->
+<div class="flex flex:col">
   {#each $appStore.config.component[currentComponent].classProps as classProp}
     <div class="flex flex:col p:4|8">
       <div class="f:$(font-size) lh:$(line-height) capitalize">
@@ -70,4 +60,19 @@
       {/if}
     </div>
   {/each}
+  <!-- <div class="flex flex:col p:4|8 gap:8">
+    <div class="flex ai:center b:1|solid|rgb($(color-border)) r:5">
+      {#each ["info", "success", "warning", "danger"] as color}
+        <button
+          class="p:0|7 f:$(font-size-sm) lh:$(line-height-sm) br:1|solid|rgb($(color-border)) br:none:last w:100% bg:rgb($(gray-2)):hover
+          rl:4:first rr:4:last">{color}</button
+        >
+      {/each}
+    </div>
+    <div class="button-group">
+      {#each ["info", "success", "warning", "danger"] as color}
+        <button class="button button-text button-sm">{color}</button>
+      {/each}
+    </div>
+  </div> -->
 </div>
