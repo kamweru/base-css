@@ -1,27 +1,42 @@
 <script>
   export let cssVariables = "";
+  export let columns = [];
+  export let data = [];
 </script>
 
 <div class="table-wrapper" style={cssVariables}>
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Size</th>
-        <th>Type</th>
+        {#each columns as column}
+          <th>
+            <div class="flex ai:center">
+              <span class="flex:1">{column.title}</span>
+              <button class="button button-icon-only column-sorter">
+                <span class="column-sorter-icon column-sorter-up active"></span>
+                <span class="column-sorter-icon column-sorter-down"></span>
+              </button>
+            </div>
+          </th>
+        {/each}
+        {#if $$slots.actions}
+          <td> </td>
+        {/if}
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>John</td>
-        <td>25</td>
-        <td>Developer</td>
-      </tr>
-      <tr>
-        <td>Jane</td>
-        <td>30</td>
-        <td>Designer</td>
-      </tr>
+      {#each data as row}
+        <tr>
+          {#each columns as column}
+            <td>{row[column.key]}</td>
+          {/each}
+          {#if $$slots.actions}
+            <td>
+              <slot name="actions" {row} />
+            </td>
+          {/if}
+        </tr>
+      {/each}
     </tbody>
   </table>
 </div>

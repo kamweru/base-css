@@ -1,4 +1,20 @@
-import { transformPayload, camel, hypenate } from "./utils";
+import { transformPayload, camel, hypenate, uuid } from "./utils";
+let defaultControl = {
+  control: "input",
+  type: "text",
+  placeholder: "",
+  label: "",
+  id: uuid(8),
+  value: "",
+  defaultValue: "",
+  valid: false,
+  validationRules: {},
+  messages: {
+    errors: [],
+    warnings: [],
+    success: [],
+  },
+};
 export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
   title: v,
   value: v,
@@ -24,6 +40,47 @@ export const sampleData = {
       icon: "tdesign:mode-dark",
     },
   ],
+  table: {
+    "sample table 1": {
+      columns: [
+        {
+          title: "Name",
+          key: "name",
+        },
+        {
+          title: "size",
+          key: "size",
+        },
+        {
+          title: "job title",
+          key: "job",
+        },
+      ],
+      data: [
+        {
+          name: "Jane Doe",
+          size: "large",
+          job: "UX Designer",
+        },
+        {
+          name: "John Doe",
+          size: "large",
+          job: "UX Designer",
+        },
+      ],
+      controls: [
+        { label: "name", key: "name" },
+        { label: "size", key: "size" },
+        { label: "job title", key: "job" },
+      ].map((v) => ({
+        ...defaultControl,
+        id: uuid(8),
+        label: v.label,
+        placeholder: v.label,
+        key: v.key,
+      })),
+    },
+  },
 };
 export const alertIcons = {
   info: "raphael:info",

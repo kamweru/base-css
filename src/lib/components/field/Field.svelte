@@ -1,6 +1,9 @@
 <script>
   import "../styles/field.css";
+  import { uuid } from "../../utils";
+  export let id = uuid();
   export let cssVariables = "";
+  export let label = "";
   export let size = "default";
   export let type = "vertical";
   let classes = {
@@ -25,9 +28,11 @@
   style={cssVariables}
 >
   <div class="field-label">
-    <label for=""> Username </label>
+    <label for={id}>
+      <slot name="label" />
+    </label>
   </div>
   <div class="field-input">
-    <input type="text" class="input" />
+    <slot name="input" />
   </div>
 </div>

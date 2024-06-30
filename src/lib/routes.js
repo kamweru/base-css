@@ -20,6 +20,16 @@ export const routes = [
     view: "Builder",
   },
   {
+    path: "/landing",
+    name: "Landing",
+    view: "Landing",
+  },
+  {
+    path: "/app",
+    name: "Application",
+    view: "Application",
+  },
+  {
     path: "/home-old",
     name: "Home Old",
     view: "HomeOld",

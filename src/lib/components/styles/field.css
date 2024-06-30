@@ -19,6 +19,7 @@
   --field-height-lg: 40px;
   font-size: var(--font-size);
   line-height: var(--line-height);
+  text-align: start;
   /* border-width: var(--border-width);
   border-style: var(--border-style);
   border-color: rgb(var(--color-border)); */
