@@ -5,6 +5,7 @@
   export let justify = "flexStart";
   export let align = "flexStart";
   export let gap = "default";
+  export let wrap = false;
   let classes = {
     default: "flex",
     directions: {
@@ -40,6 +41,7 @@
     classes.justifyOptions[justify],
     classes.alignOptions[align],
     classes.gaps[gap] ? classes.gaps[gap] : "flex-gap",
+    wrap ? "flex-wrap" : "",
   ]
     .join(" ")
     .trim()

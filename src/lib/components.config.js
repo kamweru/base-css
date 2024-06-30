@@ -40,6 +40,49 @@ export const sampleData = {
       icon: "tdesign:mode-dark",
     },
   ],
+  landing: {
+    "landing 1": {
+      hero: {
+        title: "Cascade Tools",
+        subtitle: "for universities",
+        description:
+          "Experience the power of simplicity and efficiency with our intuitive tools designed to streamline your workflow, save time, and enhance your productivity.",
+        cta: "Get Started",
+      },
+      features: [
+        {
+          title: "Customizable Online Data Collection Forms",
+          description:
+            "Effortlessly gather data from students, faculty, and staff.",
+        },
+        {
+          title: "Data Analysis Tools",
+          description:
+            "Visualize trends, analyze results, and make informed decisions.",
+        },
+        {
+          title: "Office E - File Management",
+          description: "Organize documents securely and access them anytime.",
+        },
+        {
+          title: "Calendar for Scheduling Tasks and Staff",
+          description: "Efficiently manage schedules and shifts.",
+        },
+        {
+          title: "Meeting Minutes and Resolutions",
+          description: "Keep track of important discussions and decisions.",
+        },
+        {
+          title: "File and Memo Tracking",
+          description: "Centralize communication and collaboration.",
+        },
+        {
+          title: "Audits and Corrective Action Plans",
+          description: "Ensure compliance and continuous improvement.",
+        },
+      ],
+    },
+  },
   table: {
     "sample table 1": {
       columns: [
