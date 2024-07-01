@@ -21,7 +21,7 @@
 </script>
 
 <div
-  class={[classes.default, classes.sizes[size], classes.types[type], "col-5"]
+  class={[classes.default, classes.sizes[size], classes.types[type]]
     .join(" ")
     .trim()
     .replace(/\s+/g, " ")}

@@ -20,6 +20,7 @@
   font-size: var(--font-size);
   line-height: var(--line-height);
   text-align: start;
+  width: 100%;
   /* border-width: var(--border-width);
   border-style: var(--border-style);
   border-color: rgb(var(--color-border)); */
