@@ -1,20 +1,63 @@
 import { transformPayload, camel, hypenate, uuid } from "./utils";
 let defaultControl = {
-  control: "input",
-  type: "text",
-  placeholder: "",
-  label: "",
-  id: uuid(8),
-  value: "",
-  defaultValue: "",
-  valid: false,
-  validationRules: {},
-  messages: {
-    errors: [],
-    warnings: [],
-    success: [],
+    control: "input",
+    type: "text",
+    placeholder: "",
+    label: "",
+    id: uuid(8),
+    value: "",
+    defaultValue: "",
+    valid: false,
+    validationRules: {},
+    messages: {
+      errors: [],
+      warnings: [],
+      success: [],
+    },
   },
-};
+  masterColors = [
+    "brown",
+    "orange",
+    "gold",
+    "yellow",
+    "grass",
+    "green",
+    "beryl",
+    "teal",
+    "cyan",
+    "sky",
+    "blue",
+    "indigo",
+    "violet",
+    "purple",
+    "fuchsia",
+    "pink",
+    "crimson",
+    "red",
+  ];
+export function getRandomColors(numColors) {
+  // Make a copy of the colors array to avoid modifying the original
+  const colorsCopy = masterColors.slice();
+
+  // Check for invalid input
+  if (numColors < 1) {
+    throw new Error("Number of colors must be at least 1");
+  }
+
+  const randomColors = [];
+  for (let i = 0; i < numColors; i++) {
+    // Get a random index within the remaining colors array
+    const randomIndex = Math.floor(Math.random() * colorsCopy.length);
+
+    // Extract the color at the random index and remove it from the copy
+    const randomColor = colorsCopy.splice(randomIndex, 1)[0];
+
+    // Add the random color to the final result array
+    randomColors.push(randomColor);
+  }
+
+  return randomColors;
+}
 export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
   title: v,
   value: v,
@@ -42,6 +85,36 @@ export const sampleData = {
   ],
   landing: {
     "landing 1": {
+      explore: {
+        title: "Explore more ways to use our solutions",
+        list: [
+          {
+            icon: "carbon:filter",
+            title: "For Hybrid Sales",
+            description: "Align your team and strengthen client relationships",
+            color: getRandomColors(3)[Math.floor(Math.random() * 3)],
+          },
+          {
+            icon: "uit:wallet",
+            title: "For UX & Design",
+            description:
+              "Map customer journeys and easily gather feedback on designs",
+            color: getRandomColors(3)[Math.floor(Math.random() * 3)],
+          },
+          {
+            icon: "gg:list",
+            title: "For Agile Workflows",
+            description: "Collaborate wherever and whenever you work",
+            color: getRandomColors(3)[Math.floor(Math.random() * 3)],
+          },
+          {
+            icon: "quill:chat",
+            title: "For Consultants & Agencies",
+            description: "Engage teams and make big things happen",
+            color: getRandomColors(3)[Math.floor(Math.random() * 3)],
+          },
+        ],
+      },
       hero: {
         title: "Cascade Tools",
         subtitle: "for universities",
@@ -51,34 +124,115 @@ export const sampleData = {
       },
       features: [
         {
+          subtitle: "Forms",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "Customizable Online Data Collection Forms",
           description:
             "Effortlessly gather data from students, faculty, and staff.",
         },
         {
+          subtitle: "Data analysis",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "Data Analysis Tools",
           description:
             "Visualize trends, analyze results, and make informed decisions.",
         },
         {
+          subtitle: "E-Filing",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "Office E - File Management",
           description: "Organize documents securely and access them anytime.",
         },
         {
+          subtitle: "Calendar",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "Calendar for Scheduling Tasks and Staff",
           description: "Efficiently manage schedules and shifts.",
         },
         {
+          subtitle: "Minutes",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "Meeting Minutes and Resolutions",
           description: "Keep track of important discussions and decisions.",
         },
         {
+          subtitle: "Tracking",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "File and Memo Tracking",
           description: "Centralize communication and collaboration.",
         },
         {
+          subtitle: "Audits",
+          image: "",
+          tags: ["#Features", "#What's new"],
           title: "Audits and Corrective Action Plans",
           description: "Ensure compliance and continuous improvement.",
+        },
+      ],
+      testimonials: [
+        {
+          name: "Dr. Amelia Johnson",
+          jobTitle: "Dean of Admissions",
+          company: "Stanford University",
+          testimonial:
+            "Cascade Tools has been a game-changer for our admissions department. The customizable online forms have streamlined our application process, saving us countless hours. The data analysis tools provide valuable insights into applicant demographics and trends, allowing us to make informed decisions about our recruitment strategies.",
+          color: "grass",
+        },
+        {
+          name: "Mark Rodriguez",
+          jobTitle: "IT Director",
+          company: "University of North Carolina",
+          testimonial:
+            "Before Cascade Tools, managing our university's documents was a nightmare. Now, with the centralized e-filing system, everything is organized and accessible. The system is incredibly user-friendly, and our staff loves how easy it is to find and share documents.",
+          color: "sky",
+        },
+        {
+          name: "Professor Sarah Chen",
+          jobTitle: "Department Chair",
+          company: "History Department, University of California, Berkeley",
+          testimonial:
+            "Cascade Tools has transformed our department meetings. The ability to capture meeting minutes and resolutions electronically has saved us so much time and ensured everyone is on the same page. It's also a great way to hold individuals accountable for action items.",
+          color: "yellow",
+        },
+        {
+          name: "David Hernandez",
+          jobTitle: "Internal Auditor",
+          company: "Massachusetts Institute of Technology",
+          testimonial:
+            "Cascade Tools has revolutionized our internal audit process. The pre-built templates and corrective action plan tools make conducting audits much more efficient. We can now focus our resources on deeper analysis and improvement initiatives.",
+          color: "crimson",
+        },
+        {
+          name: "Emily Jones",
+          jobTitle: "Student Government President",
+          company: "University of Michigan",
+          testimonial:
+            "Cascade Tools has been a valuable resource for the student government. We use the calendar to schedule events and meetings, and the file and memo tracking system helps us keep track of important documents and proposals. The platform is easy to use and accessible to everyone on campus.",
+          color: "orange",
+        },
+      ],
+      footer: [
+        {
+          title: "Solutions",
+          list: ["Marketing", "Analytics", "Commerce", "Insights"],
+        },
+        {
+          title: "Support",
+          list: ["Pricing", "Documentation", "Guides", "API Status"],
+        },
+        {
+          title: "Company",
+          list: ["About", "Blog", "Jobs", "Press", "Partners"],
+        },
+        {
+          title: "Legal",
+          list: ["Claim", "Privacy", "Terms"],
         },
       ],
     },

@@ -5,6 +5,7 @@
   --card-padding: 16px;
   --card-padding-sm: 12px;
   --card-border-radius: 8px;
+  --card-bg: var(--color-surface);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -18,7 +19,7 @@
   border-style: var(--border-style);
   border-color: rgb(var(--color-border));
   border-radius: var(--card-border-radius);
-  background-color: rgb(var(--color-surface));
+  background-color: rgb(var(--card-bg));
   padding: 0;
   margin: 0;
 }

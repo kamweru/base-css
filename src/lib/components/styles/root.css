@@ -55,6 +55,16 @@
   --transition-duration: 0.3s;
   --transition-delay: 0.6s;
   --transition-timing-function: cubic-bezier(0.27, 0.01, 0.38, 1.06);
+  --green-1: 230 255 230;
+  --green-2: 176 255 201;
+  --green-3: 130 245 170;
+  --green-4: 86 232 142;
+  --green-5: 46 219 118;
+  --green-6: 11 206 100;
+  --green-7: 0 168 81;
+  --green-8: 0 130 67;
+  --green-9: 0 92 50;
+  --green-10: 0 28 14;
 }
 .dark {
   --color-neutral: 69 71 73;
@@ -444,6 +454,46 @@ select.select {
     calc(100vw + 1px) calc(100% + 1px),
     -1px calc(100% + 1px)
   );
+}
+.landing-horizontal-loop {
+  animation: horizontal-loop var(--duration) linear infinite;
+}
+.animation-box:hover .landing-horizontal-loop {
+  animation-play-state: paused;
+}
+.animate-float {
+  --animation-delay: 0s;
+  --animation-duration: 5s;
+  animation: float var(--animation-duration) ease-in-out infinite;
+  animation-delay: var(--animation-delay);
+}
+.bg-multicolor-gradient {
+  background-image: radial-gradient(
+      31.36% 169.59% at 77.92% 0%,
+      rgba(0, 115, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(
+      41.21% 63.18% at 39.86% 100%,
+      rgba(255, 132, 0, 0.1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(112.74% 6864.72% at 9.58% 86.82%, #f3f7fe 0%, #f8f8f8 100%);
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10%);
+  }
+}
+@keyframes horizontal-loop {
+  100% {
+    transform: translateX(-100%);
+  }
 }
 @keyframes rotation {
   0% {
