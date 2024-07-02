@@ -322,11 +322,11 @@
         </div>
         <div class="col-12 mx:auto">
           <div class="grid grid-cols:3">
-            {#each ["qualified", "turbopack", "slack", "nhost", "segment", "stately"] as company, i}
+            {#each ["transistor", "wired", "digital", "kk", "agillic", "webflow"] as company, i}
               <div
                 class="bg:rgb($(green-1)) w:100% square rotate(-1) rotate(1):hover shadow:$(shadow-10) p:6 flex ai:center jc:center gap:16"
               >
-                <CompanyLogos {company} height="64" />
+                <CompanyLogos {company} classes="h:64" />
               </div>
             {/each}
           </div>
