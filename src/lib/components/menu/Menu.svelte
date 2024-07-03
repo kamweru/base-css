@@ -3,6 +3,7 @@
   import "../styles/menu.css";
   import Icon from "@iconify/svelte";
   export let cssVariables = "";
+  export let direction = "horizontal";
   let menuitems = [
       {
         label: "Navigation One",
@@ -55,12 +56,26 @@
         label: "Navigation Four - Link",
       },
     ],
+    classes = {
+      default: "menu",
+      directions: {
+        horizontal: "menu-horizontal",
+        vertical: "menu-vertical",
+      },
+    },
     open = false,
     activeMenu = menuitems[0].key;
 </script>
 
-<menu class="menu menu-horizontal" style={cssVariables}>
-  {#each menuitems as item}
+<menu
+  class={[classes.default, classes.directions[direction]]
+    .join(" ")
+    .trim()
+    .replace(/\s+/g, " ")}
+  style={cssVariables}
+>
+  <slot></slot>
+  <!-- {#each menuitems as item}
     {#if item.children}
       <li
         class="menu-item"
@@ -109,5 +124,5 @@
         </a>
       </li>
     {/if}
-  {/each}
+  {/each} -->
 </menu>

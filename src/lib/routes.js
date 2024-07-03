@@ -30,6 +30,31 @@ export const routes = [
     view: "Application",
   },
   {
+    path: "/app/dashboard",
+    name: "Application",
+    view: "Application",
+  },
+  {
+    path: "/app/forms",
+    name: "Application",
+    view: "Application",
+  },
+  {
+    path: "/app/audits",
+    name: "Application",
+    view: "Application",
+  },
+  {
+    path: "/app/calendar",
+    name: "Application",
+    view: "Application",
+  },
+  {
+    path: "/app/efiles",
+    name: "Application",
+    view: "Application",
+  },
+  {
     path: "/home-old",
     name: "Home Old",
     view: "HomeOld",

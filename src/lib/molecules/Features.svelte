@@ -11,11 +11,12 @@
     <h2 class="font-size-5xl color:white mb:24">Features</h2>
     <p class="color:white">View the features Cascade Tools has to offer</p>
   </div>
-  <div class="col-20 h:700 mx:auto bg:rgb($(green-1)) p:32 r:24">
+  <div class="col-20 h:720 mx:auto bg:rgb($(green-1)) p:32 r:24">
     <div class="h:100% flex flex-column jc:space-between">
       <div class="uppercase">{feature.subtitle}</div>
       <div class="col-8">
-        <h2 class="font-size-5xl">{feature.title}</h2>
+        <h2 class="font-size-5xl mb:24">{feature.title}</h2>
+        <p>{feature.description}</p>
       </div>
       <div class="flex jc:space-between ai:center p:16 gap:16 mt:24">
         <ul

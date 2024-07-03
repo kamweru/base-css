@@ -14,12 +14,9 @@
 </script>
 
 <nav class="tabs" style={cssVariables}>
-  {#each menuItems as menuItem}
-    <a
-      href={"#" + menuItem.title}
-      on:click|preventDefault={() => toggleMenu(menuItem)}
-      class="tab-item"
-      class:active={currentMenu.title === menuItem.title}>{menuItem.title}</a
-    >
-  {/each}
+  <slot></slot>
 </nav>
+
+<div role="tabpanel">
+  <slot name="content" />
+</div>

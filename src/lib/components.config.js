@@ -83,6 +83,52 @@ export const sampleData = {
       icon: "tdesign:mode-dark",
     },
   ],
+  application: {
+    forms: {
+      folders: [
+        {
+          title: "folder 1",
+          forms: ["qUhlxb7i", "Rw7fN5lV"],
+          id: "4gpxiqDk",
+        },
+        {
+          title: "folder 2",
+          forms: ["e5hLYmU3", "MfRGQnuK"],
+          id: "RWVZ8AJm",
+        },
+      ],
+      forms: [
+        {
+          title: "form 1",
+          description: "form 1 description",
+          id: "qUhlxb7i",
+          formId: "4gpxiqDk",
+        },
+        {
+          title: "form 2",
+          description: "form 2 description",
+          id: "Rw7fN5lV",
+          formId: "4gpxiqDk",
+        },
+        {
+          title: "form 3",
+          description: "form 3 description",
+          id: "e5hLYmU3",
+          formId: "RWVZ8AJm",
+        },
+        {
+          title: "form 4",
+          description: "form 4 description",
+          id: "MfRGQnuK",
+          formId: "RWVZ8AJm",
+        },
+      ],
+    },
+    efiles: {},
+    dashboard: {},
+    audits: {},
+    calendar: {},
+  },
   landing: {
     "landing 1": {
       explore: {
@@ -115,6 +161,58 @@ export const sampleData = {
           },
         ],
       },
+      menuItems: [
+        {
+          title: "Navigation One",
+          key: "mail",
+          icon: "akar-icons:home",
+        },
+        {
+          title: "Navigation Two",
+          key: "app",
+          icon: "akar-icons:home",
+          disabled: true,
+        },
+        {
+          title: "Navigation Three - Submenu",
+          key: "SubMenu",
+          icon: "akar-icons:home",
+          children: [
+            {
+              type: "group",
+              title: "Item 1",
+              children: [
+                {
+                  title: "Option 1",
+                  key: "setting:1",
+                },
+                {
+                  title: "Option 2",
+                  key: "setting:2",
+                },
+              ],
+            },
+            {
+              type: "group",
+              title: "Item 2",
+              children: [
+                {
+                  title: "Option 3",
+                  key: "setting:3",
+                },
+                {
+                  title: "Option 4",
+                  key: "setting:4",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          key: "alipay",
+          title: "Navigation Four - Link",
+        },
+      ],
       hero: {
         title: "Cascade Tools",
         subtitle: "for universities",
@@ -1407,5 +1505,4 @@ const config = {
     },
   },
 };
-
 export { config };

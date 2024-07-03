@@ -27,6 +27,7 @@
       stretch: "flex-align-stretch",
     },
     gaps: {
+      xs: "flex-gap-xs",
       sm: "flex-gap-sm",
       default: "flex-gap",
       lg: "flex-gap-lg",
@@ -40,6 +41,7 @@
     classes.directions[direction],
     classes.justifyOptions[justify],
     classes.alignOptions[align],
+    $$props.class || "",
     classes.gaps[gap] ? classes.gaps[gap] : "flex-gap",
     wrap ? "flex-wrap" : "",
   ]

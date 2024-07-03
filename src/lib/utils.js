@@ -245,3 +245,55 @@ export const clickOutside = (node, _options = {}) => {
     },
   };
 };
+export function createEventForwarder(element) {
+  // Initialize an empty object to store event listeners
+  const eventListeners = {};
+
+  // Function to add an event listener
+  function addEventListener(eventName, handler) {
+    if (!eventListeners[eventName]) {
+      eventListeners[eventName] = [];
+    }
+    eventListeners[eventName].push(handler);
+    element.addEventListener(eventName, handler);
+  }
+
+  // Function to remove an event listener
+  function removeEventListener(eventName, handler) {
+    if (eventListeners[eventName]) {
+      const index = eventListeners[eventName].indexOf(handler);
+      if (index !== -1) {
+        eventListeners[eventName].splice(index, 1);
+        element.removeEventListener(eventName, handler);
+      }
+    }
+  }
+
+  // Return an object with the necessary methods
+  return {
+    addEventListener,
+    removeEventListener,
+  };
+}
+export const createEventForwarder1 = (element) => {
+  return (node) => {
+    const eventTypes = Object.keys(element).filter((key) =>
+      key.startsWith("on")
+    );
+    console.log(eventTypes);
+    const eventHandlers = eventTypes.map((eventType) => {
+      const eventName = eventType.slice(2).toLowerCase();
+      const handler = (event) => element[eventType](event);
+      node.addEventListener(eventName, handler);
+      return { eventName, handler };
+    });
+
+    return {
+      destroy() {
+        eventHandlers.forEach(({ eventName, handler }) => {
+          node.removeEventListener(eventName, handler);
+        });
+      },
+    };
+  };
+};

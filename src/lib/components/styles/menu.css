@@ -1,8 +1,38 @@
 .menu {
   --menu-horizontal-line-height: 56px;
+  --menu-vertical-padding-inline: 16px;
+  --menu-vertical-height: 40px;
+  --menu-vertical-border-radius: 8px;
   --menu-item-padding-inline: 20px;
   --menu-icon-margin-inline: 8px;
   font-size: var(--font-size);
+  display: flex;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+.menu,
+.menu.menu-vertical {
+  flex-direction: column;
+}
+.menu.menu-vertical .menu-item {
+  padding: 0 var(--menu-vertical-padding-inline);
+  height: var(--menu-vertical-height);
+  display: flex;
+  align-items: center;
+  border-radius: var(--menu-vertical-border-radius);
+  margin: var(--margin-xxs);
+  white-space: nowrap;
+}
+.menu.menu-vertical .menu-item.active {
+  background-color: rgb(var(--green-8)); /*----*/
+  /* background-color: rgb(var(--color-primary));  */
+  color: rgb(var(--color-surface));
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+.menu.menu-vertical .menu-item .menu-title {
+  flex: auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .menu,
 .menu-submenu,
@@ -12,16 +42,26 @@
   padding: 0;
   list-style: none;
   outline: none;
-  border-bottom: var(--border-width) var(--border-style)
-    rgb(var(--color-border));
 }
 .menu .menu-item {
   position: relative;
+  /* cursor: pointer; */
+}
+.menu .menu-item > a {
+  color: inherit;
+  flex: auto;
+  display: flex;
+  align-items: center;
+}
+.menu .menu-item a > span:last-child {
+  margin-inline-end: 0;
+  margin-left: auto;
 }
 .menu.menu-horizontal {
-  display: flex;
   flex-direction: row;
   line-height: var(--menu-horizontal-line-height);
+  border-bottom: var(--border-width) var(--border-style)
+    rgb(var(--color-border));
 }
 .menu.menu-horizontal > .menu-item::after {
   content: "";
@@ -47,14 +87,15 @@
 .menu .menu-submenu-item,
 .menu .menu-group-list .menu-item {
   position: relative;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .menu .menu-item .menu-item-icon {
   margin-inline-end: var(--menu-icon-margin-inline);
 }
 .menu .menu-item.active {
-  color: rgb(var(--color-primary));
+  /* color: rgb(var(--green-8)); */
+  /* color: rgb(var(--color-primary)); */
 }
 .menu.menu.menu-horizontal .menu-item.active::after {
   border-bottom-color: rgb(var(--color-primary));

@@ -320,8 +320,17 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.font-size-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+.font-size {
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
 .font-size-lg {
   font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
 }
 .font-size-xl {
   font-size: var(--font-size-xl);
@@ -343,6 +352,15 @@ a {
 }
 .font-size-7xl {
   font-size: var(--font-size-7xl);
+}
+.ellipsis {
+  --line-clamp-value: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--line-clamp-value);
 }
 .logo {
   width: 32px;

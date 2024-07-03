@@ -8,12 +8,22 @@
   import Field from "../lib/components/field/Field.svelte";
   import Rate from "../lib/components/rate/Rate.svelte";
   import Header from "../lib/components/header/Header.svelte";
-  import Menu from "../lib/components/menu/Menu.svelte";
-  import Tabs from "../lib/components/tabs/Tabs.svelte";
+  import Button from "../lib/components/button/Button.svelte";
+  import { Menu } from "../lib/components/menu/index";
+  import { Tabs } from "../lib/components/tabs/index";
   import Card from "../lib/components/card/Card.svelte";
   import Features from "../lib/molecules/Features.svelte";
   import CompanyLogos from "../lib/molecules/CompanyLogos.svelte";
-  let pageKey = "landing 1";
+  let pageKey = "landing 1",
+    activeMenu = sampleData.landing[pageKey].menuItems[0];
+  export let tabItems = ["Home", "About", "Contact"].map((title, index) => ({
+      title,
+      value: title,
+      content:
+        "lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem? " +
+        index,
+    })),
+    activeTab = tabItems[0];
   // console.log(colors);
 </script>
 
@@ -24,13 +34,44 @@
       <Menu></Menu>
     </div>
   </Header> -->
-
+  <!-- <Tabs>
+    {#each tabItems as tabItem}
+      <Tabs.Tab
+        class="tab-item {tabItem.title === activeTab.title ? 'active' : ''}"
+        label={tabItem.title}
+        on:click={() => (activeTab = tabItem)}
+      >
+        <span slot="label">{tabItem.title}</span>
+      </Tabs.Tab>
+    {/each}
+    <div slot="content" class="p:16">
+      {activeTab.content}
+    </div>
+  </Tabs> -->
   <div class="col-20 mx:auto pt:32">
     <div class="flex gap:32">
       <div class="col-12">
         <div class="h:100% flex flex-column">
           <div class="h:100%">
-            <Menu></Menu>
+            <Menu>
+              {#each sampleData.landing[pageKey].menuItems as menuItem}
+                <Menu.Item
+                  class="menu-item color:inherit {menuItem.key ===
+                  activeMenu.key
+                    ? 'active'
+                    : ''}"
+                  on:click={() => {
+                    activeMenu = menuItem;
+                    console.log("clicked");
+                  }}
+                >
+                  <span class="icon menu-item-icon">
+                    <Icon icon="carbon:menu" />
+                  </span>
+                  {menuItem.title}
+                </Menu.Item>
+              {/each}
+            </Menu>
             <div class=" h:100% pl:32">
               <div class="flex flex-column jc:center gap:16 p:20 h:100%">
                 <div class="font-size-5xl f:bold">
