@@ -62,7 +62,177 @@ export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
   title: v,
   value: v,
 }));
+let rawData = {
+  folders: [
+    "admissions",
+    "audits",
+    "user satisfaction surveys",
+    "job satisfaction surveys",
+  ],
+  forms: [
+    ["2022 admissions", "2024 admissions"],
+    ["2023 internal audit", "2024 internal audit"],
+    [
+      "ict user satisfaction survey 2023",
+      "library user satisfaction survey 2024",
+    ],
+    ["2022 job satisfaction survey", "2023 job satisfaction survey"],
+  ],
+  sections: [
+    ["bio information", "contact information", "previous eduction"],
+    ["audit questions"],
+    ["user satisfaction"],
+    ["job satisfaction"],
+  ],
+  questions: [
+    ["first name", "last name", "age", "date of birth"],
+    [
+      "Why did you apply for this position?",
+      "Why are internal audits necessary?",
+      "Explain the steps to prepare for and perform an internal audit.",
+      "Can you describe substantive tests?",
+      "What should you do after an internal audit?",
+    ],
+    [
+      "How often do you visit the library?",
+      "How often do you use the library website?",
+      "How satisfied are you with the opening hours of the library?",
+      "How satisfied are you with the following library services?",
+      "How satisfied are you with the range of literature available in the library?",
+    ],
+    [
+      "Do you enjoy our company’s culture?",
+      "Do you feel connected to your co-workers?",
+      "Do you enjoy working with your colleagues?",
+    ],
+  ],
+};
 export const sampleData = {
+  calendar: {
+    "calendar 1": {
+      events: [
+        {
+          title: "Developing software for Raspberry Pi",
+          description: "Developing software for Raspberry Pi",
+          start: 1719947643125,
+          end: 1720034043125,
+          id: "A5srGMV55eiN",
+        },
+        {
+          title: "using Python, C and bash languages. ",
+          description: "using Python, C and bash languages. ",
+          start: 1719861243125,
+          end: 1719947643125,
+          id: "l4R7OtpjYfj7",
+        },
+        {
+          title: "Those systems are used in APM OnDynamic",
+          description: "Those systems are used in APM OnDynamic",
+          start: 1719774843125,
+          end: 1719861243125,
+          id: "n2pmpxsKfFCf",
+        },
+        {
+          title: "Developing Android app in Java and Kotlin. ",
+          description: "Developing Android app in Java and Kotlin. ",
+          start: 1719688443125,
+          end: 1719774843125,
+          id: "vpdELtTgi0Fe",
+        },
+        {
+          title: "It’s the mobile app of TMS frameLOGIC ",
+          description: "It’s the mobile app of TMS frameLOGIC ",
+          start: 1719602043125,
+          end: 1719688443125,
+          id: "pHfD4lKF9D5E",
+        },
+        {
+          title: "system besides: onboarding, distributing ",
+          description: "system besides: onboarding, distributing ",
+          start: 1719515643125,
+          end: 1719602043125,
+          id: "Ma5SeERFfSZI",
+        },
+        {
+          title: "teamwork, modifying CyanogenMod system, ",
+          description: "teamwork, modifying CyanogenMod system, ",
+          start: 1719429243125,
+          end: 1719515643125,
+          id: "1aMJotRwyKPO",
+        },
+        {
+          title: "applying changes on servers (Java)",
+          description: "applying changes on servers (Java)",
+          start: 1719342843125,
+          end: 1719429243125,
+          id: "a53vRDjKfdnD",
+        },
+        {
+          title: "Developing BlackBerry Work in Java and Kotlin. ",
+          description: "Developing BlackBerry Work in Java and Kotlin. ",
+          start: 1719256443125,
+          end: 1719342843125,
+          id: "WGFCsPmacAjV",
+        },
+        {
+          title: "This app contains e-mail client, calendar, ",
+          description: "This app contains e-mail client, calendar, ",
+          start: 1719170043125,
+          end: 1719256443125,
+          id: "PdC9DUFR5UsR",
+        },
+        {
+          title: "contact manager and more. Work is known of its ",
+          description: "contact manager and more. Work is known of its ",
+          start: 1719083643125,
+          end: 1719170043125,
+          id: "zK8zxQzKa7lq",
+        },
+        {
+          title: "security. It has a lot of legacy code, ",
+          description: "security. It has a lot of legacy code, ",
+          start: 1718997243125,
+          end: 1719083643125,
+          id: "J6gihAHrp8ID",
+        },
+        {
+          title: "but new features are developed in Kotlin ",
+          description: "but new features are developed in Kotlin ",
+          start: 1718910843125,
+          end: 1718997243125,
+          id: "xs9Dq5OfdXvN",
+        },
+        {
+          title: "using MVVM architecture",
+          description: "using MVVM architecture",
+          start: 1718824443125,
+          end: 1718910843125,
+          id: "zIJSLx9GHs9Z",
+        },
+        {
+          title: "Developing a simple app for reading Bible. ",
+          description: "Developing a simple app for reading Bible. ",
+          start: 1718738043125,
+          end: 1718824443125,
+          id: "ab7PxgWYt26C",
+        },
+        {
+          title: "It’s written in Kotlin and it uses ObjectBox. ",
+          description: "It’s written in Kotlin and it uses ObjectBox. ",
+          start: 1718651643125,
+          end: 1718738043125,
+          id: "mfnBZu7LU138",
+        },
+        {
+          title: "Bible Lite isn't public yet",
+          description: "Bible Lite isn't public yet",
+          start: 1718565243125,
+          end: 1718651643125,
+          id: "BDizQ9yxVxR1",
+        },
+      ],
+    },
+  },
   features: [
     {
       title: "30+ Free Components & Examples",
@@ -84,49 +254,108 @@ export const sampleData = {
     },
   ],
   application: {
-    forms: {
-      folders: [
-        {
-          title: "folder 1",
-          forms: ["qUhlxb7i", "Rw7fN5lV"],
-          id: "4gpxiqDk",
-        },
-        {
-          title: "folder 2",
-          forms: ["e5hLYmU3", "MfRGQnuK"],
-          id: "RWVZ8AJm",
-        },
-      ],
-      forms: [
-        {
-          title: "form 1",
-          description: "form 1 description",
-          id: "qUhlxb7i",
-          formId: "4gpxiqDk",
-        },
-        {
-          title: "form 2",
-          description: "form 2 description",
-          id: "Rw7fN5lV",
-          formId: "4gpxiqDk",
-        },
-        {
-          title: "form 3",
-          description: "form 3 description",
-          id: "e5hLYmU3",
-          formId: "RWVZ8AJm",
-        },
-        {
-          title: "form 4",
-          description: "form 4 description",
-          id: "MfRGQnuK",
-          formId: "RWVZ8AJm",
-        },
-      ],
+    forms: rawData.folders.reduce((acc, folder, folderIndex) => {
+      let folderId = uuid(12);
+      acc[folderId] = {
+        id: folderId,
+        title: folder,
+        description: folder,
+        forms: rawData.forms[folderIndex].reduce((acc, form, formIndex) => {
+          let formId = uuid(12);
+          acc[formId] = {
+            id: formId,
+            title: form,
+            description: form,
+            folderId: folderId,
+            sections: rawData.sections[formIndex].reduce(
+              (acc, section, sectionIndex) => {
+                let sectionId = uuid(12);
+                acc[sectionId] = {
+                  id: sectionId,
+                  title: section,
+                  description: section,
+                  formId: formId,
+                  folderId: folderId,
+                  questions: rawData.questions[sectionIndex].reduce(
+                    (acc, question) => {
+                      let questionId = uuid(12);
+                      acc[questionId] = {
+                        id: questionId,
+                        formId: formId,
+                        folderId: folderId,
+                        sectinId: sectionId,
+                        controlType: "input",
+                        dataType: "text",
+                        placeholder: "",
+                        questionText: question,
+                        createdAt: Date.now(),
+                        createdBy: "",
+                        updatedAt: "",
+                        updatedBy: "",
+                        hint: "",
+                        answerValue: "",
+                        defaultValue: "",
+                        isParent: false,
+                        isChild: false,
+                        questionType: "short",
+                        currentView: "AnswerOptions",
+                        order: 1,
+                        valid: false,
+                        validationRules: {
+                          required: true,
+                        },
+                        messages: {
+                          errors: [],
+                          warnings: [],
+                          success: [],
+                        },
+                      };
+                      return acc;
+                    },
+                    {}
+                  ),
+                };
+                return acc;
+              },
+              {}
+            ),
+          };
+          return acc;
+        }, {}),
+      };
+      return acc;
+    }, {}),
+    efiles: [...Array(6).keys()].reduce((acc, i) => {
+      let folderId = uuid(8);
+      acc[folderId] = {
+        title: `Folder ${i}`,
+        description: `Folder ${i}`,
+        id: folderId,
+        files: [...Array(6).keys()].reduce((acc, j) => {
+          let docId = uuid(8);
+          acc[docId] = {
+            title: `Doc ${i}.${j}`,
+            folderId: folderId,
+            description: `Doc ${i}.${j}`,
+            id: docId,
+          };
+          return acc;
+        }, {}),
+      };
+      return acc;
+    }, {}),
+    audits: {
+      "internal-audit": {
+        title: "Internal Audit",
+        description: "Internal Audit",
+        id: "internal-audit",
+      },
+      "external-audit": {
+        title: "External Audit",
+        description: "External Audit",
+        id: "external-audit",
+      },
     },
-    efiles: {},
-    dashboard: {},
-    audits: {},
     calendar: {},
   },
   landing: {

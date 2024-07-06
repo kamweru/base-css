@@ -3,55 +3,31 @@
   import Flex from "../components/flex/Flex.svelte";
   import Card from "../components/card/Card.svelte";
   import Divider from "../components/divider/Divider.svelte";
-
-  export let title, pageData;
-  let currentView = Object.keys(pageData)[0],
-    viewIcons = {
-      folders: "fluent:folder-24-regular",
-      forms: "iconoir:view-grid",
-    };
+  import FormQuestions from "./components/FormQuestions.svelte";
+  import router from "page";
+  export let title, pageData, params;
 </script>
 
 {#if title === "Forms"}
   <div class="bg:rgb($(gray-1)) r:16 p:16 flex ai:center gap:16">
     <h3>{title}</h3>
-    <div>
-      <div class="flex gap:4 ai:center">
-        <div>View</div>
-        <div class=" r:4">
-          {#each Object.keys(pageData) as item}
-            <button
-              class="button button-success button-icon-left {item ===
-              currentView
-                ? 'button-fill'
-                : 'button-text'}"
-              on:click={() => (currentView = item)}
-            >
-              <span class="button-icon font-size-lg">
-                <Icon icon={viewIcons[item]}></Icon>
-              </span>
-              <span> {item}</span>
-            </button>
-          {/each}
-        </div>
-      </div>
-    </div>
   </div>
   <div
-    class="bg:rgb($(gray-1)) r:16 p:16 flex:1 flex {currentView === 'folders'
-      ? 'flex-column gap:32'
-      : 'flex-wrap gap:16'}"
+    class="bg:rgb($(gray-1)) r:16 p:16 flex:1 flex flex-column gap:32 overflow-y:scroll"
   >
-    {#each pageData[currentView] as dataItem}
-      {#if currentView === "folders"}
-        <div class="flex flex-column gap:8">
-          <div class="col-6">
+    {#if params && params.folderId && params.formId && pageData[params.folderId] && pageData[params.folderId].forms[params.formId]}
+      <FormQuestions form={pageData[params.folderId].forms[params.formId]} />
+      <!-- {JSON.stringify(pageData[params.folderId].forms[params.formId], null, 2)} -->
+    {:else}
+      {#each Object.values(pageData) as folder}
+        <div class="flex flex-column gap:16">
+          <div class="w:1/3">
             <Flex gap="sm">
               <input
                 type="text"
                 placeholder="Type here"
                 class="input input-underline"
-                value={dataItem.title}
+                value={folder.title}
               />
               <button
                 class="button button-fill button-success button-icon-only"
@@ -62,9 +38,8 @@
               </button>
             </Flex>
           </div>
-          <Flex>
-            {#each dataItem.forms as formId}
-              {@const form = pageData.forms.find((item) => item.id === formId)}
+          <div class="flex gap:16">
+            {#each Object.values(folder.forms) as form}
               <div class="col-4">
                 <Card>
                   <Flex slot="content" direction="column">
@@ -73,7 +48,11 @@
                         <h4 class="font-size-lg">{form.title}</h4>
                         <p>{form.description}</p>
                       </Flex>
-                      <button class="button button-text button-icon-only">
+                      <button
+                        class="button button-text button-icon-only"
+                        on:click={() =>
+                          router.redirect(`/app/forms/${folder.id}/${form.id}`)}
+                      >
                         <span class="icon">
                           <Icon icon="fluent:arrow-up-right-24-regular"></Icon>
                         </span>
@@ -88,10 +67,9 @@
                 </Card>
               </div>
             {/each}
-          </Flex>
+          </div>
         </div>
-      {/if}
-      {#if currentView === "forms"}
+        <!-- {#if currentView === "forms"}
         {@const folder = pageData.folders.find(
           (item) => item.id === dataItem.formId
         )}
@@ -125,7 +103,8 @@
             >
           </Card>
         </div>
-      {/if}
-    {/each}
+      {/if} -->
+      {/each}
+    {/if}
   </div>
 {/if}

@@ -49,6 +49,7 @@
 .field.field-horizontal {
   display: inline-flex;
   flex-direction: row;
+  align-items: center;
 }
 .field.field-horizontal .field-label {
   height: auto;
@@ -56,7 +57,7 @@
   margin-right: var(--field-margin-inline);
 }
 .field.field-horizontal .field-input {
-  /* flex: 1 1 auto; */
+  flex: 1 1 auto;
 }
 /* .field .field-label {
   flex: 0 0 auto;

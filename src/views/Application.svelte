@@ -1,19 +1,13 @@
 <script>
+  import { appStore } from "../lib/AppStore";
   import { sampleData } from "../lib/components.config";
   import router from "page";
   import Icon from "@iconify/svelte";
   import { Menu } from "../lib/components/menu/index";
   import Flex from "../lib/components/flex/Flex.svelte";
-  import { onMount } from "svelte";
   export let params;
   let pageDataIndex = "application",
     sidebarItems = [
-      {
-        title: "Dashboard",
-        url: "dashboard",
-        icon: "carbon:dashboard",
-        component: "Dashboard",
-      },
       {
         title: "Audits",
         url: "audits",
@@ -82,7 +76,7 @@
               {item.title}
             </span>
             <span class="icon menu-item-icon">
-              <Icon icon={item.icon} />
+              <Icon icon="bi:arrow-right" />
             </span>
           </Menu.Item>
         {/each}
@@ -114,7 +108,8 @@
       <svelte:component
         this={currentComponent}
         title={activeSidebarItem.title}
-        pageData={sampleData[pageDataIndex][activeSidebarItem.url]}
+        pageData={$appStore.sampleData[pageDataIndex][activeSidebarItem.url]}
+        {params}
       />
     </div>
   </div>

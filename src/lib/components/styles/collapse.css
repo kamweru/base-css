@@ -67,7 +67,7 @@
   min-height: var(--collapse-min-height-lg);
   padding: var(--collapse-padding-block-lg) var(--collapse-padding-inline-lg);
 }
-.collapse-item.open .collapse-header {
+.collapse-item.open > .collapse-header {
   border-bottom: var(--border-width) var(--border-style)
     rgb(var(--color-border));
 }

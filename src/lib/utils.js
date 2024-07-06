@@ -297,3 +297,204 @@ export const createEventForwarder1 = (element) => {
     };
   };
 };
+
+export function generateRandomColor(alpha = 5) {
+  const rWeight = Math.random();
+  const gWeight = 0.45;
+  const bWeight = 0.53;
+  const section = 5;
+  // Calculate the section boundaries
+  const sectionSize = 51; // (255 / 5)
+  const sections = ["r", "g", "b"].reduce((acc, val, index) => {
+    let arr = range(1, section + 1, 1),
+      sector = Math.min(5, arr[Math.floor(Math.random() * arr.length)]);
+    // console.log(arr, sector);
+    acc[val] = {
+      sectionStart: (sector - 1) * sectionSize,
+      sectionEnd: sector * sectionSize,
+    };
+    return acc;
+  }, {});
+  const totalWeight = rWeight + gWeight + bWeight;
+  const normalizedWeights = {
+    r: rWeight / totalWeight,
+    g: gWeight / totalWeight,
+    b: bWeight / totalWeight,
+  };
+
+  return `rgb(${Math.min(
+    255,
+    Math.floor(
+      // Math.random() *
+      normalizedWeights.r * (sections.r.sectionEnd - sections.r.sectionStart)
+    ) + sections.r.sectionStart
+  )}, ${Math.min(
+    255,
+    Math.floor(
+      // Math.random() *
+      normalizedWeights.g * (sections.g.sectionEnd - sections.g.sectionStart)
+    ) + sections.g.sectionStart
+  )}, ${Math.min(
+    255,
+    Math.floor(
+      // Math.random() *
+      normalizedWeights.b * (sections.b.sectionEnd - sections.b.sectionStart)
+    ) + sections.b.sectionStart
+  )}/.${alpha})`;
+}
+// console.log(
+//   [
+//     "Developing software for Raspberry Pi",
+//     "using Python, C and bash languages. ",
+//     "Those systems are used in APM OnDynamic",
+//     "Developing Android app in Java and Kotlin. ",
+//     "It’s the mobile app of TMS frameLOGIC ",
+//     "system besides: onboarding, distributing ",
+//     "teamwork, modifying CyanogenMod system, ",
+//     "applying changes on servers (Java)",
+//     "Developing BlackBerry Work in Java and Kotlin. ",
+//     "This app contains e-mail client, calendar, ",
+//     "contact manager and more. Work is known of its ",
+//     "security. It has a lot of legacy code, ",
+//     "but new features are developed in Kotlin ",
+//     "using MVVM architecture",
+//     "Developing a simple app for reading Bible. ",
+//     "It’s written in Kotlin and it uses ObjectBox. ",
+//     "Bible Lite isn't public yet",
+//   ].map((i, index) => ({
+//     title: i,
+//     description: i,
+//     start: Date.now() - (2 + index) * 24 * 60 * 60 * 1000,
+//     end: Date.now() - (1 + index) * 24 * 60 * 60 * 1000,
+//     id: uuid(12),
+//   }))
+// );
+let items = {},
+  folders = [
+    "admissions",
+    "audits",
+    "user satisfaction surveys",
+    "job satisfaction surveys",
+  ],
+  forms = [
+    ["2022 admissions", "2024 admissions"],
+    ["2023 internal audit", "2024 internal audit"],
+    [
+      "ict user satisfaction survey 2023",
+      "library user satisfaction survey 2024",
+    ],
+    ["2022 job satisfaction survey", "2023 job satisfaction survey"],
+  ],
+  sections = [
+    ["bio information", "contact information", "previous eduction"],
+    ["audit questions"],
+    ["user satisfaction"],
+    ["job satisfaction"],
+  ],
+  questions = [
+    ["first name", "last name", "age", "date of birth"],
+    [
+      "Why did you apply for this position?",
+      "Why are internal audits necessary?",
+      "Explain the steps to prepare for and perform an internal audit.",
+      "Can you describe substantive tests?",
+      "What should you do after an internal audit?",
+    ],
+    [
+      "How often do you visit the library?",
+      "How often do you use the library website?",
+      "How satisfied are you with the opening hours of the library?",
+      "How satisfied are you with the following library services?",
+      "How satisfied are you with the range of literature available in the library?",
+    ],
+    [
+      "Do you enjoy our company’s culture?",
+      "Do you feel connected to your co-workers?",
+      "Do you enjoy working with your colleagues?",
+    ],
+  ];
+folders.map((f, i) => {
+  let folderId = uuid(8);
+  items[folderId] = {
+    title: f,
+    description: f,
+    id: folderId,
+    forms: forms[i].reduce((acc, val) => {
+      let formId = uuid(8);
+      acc[formId] = {
+        title: val,
+        folderId: folderId,
+        description: val,
+        id: formId,
+        sections: sections[i].reduce((acc, val) => {
+          let sectionId = uuid(8);
+          acc[sectionId] = {
+            title: val,
+            formId: formId,
+            folderId: folderId,
+            description: val,
+            id: sectionId,
+            questions: questions[i].reduce((acc, val) => {
+              let questionId = uuid(8);
+              acc[questionId] = {
+                title: val,
+                sectionId: sectionId,
+                formId: formId,
+                folderId: folderId,
+                description: val,
+                id: questionId,
+              };
+              return acc;
+            }, {}),
+          };
+          return acc;
+        }, {}),
+      };
+      return acc;
+    }, {}),
+  };
+});
+// console.log(items);
+let data = folders.reduce((acc, folder, folderIndex) => {
+  let folderId = uuid(12);
+  acc[folderId] = {
+    id: folderId,
+    title: folder,
+    description: folder,
+    forms: forms[folderIndex].reduce((acc, form, formIndex) => {
+      let formId = uuid(12);
+      acc[formId] = {
+        id: formId,
+        title: form,
+        description: form,
+        folderId: folderId,
+        sections: sections[formIndex].reduce((acc, section, sectionIndex) => {
+          let sectionId = uuid(12);
+          acc[sectionId] = {
+            id: sectionId,
+            title: section,
+            description: section,
+            formId: formId,
+            folderId: folderId,
+            questions: questions[sectionIndex].reduce((acc, question) => {
+              let questionId = uuid(12);
+              acc[questionId] = {
+                id: questionId,
+                title: question,
+                description: question,
+                sectionId: sectionId,
+                formId: formId,
+                folderId: folderId,
+              };
+              return acc;
+            }, {}),
+          };
+          return acc;
+        }, {}),
+      };
+      return acc;
+    }, {}),
+  };
+  return acc;
+}, {});
+console.log(data);

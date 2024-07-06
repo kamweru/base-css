@@ -40,6 +40,11 @@ export const routes = [
     view: "Application",
   },
   {
+    path: "/app/forms/:folderId?/:formId?",
+    name: "Application",
+    view: "Application",
+  },
+  {
     path: "/app/audits",
     name: "Application",
     view: "Application",
