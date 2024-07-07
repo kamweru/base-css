@@ -1,6 +1,8 @@
 <script>
+  import { uuid } from "../../utils";
   import "../styles/numberinput.css";
   export let cssVariables = "";
+  export let id = uuid(8);
   export let value = 3;
   export let step = 1;
   export let size = "default";
@@ -49,6 +51,7 @@
   </div>
   <input
     type="number"
+    {id}
     {value}
     {step}
     placeholder="3"

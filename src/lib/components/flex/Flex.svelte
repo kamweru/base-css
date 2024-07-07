@@ -3,7 +3,7 @@
   export let cssVariables = "";
   export let direction = "row";
   export let justify = "flexStart";
-  export let align = "flexStart";
+  export let align = "stretch";
   export let gap = "default";
   export let wrap = false;
   let classes = {
@@ -31,6 +31,7 @@
       sm: "flex-gap-sm",
       default: "flex-gap",
       lg: "flex-gap-lg",
+      xl: "flex-gap-xl",
     },
   };
 </script>

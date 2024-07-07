@@ -309,16 +309,49 @@ a {
 .icon {
   display: inline-flex;
   align-items: center;
+  width: max-content;
   color: inherit;
   font-size: var(--font-size);
   font-style: normal;
-  line-height: 1;
+  line-height: 0;
   text-align: center;
   text-transform: none;
   vertical-align: -0.125em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon svg {
+  display: inline-block;
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.border {
+  border-width: var(--border-width);
+  border-style: solid;
+  border-color: rgb(var(--color-border));
+}
+.border-rounded {
+  border-radius: var(--border-radius);
+}
+.border-rounded-sm {
+  border-radius: var(--border-radius-sm);
+}
+.border-rounded-lg {
+  border-radius: var(--border-radius-lg);
+}
+.border-rounded-full {
+  border-radius: 100%;
+}
+.font-size-xxs {
+  font-size: var(--font-size-xxs);
+}
+.font-size-xs {
+  font-size: var(--font-size-xs);
 }
 .font-size-sm {
   font-size: var(--font-size-sm);
@@ -355,6 +388,36 @@ a {
 }
 .padding {
   padding: var(--padding);
+}
+.padding-block {
+  padding-block: var(--padding);
+}
+.padding-inline {
+  padding-inline: var(--padding);
+}
+.padding-block-sm {
+  padding-block: var(--padding-sm);
+}
+.padding-inline-sm {
+  padding-inline: var(--padding-sm);
+}
+.padding-block-lg {
+  padding-block: var(--padding-lg);
+}
+.padding-inline-lg {
+  padding-inline: var(--padding-lg);
+}
+.padding-block-xl {
+  padding-block: var(--padding-xl);
+}
+.padding-inline-xl {
+  padding-inline: var(--padding-xl);
+}
+.padding-block-xs {
+  padding-block: var(--padding-xs);
+}
+.padding-inline-xs {
+  padding-inline: var(--padding-xs);
 }
 .padding-sm {
   padding: var(--padding-sm);

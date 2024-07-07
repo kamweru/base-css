@@ -1,8 +1,8 @@
 <script>
   import "../styles/select.css";
+  import { popover } from "../../popover";
   import { createEventDispatcher } from "svelte";
   import Icon from "@iconify/svelte";
-  import Popover from "../popover/Popover.svelte";
   export let options = [...Array(10).keys()].map((i) => ({
     title: `Option ${i + 1}`,
     value: `Option ${i + 1}`,
@@ -10,7 +10,6 @@
   export let label = "item label item label item label item label";
   export let selected = "";
   export let inputSize = "md";
-  export let matchWidth = false;
   export let id = null;
   export let minW = 200;
   let selectArrowIcon = "chevron-down",
@@ -19,6 +18,7 @@
       autoPlacement: true,
       matchWidth: true,
     },
+    anchorEl = undefined,
     open = false,
     selectedObj = null,
     inputSizes = {
@@ -56,8 +56,8 @@
   }
 </script>
 
-<div class="flex flex:col gap:8">
-  <!-- <div class="select select-multiple">
+<!-- <div class="flex flex:col gap:8"> -->
+<!-- <div class="select select-multiple">
     <span class="select-selector">
       <span class="select-selector-items">
         {#each [...Array(5).keys()] as item}
@@ -85,31 +85,41 @@
       </span>
     </span>
   </div> -->
-  <Popover options={popoverOptions} {matchWidth} bind:open>
-    <div class="select {selectSizes[inputSize]}" slot="trigger">
-      <span class="select-selector">
-        <span class="select-selection">
-          <span class="select-selection-item" class:open>{label}</span>
-        </span>
-        <span class="icon select-arrow">
-          <Icon icon="tabler:chevron-down" />
-        </span>
+<!-- <Popover options={popoverOptions} {matchWidth} bind:open> -->
+<div class="flex flex:col gap:8">
+  <div class="select {selectSizes[inputSize]}">
+    <span class="select-selector">
+      <span class="select-selection">
+        <span class="select-selection-item" class:open>{label}</span>
       </span>
-      <input
-        type="text"
-        class="select-input"
-        {id}
-        on:focus={() => {
-          open = true;
-          selectArrowIcon = "search";
-        }}
-        on:blur={() => {
-          //   open = false;
-          selectArrowIcon = "chevron-down";
-        }}
-      />
-    </div>
-    <div class="select-options" slot="content">
+      <span class="icon select-arrow">
+        <Icon icon="tabler:chevron-down" />
+      </span>
+    </span>
+    <input
+      type="text"
+      class="select-input"
+      {id}
+      on:focus={() => {
+        open = true;
+        selectArrowIcon = "search";
+      }}
+      on:blur={() => {
+        //   open = false;
+        selectArrowIcon = "chevron-down";
+      }}
+    />
+  </div>
+  <div
+    class="select-options popover"
+    class:open
+    use:popover={{ anchorEl, ...popoverOptions }}
+    on:clickOutside={(e) => {
+      e.stopPropagation();
+      open = false;
+    }}
+  >
+    <div class="wrapper">
       {#each options as option}
         <option
           value={option.value}
@@ -119,5 +129,7 @@
         >
       {/each}
     </div>
-  </Popover>
+  </div>
 </div>
+<!-- </Popover> -->
+<!-- </div> -->

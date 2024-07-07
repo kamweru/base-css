@@ -1,9 +1,10 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import { uuid } from "../../utils";
   import "../styles/switch.css";
   export let cssVariables = "";
   export let id = uuid(8);
-  export let label = "label";
+  export let label = "";
   export let value = false;
   export let size = "sm";
   let classes = {
@@ -14,6 +15,8 @@
       lg: "switch-lg",
     },
   };
+  const dispatch = createEventDispatcher(),
+    onChange = (e) => dispatch("onChange", { value: e.target.checked });
 </script>
 
 <div class="flex ai:center gap:8">
@@ -26,12 +29,13 @@
       .replace(/\s+/g, " ")}
     style={cssVariables}
     bind:checked={value}
-    {value}
+    on:change={onChange}
   />
-  <label for={id} class="f:$(font-size) lh:$(line-height) capitalize"
-    >{label}</label
-  >
-
+  {#if label}
+    <label for={id} class="f:$(font-size) lh:$(line-height) capitalize"
+      >{label}</label
+    >
+  {/if}
   <!-- <input type="checkbox" {id} class="switch" bind:checked={value} {value} />
   <label for={id} class="f:$(font-size) lh:$(line-height) capitalize"
     >{label}</label

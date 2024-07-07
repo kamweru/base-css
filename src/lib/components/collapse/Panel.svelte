@@ -1,7 +1,6 @@
 <script>
   import Icon from "@iconify/svelte";
-
-  export let open = false;
+  export let open = true;
 </script>
 
 <div class="collapse-item" class:open>

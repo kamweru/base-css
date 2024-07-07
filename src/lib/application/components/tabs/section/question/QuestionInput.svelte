@@ -1,6 +1,6 @@
 <script>
-  import Field from "../../../../components/field/Field.svelte";
-  import Input from "../../../../components/input/Input.svelte";
+  import Field from "../../../../../components/field/Field.svelte";
+  import Input from "../../../../../components/input/Input.svelte";
   export let question;
 </script>
 

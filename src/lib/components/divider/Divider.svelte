@@ -35,7 +35,7 @@
     style={cssVariables}
   >
     {#if ["textCenter", "textRight", "textLeft"].includes(type)}
-      <span class="divider-text">Divider Text</span>
+      <div class="divider-text"><slot>Divider Text</slot></div>
     {/if}
   </div>
 {/if}

@@ -17,6 +17,7 @@ button.button,
   --button-border-color: var(--color-border);
   --button-fill-color: var(--color-white);
   --button-fill-bg: var(--color-primary);
+  box-sizing: border-box;
   outline: none;
   border-width: var(--border-width);
   border-style: var(--border-style);
@@ -63,8 +64,11 @@ button.button,
   border-color: rgb(var(--color-primary-active));
   /* color: rgb(var(--color-primary-text-active)); */
 }
+.button > span {
+  display: inline-block;
+}
 .button .button-icon {
-  line-height: 0;
+  line-height: 1;
 }
 .button:not(.button-icon-only) .button-icon:last-child {
   margin-inline-start: var(--margin-xs);

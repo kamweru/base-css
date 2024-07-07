@@ -1,6 +1,8 @@
 <script>
+  import { uuid } from "../../utils";
   export let cssVariables = "";
   export let placeholder = "placeholder";
+  export let id = uuid(8);
   export let value = "";
   export let size = "md";
   export let type = "outline";
@@ -23,6 +25,7 @@
 <input
   type="text"
   {placeholder}
+  {id}
   class={[classes.default, classes.sizes[size], classes.types[type]]
     .join(" ")
     .trim()

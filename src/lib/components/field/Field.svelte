@@ -3,7 +3,8 @@
   import { uuid } from "../../utils";
   export let id = uuid();
   export let cssVariables = "";
-  export let label = "";
+  export let labelCol = 4;
+  export let inputCol = 16;
   export let size = "default";
   export let type = "vertical";
   let classes = {
@@ -27,12 +28,12 @@
     .replace(/\s+/g, " ")}
   style={cssVariables}
 >
-  <div class="field-label">
+  <div class="field-label {type === 'horizontal' ? 'col-' + labelCol : ''}">
     <label for={id}>
       <slot name="label" />
     </label>
   </div>
-  <div class="field-input">
+  <div class="field-input {type === 'horizontal' ? 'col-' + inputCol : ''}">
     <slot name="input" />
   </div>
 </div>
