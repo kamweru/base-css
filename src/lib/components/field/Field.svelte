@@ -28,12 +28,12 @@
     .replace(/\s+/g, " ")}
   style={cssVariables}
 >
-  <div class="field-label {type === 'horizontal' ? 'col-' + labelCol : ''}">
+  <div class="field-label">
     <label for={id}>
       <slot name="label" />
     </label>
   </div>
-  <div class="field-input {type === 'horizontal' ? 'col-' + inputCol : ''}">
+  <div class="field-input">
     <slot name="input" />
   </div>
 </div>

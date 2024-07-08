@@ -63,6 +63,82 @@ export const cssUnits = ["px", "rem", "em", "pt"].map((v) => ({
   value: v,
 }));
 let rawData = {
+  users: {
+    sections: [
+      {
+        title: "E-Learning & ICT",
+        value: "E-Learning & ICT",
+        id: "LVSMzU4BbHI4dIp39TUb",
+      },
+      {
+        title: "Library",
+        value: "Library",
+        id: "iTJj2CiSZidEBP54q9vs",
+      },
+      {
+        title: "Ombudsman",
+        value: "Ombudsman",
+        id: "EfMRJFiRoaswQQVXMuxO",
+      },
+      {
+        title: "Dean of Students",
+        value: "Dean of Students",
+        id: "hEsz0EmeUnDdLUakXRnE",
+      },
+    ],
+    roles: [
+      {
+        title: "superadmin",
+        value: "superadmin",
+        id: "2kMjKcswOB7vmi58RQpA",
+      },
+      {
+        title: "admin",
+        value: "admin",
+        id: "6fmvbuWUHC6tISzDoQEq",
+      },
+      {
+        title: "secretary",
+        value: "secretary",
+        id: "4FtloYPgEUUnVssk4pKl",
+      },
+      {
+        title: "auditor",
+        value: "auditor",
+        id: "vxatIFICvwbc8vKCxLFZ",
+      },
+    ],
+    users: [
+      {
+        displayName: "jane kamal",
+        email: "janekamal@gmail.com",
+        id: "HLWTQmPYjY0h2VtHcFDw",
+        role: "superadmin",
+        sectionId: "LVSMzU4BbHI4dIp39TUb",
+      },
+      {
+        displayName: "bob seymour",
+        email: "bobseymour@gmail.com",
+        id: "ggruXBj8YXSdAAvc05bx",
+        role: "admin",
+        sectionId: "iTJj2CiSZidEBP54q9vs",
+      },
+      {
+        displayName: "steve gordon",
+        email: "stevegordon@gmail.com",
+        id: "oRcU6FFBdZu3GY3y3HrQ",
+        role: "secretary",
+        sectionId: "EfMRJFiRoaswQQVXMuxO",
+      },
+      {
+        displayName: "vanessa miller",
+        email: "vanessamiller@gmail.com",
+        id: "FGHP0KqRSUDKBQOaBs8n",
+        role: "auditor",
+        sectionId: "hEsz0EmeUnDdLUakXRnE",
+      },
+    ],
+  },
   folders: [
     "admissions",
     "audits",
@@ -285,6 +361,7 @@ export const sampleData = {
                         folderId: folderId,
                         sectionId: sectionId,
                         controlType: "input",
+                        conditions: undefined,
                         dataType: "text",
                         placeholder: "",
                         questionText: question,
@@ -302,6 +379,7 @@ export const sampleData = {
                         questionIcon: "",
                         currentView: "AnswerOptions",
                         order: 1,
+                        value: "",
                         valid: false,
                         validationRules: {
                           required: true,
@@ -327,6 +405,7 @@ export const sampleData = {
       };
       return acc;
     }, {}),
+    users: rawData.users,
     efiles: [...Array(6).keys()].reduce((acc, i) => {
       let folderId = uuid(8);
       acc[folderId] = {
@@ -1737,3 +1816,10 @@ const config = {
   },
 };
 export { config };
+// console.log(
+//   ["jane kamal", "bob seymour", "steve gordon", "vanessa miller"].map((s) => ({
+//     displayName: s,
+//     email: s.replace(/\s/g, "") + "@gmail.com",
+//     id: uuid(),
+//   }))
+// );

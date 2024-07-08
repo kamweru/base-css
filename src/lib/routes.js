@@ -30,6 +30,11 @@ export const routes = [
     view: "Application",
   },
   {
+    path: "/app/users",
+    name: "Application",
+    view: "Application",
+  },
+  {
     path: "/app/dashboard",
     name: "Application",
     view: "Application",

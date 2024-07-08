@@ -35,14 +35,14 @@
   --gap-xs: 4px;
   --gap-sm: 8px;
   --gap-lg: 24px;
-  --margin-xxs: calc(var(--default-size) * 0.25);
+  --margin-2xs: calc(var(--default-size) * 0.25);
   --margin-xs: calc(var(--default-size) * 0.5);
   --margin-sm: calc(var(--default-size) * 0.75);
   --margin: var(--default-size);
   --margin-md: calc(var(--default-size) * 1.5);
   --margin-lg: calc(var(--default-size) * 2);
   --margin-xl: calc(var(--default-size) * 3);
-  --padding-xxs: 4px;
+  --padding-2xs: 4px;
   --padding-xs: 8px;
   --padding-sm: 12px;
   --padding: 16px;
@@ -331,9 +331,29 @@ a {
   box-sizing: border-box;
 }
 .border {
-  border-width: var(--border-width);
-  border-style: solid;
-  border-color: rgb(var(--color-border));
+  border: var(--border-width) var(--border-style) rgb(var(--color-border));
+}
+.border-top {
+  border-top: var(--border-width) var(--border-style) rgb(var(--color-border));
+}
+.border-right {
+  border-right: var(--border-width) var(--border-style) rgb(var(--color-border));
+}
+.border-bottom {
+  border-bottom: var(--border-width) var(--border-style)
+    rgb(var(--color-border));
+}
+.border-left {
+  border-left: var(--border-width) var(--border-style) rgb(var(--color-border));
+}
+.border-y {
+  border-top: var(--border-width) var(--border-style) rgb(var(--color-border));
+  border-bottom: var(--border-width) var(--border-style)
+    rgb(var(--color-border));
+}
+.border-x {
+  border-left: var(--border-width) var(--border-style) rgb(var(--color-border));
+  border-right: var(--border-width) var(--border-style) rgb(var(--color-border));
 }
 .border-rounded {
   border-radius: var(--border-radius);
@@ -347,8 +367,8 @@ a {
 .border-rounded-full {
   border-radius: 100%;
 }
-.font-size-xxs {
-  font-size: var(--font-size-xxs);
+.font-size-2xs {
+  font-size: var(--font-size-2xs);
 }
 .font-size-xs {
   font-size: var(--font-size-xs);
@@ -431,7 +451,9 @@ a {
 .padding-xs {
   padding: var(--padding-xs);
 }
-
+.padding-2xs {
+  padding: var(--padding-2xs);
+}
 .ellipsis {
   --line-clamp-value: 1;
   overflow: hidden;

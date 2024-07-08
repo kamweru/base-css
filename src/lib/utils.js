@@ -497,4 +497,4 @@ let data = folders.reduce((acc, folder, folderIndex) => {
   };
   return acc;
 }, {});
-console.log(data);
+// console.log(data);

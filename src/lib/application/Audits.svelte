@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition";
   import Icon from "@iconify/svelte";
   import Card from "../components/card/Card.svelte";
   import Flex from "../components/flex/Flex.svelte";
@@ -7,7 +8,7 @@
 </script>
 
 {#if title === "Audits"}
-  <div class="bg:rgb($(gray-1)) r:16 p:16">
+  <div class="bg:rgb($(gray-1)) r:16 p:16" transition:fade={{ duration: 150 }}>
     <h3>{title}</h3>
   </div>
   <div class="bg:rgb($(gray-1)) r:16 p:16 flex:1">

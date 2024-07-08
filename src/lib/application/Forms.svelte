@@ -5,11 +5,15 @@
   import Divider from "../components/divider/Divider.svelte";
   import FormQuestions from "./components/FormQuestions.svelte";
   import router from "page";
+  import { fade } from "svelte/transition";
   export let title, pageData, params;
 </script>
 
 {#if title === "Forms"}
-  <div class="bg:rgb($(gray-1)) r:16 p:16 flex ai:center gap:16">
+  <div
+    class="bg:rgb($(gray-1)) r:16 p:16 flex ai:center gap:16"
+    transition:fade={{ duration: 150 }}
+  >
     <h3>{title}</h3>
   </div>
   <div

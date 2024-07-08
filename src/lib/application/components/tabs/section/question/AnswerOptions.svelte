@@ -2,6 +2,7 @@
   import { uuid } from "../../../../../utils";
   import { questionConfig } from "./question.config";
   export let question;
+  export let form;
   let questionTypeComponent,
     componentMap = {
       long: "LongShort",

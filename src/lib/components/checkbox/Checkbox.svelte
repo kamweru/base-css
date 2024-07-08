@@ -5,7 +5,7 @@
   export let cssVariables = "";
   export let checkboxes = [];
   export let label = "";
-  export let value = "";
+  export let checked = "";
   export let group = "";
   export let id = uuid(8);
   export let indeterminate = false;
@@ -47,8 +47,7 @@
       <input
         type="checkbox"
         {id}
-        bind:group
-        {value}
+        bind:checked
         {disabled}
         bind:indeterminate
         class={[classes.default, classes.sizes[size]]

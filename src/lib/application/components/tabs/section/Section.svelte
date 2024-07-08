@@ -6,7 +6,7 @@
 </script>
 
 <Flex gap="sm" direction="column">
-  <Field>
+  <Field type="horizontal">
     <span slot="label">Section Title</span>
     <Input bind:value={section.title} slot="input" size="sm" />
   </Field>

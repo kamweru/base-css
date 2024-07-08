@@ -7,6 +7,7 @@
   import { Tabs } from "../../../../components/tabs";
   import { uuid } from "../../../../utils";
   export let question;
+  export let form;
   let questionOptionTabs = [
       {
         title: "Answer Options",
@@ -94,7 +95,11 @@
         </Tabs.Tab>
       {/each}
       <Tabs.Panel slot="content">
-        <svelte:component this={questionTab} bind:question /></Tabs.Panel
+        <svelte:component
+          this={questionTab}
+          bind:form
+          bind:question
+        /></Tabs.Panel
       >
     </Tabs>
   </div>

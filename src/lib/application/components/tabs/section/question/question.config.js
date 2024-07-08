@@ -195,4 +195,34 @@ export const questionConfig = {
       value: "max",
     },
   },
+  dataTypes: [
+    { title: "Date", value: "date", id: uuid() },
+    { title: "Email", value: "email", id: uuid() },
+    { title: "Number", value: "number", id: uuid() },
+    { title: "Phonenumber", value: "tel", id: uuid() },
+    { title: "Text", value: "text", id: uuid() },
+    { title: "Time", value: "time", id: uuid() },
+  ],
+  operators: [
+    {
+      id: uuid(),
+      title: "Was Answered",
+      value: "answered",
+    },
+    {
+      id: uuid(),
+      title: "Was not Answered",
+      value: "notAnswered",
+    },
+    {
+      id: uuid(),
+      title: "(=) equal to",
+      value: "equalto",
+    },
+    {
+      id: uuid(),
+      title: "(!=) not equal to",
+      value: "notEqualTo",
+    },
+  ],
 };

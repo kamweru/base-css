@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   border-radius: var(--menu-vertical-border-radius);
-  margin: var(--margin-xxs);
+  margin: var(--margin-2xs);
   white-space: nowrap;
 }
 .menu.menu-vertical .menu-item.active {

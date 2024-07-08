@@ -32,6 +32,12 @@
         icon: "fluent:form-24-regular",
         component: "Forms",
       },
+      {
+        title: "Users",
+        url: "users",
+        icon: "lucide:users-round",
+        component: "Users",
+      },
     ],
     activeSidebarItem = sidebarItems[0],
     currentComponent,

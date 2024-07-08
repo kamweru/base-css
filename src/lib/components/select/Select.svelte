@@ -7,7 +7,7 @@
     title: `Option ${i + 1}`,
     value: `Option ${i + 1}`,
   }));
-  export let label = "item label item label item label item label";
+  export let label = "Select an option";
   export let selected = "";
   export let inputSize = "md";
   export let id = null;

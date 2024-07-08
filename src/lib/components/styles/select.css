@@ -91,6 +91,7 @@
   height: var(--select-height-sm);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
+  min-width: 8em;
   width: 100%;
   background-color: transparent;
   position: relative;

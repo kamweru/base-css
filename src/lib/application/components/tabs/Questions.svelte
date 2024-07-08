@@ -23,7 +23,7 @@
               {#each Object.values(section.questions) as question, index}
                 <Collapse.Panel>
                   <span slot="header">Question {index + 1}</span>
-                  <Question bind:question slot="content"></Question>
+                  <Question bind:question bind:form slot="content"></Question>
                 </Collapse.Panel>
               {/each}
             </Collapse>
