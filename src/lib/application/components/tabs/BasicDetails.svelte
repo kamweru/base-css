@@ -1,5 +1,6 @@
 <script>
   import Field from "../../../components/field/Field.svelte";
+  import Flex from "../../../components/flex/Flex.svelte";
   export let form;
   let controls = {
     title: {},
@@ -20,5 +21,11 @@
         />
       </Field>
     {/each}
+
+    <div class="padding-block">
+      <Flex justify="flexEnd">
+        <button class="button button-fill button-primary">Save</button>
+      </Flex>
+    </div>
   </div>
 </form>

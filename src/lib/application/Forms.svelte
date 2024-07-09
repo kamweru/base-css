@@ -3,7 +3,7 @@
   import Flex from "../components/flex/Flex.svelte";
   import Card from "../components/card/Card.svelte";
   import Divider from "../components/divider/Divider.svelte";
-  import FormQuestions from "./components/FormQuestions.svelte";
+  import FormQuestions from "./components/FormTabs.svelte";
   import router from "page";
   import { fade } from "svelte/transition";
   export let title, pageData, params;
@@ -21,7 +21,6 @@
   >
     {#if params && params.folderId && params.formId && pageData[params.folderId] && pageData[params.folderId].forms[params.formId]}
       <FormQuestions form={pageData[params.folderId].forms[params.formId]} />
-      <!-- {JSON.stringify(pageData[params.folderId].forms[params.formId], null, 2)} -->
     {:else}
       {#each Object.values(pageData) as folder}
         <div class="flex flex-column gap:16">

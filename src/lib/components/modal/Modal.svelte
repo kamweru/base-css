@@ -12,7 +12,7 @@
 </a>
 <div style={cssVariables} class="modal" class:open>
   <div class="modal-overlay"></div>
-  <div class="modal-wrapper">
+  <div class="modal-wrapper" role="dialog" aria-modal="true">
     <div class="modal-inner">
       <div
         class="modal-dialog"

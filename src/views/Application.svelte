@@ -51,7 +51,7 @@
     loadComponent(currentRoute[0].toUpperCase() + currentRoute.slice(1));
     activeSidebarItem = sidebarItems.find((item) => item.url === currentRoute);
   } else {
-    loadComponent("Dashboard");
+    loadComponent(activeSidebarItem.component);
   }
   //   });
 </script>

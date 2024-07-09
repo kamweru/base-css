@@ -1,5 +1,5 @@
 {
-  "name": "internal-audit",
+  "name": "base-css",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -21,6 +21,12 @@
     "@rollup/plugin-terser": "^0.4.4",
     "firebase": "^10.7.1",
     "page": "^1.11.6",
-    "terser": "^5.26.0"
+    "terser": "^5.26.0",
+    "@tiptap/core": "^2.3.1",
+    "@tiptap/extension-highlight": "^2.3.1",
+    "@tiptap/extension-image": "^2.3.1",
+    "@tiptap/extension-text-align": "^2.3.1",
+    "@tiptap/pm": "^2.3.1",
+    "@tiptap/starter-kit": "^2.3.1"
   }
 }

@@ -12,7 +12,7 @@
           <th>
             <div class="flex ai:center">
               <span class="flex:1">{column.title}</span>
-              <button class="button button-icon-only column-sorter">
+              <button class="button button-icon-only button-sm column-sorter">
                 <span class="column-sorter-icon column-sorter-up active"></span>
                 <span class="column-sorter-icon column-sorter-down"></span>
               </button>

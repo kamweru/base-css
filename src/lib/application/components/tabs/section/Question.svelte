@@ -66,6 +66,7 @@
       <Input
         slot="input"
         bind:value={question.questionText}
+        placeholder="Enter Question Text"
         id={question.id}
         size="sm"
       />

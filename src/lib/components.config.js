@@ -183,6 +183,40 @@ let rawData = {
     ],
   ],
 };
+export let defaultQuestion = {
+  id: "",
+  formId: "",
+  folderId: "",
+  sectionId: "",
+  controlType: "input",
+  conditions: undefined,
+  dataType: "text",
+  placeholder: "",
+  questionText: "",
+  createdAt: Date.now(),
+  createdBy: "",
+  updatedAt: "",
+  updatedBy: "",
+  hint: "",
+  answerValue: "",
+  defaultValue: "",
+  isParent: false,
+  isChild: false,
+  options: [],
+  questionType: "short",
+  questionIcon: "",
+  order: 1,
+  value: "",
+  valid: false,
+  validationRules: {
+    required: true,
+  },
+  messages: {
+    errors: [],
+    warnings: [],
+    success: [],
+  },
+};
 export const sampleData = {
   calendar: {
     "calendar 1": {
@@ -356,39 +390,12 @@ export const sampleData = {
                     (acc, question) => {
                       let questionId = uuid(12);
                       acc[questionId] = {
+                        ...defaultQuestion,
                         id: questionId,
                         formId: formId,
                         folderId: folderId,
                         sectionId: sectionId,
-                        controlType: "input",
-                        conditions: undefined,
-                        dataType: "text",
-                        placeholder: "",
                         questionText: question,
-                        createdAt: Date.now(),
-                        createdBy: "",
-                        updatedAt: "",
-                        updatedBy: "",
-                        hint: "",
-                        answerValue: "",
-                        defaultValue: "",
-                        isParent: false,
-                        isChild: false,
-                        options: [],
-                        questionType: "short",
-                        questionIcon: "",
-                        currentView: "AnswerOptions",
-                        order: 1,
-                        value: "",
-                        valid: false,
-                        validationRules: {
-                          required: true,
-                        },
-                        messages: {
-                          errors: [],
-                          warnings: [],
-                          success: [],
-                        },
                       };
                       return acc;
                     },

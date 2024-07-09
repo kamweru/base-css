@@ -17,6 +17,7 @@ button.button,
   --button-border-color: var(--color-border);
   --button-fill-color: var(--color-white);
   --button-fill-bg: var(--color-primary);
+  --column-sorter-border-width: 5px;
   box-sizing: border-box;
   outline: none;
   border-width: var(--border-width);
@@ -465,26 +466,26 @@ button.button,
   display: inline-block;
   width: 0;
   height: 0;
-  border: calc(var(--border-width) * 7) var(--border-style) transparent;
+  border: var(--column-sorter-border-width) var(--border-style) transparent;
 }
 .button.column-sorter .column-sorter-icon.column-sorter-up {
-  border-bottom: calc(var(--border-width) * 7) var(--border-style)
+  border-bottom: var(--column-sorter-border-width) var(--border-style)
     rgb(var(--color-border));
   border-top: 0;
 }
 .button.column-sorter .column-sorter-icon.column-sorter-up.active {
-  border-bottom: calc(var(--border-width) * 7) var(--border-style)
+  border-bottom: var(--column-sorter-border-width) var(--border-style)
     rgb(var(--color-primary-text));
   border-top: 0;
 }
 .button.column-sorter .column-sorter-icon.column-sorter-down {
-  border-top: calc(var(--border-width) * 7) var(--border-style)
+  border-top: var(--column-sorter-border-width) var(--border-style)
     rgb(var(--color-border));
   border-bottom: 0;
 }
 
 .button.column-sorter .column-sorter-icon.column-sorter-down.active {
-  border-top: calc(var(--border-width) * 7) var(--border-style)
+  border-top: var(--column-sorter-border-width) var(--border-style)
     rgb(var(--color-primary-text));
   border-bottom: 0;
 }

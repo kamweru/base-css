@@ -1,0 +1,5 @@
+.ProseMirror {
+  padding: 16px;
+  outline: none;
+  border-top: 1px solid rgb(var(--color-border));
+}

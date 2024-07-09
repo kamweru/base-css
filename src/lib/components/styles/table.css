@@ -1,10 +1,11 @@
 .table-wrapper {
   --table-cell-padding-inline: 12px;
   --table-cell-padding-block: 16px;
+  --table-wrapper-border-radius: 8px;
   overflow-x: auto;
   max-width: 100%;
   width: 100%;
-  border-radius: 6px;
+  border-radius: var(--table-wrapper-border-radius);
   border: 1px solid rgb(var(--color-border));
   box-shadow: var(--shadow-14);
   background-color: rgb(var(--color-surface));
@@ -17,13 +18,13 @@
     text-align: left;
   }
   & > table > thead {
-    background-color: rgb(var(--gray-2));
+    background-color: rgb(var(--gray-1));
   }
   & > table > thead > tr > th {
     padding: var(--table-cell-padding-block) var(--table-cell-padding-inline);
   }
   & > table > tbody > tr:nth-child(even) {
-    background-color: rgb(var(--gray-2));
+    background-color: rgb(var(--gray-1));
   }
   & > table > tbody > tr > td {
     padding: var(--table-cell-padding-block) var(--table-cell-padding-inline);

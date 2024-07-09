@@ -65,6 +65,16 @@ export const routes = [
     view: "Application",
   },
   {
+    path: "/app/efiles/:folderId?",
+    name: "Application",
+    view: "Application",
+  },
+  {
+    path: "/app/efiles/:folderId?/:fileId?",
+    name: "Application",
+    view: "Application",
+  },
+  {
     path: "/home-old",
     name: "Home Old",
     view: "HomeOld",
