@@ -51,6 +51,7 @@
   align-items: center;
   font-size: var(--font-size);
   line-height: var(--line-height);
+  text-align: center;
 }
 .upload-drag-area .upload-btn .upload-instructions .upload-icon {
   margin-bottom: var(--default-size);
@@ -76,4 +77,56 @@
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+}
+
+.upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.upload-list .upload-list-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+  padding: 7px 11px;
+  border-radius: 5px;
+  border: 1px dashed rgb(var(--color-border));
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+.upload-list .upload-list-item .upload-list-item-info {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+.upload-list
+  .upload-list-item
+  .upload-list-item-info
+  .upload-list-item-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.upload-list
+  .upload-list-item
+  .upload-list-item-info
+  .upload-list-item-progress
+  .upload-list-item-progress-value {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  white-space: nowrap;
+  text-align: start;
+  vertical-align: middle;
+  word-break: normal;
+}
+.upload-list .upload-list-item .upload-list-item-actions {
+  display: flex;
+  align-items: center;
+}
+.upload-errors {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: rgb(var(--color-danger));
 }

@@ -5,11 +5,17 @@
   import Icon from "@iconify/svelte";
 </script>
 
-<a href="" class="modal-trigger" on:click|preventDefault={() => (open = true)}>
+{#if $$slots.trigger}
   <slot name="trigger">
-    <span>Open Modal</span>
+    <a
+      href=""
+      class="modal-trigger"
+      on:click|preventDefault={() => (open = true)}
+    >
+      <span>Open Modal</span>
+    </a>
   </slot>
-</a>
+{/if}
 <div style={cssVariables} class="modal" class:open>
   <div class="modal-overlay"></div>
   <div class="modal-wrapper" role="dialog" aria-modal="true">
@@ -19,9 +25,16 @@
         use:clickOutside
         on:outsideclick={() => (open = false)}
       >
-        <button class="modal-close-btn" on:click={() => (open = false)}>
-          <span class="icon"> <Icon icon="ic:baseline-close"></Icon></span>
-        </button>
+        <div class="modal-close-btn" aria-label="Close">
+          <button
+            class="button button-text button-sm button-icon-only"
+            on:click={() => (open = false)}
+          >
+            <span class="button-icon">
+              <span class="icon"> <Icon icon="ic:baseline-close"></Icon></span>
+            </span>
+          </button>
+        </div>
         <slot name="content">
           <div>Modal Title</div>
         </slot>

@@ -5,7 +5,7 @@
   export let section;
 </script>
 
-<Flex gap="sm" direction="column">
+<Flex gap="sm" direction="column" class="padding-inline-sm">
   <Field>
     <span slot="label">Section Title</span>
     <Input bind:value={section.title} slot="input" size="sm" />

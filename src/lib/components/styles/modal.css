@@ -35,9 +35,10 @@
 .modal .modal-dialog {
   position: relative;
   min-width: 320px;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 16px;
-  max-width: 300px;
   background: rgb(var(--color-surface));
   border-radius: var(--modal-border-radius);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
@@ -46,19 +47,19 @@
   position: absolute;
   right: 10px;
   top: 10px;
-  font-size: 20px;
+  /* font-size: 20px;
   line-height: 1;
   color: rgb(var(--color-text));
   border-radius: var(--modal-close-button-border-radius);
-  padding: var(--modal-close-button-padding);
+  padding: var(--modal-close-button-padding); */
   display: inline-flex;
   align-items: center;
   z-index: 1;
 }
-.modal .modal-close-btn:hover {
+/* .modal .modal-close-btn:hover {
   cursor: pointer;
   background-color: rgb(var(--color-bg-text-hover));
-}
+} */
 
 /** Overlay */
 .modal .modal-overlay {

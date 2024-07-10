@@ -1,5 +1,8 @@
 <script>
   export let cssVariables = "";
+  export let progress = 0,
+    max = 100;
 </script>
 
-<progress value="0.5" class="progress" style={cssVariables}></progress>
+<progress value={progress} {max} class="progress" style={cssVariables}
+></progress>

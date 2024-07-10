@@ -59,7 +59,7 @@
   onMount(() => loadTab());
 </script>
 
-<Flex direction="column" gap="sm" class="padding-block-sm  ">
+<Flex direction="column" gap="sm" class="padding-inline-sm padding-block-sm">
   <Flex align="center" justify="spaceBetween">
     <Field type="horizontal" labelCol={3} inputCol={24} id={question.id}>
       <span slot="label">Question Text</span>

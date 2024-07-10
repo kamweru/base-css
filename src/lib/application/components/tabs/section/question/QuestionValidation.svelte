@@ -30,7 +30,7 @@
         <Flex
           justify="spaceBetween"
           align="center"
-          class="padding-2xs r:8 bg:rgb($(gray-2))"
+          class="padding-inline-sm padding-block-xs r:8 bg:rgb($(gray-1))"
         >
           {@const id = uuid(8)}
           <Field type="horizontal" inputCol={8} {id}>

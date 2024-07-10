@@ -2,6 +2,11 @@
   import "../../../../components/styles/prosemirror.css";
   import { onMount, onDestroy } from "svelte";
   import { createEventDispatcher } from "svelte";
+  import { Tabs } from "../../../../components/tabs";
+  import InsertMedia from "./media/InsertMedia.svelte";
+  import UploadMedia from "./media/UploadMedia.svelte";
+  import HeaderFooterTemplates from "./media/HeaderFooterTemplates.svelte";
+  import Modal from "../../../../components/modal/Modal.svelte";
   import { Editor } from "@tiptap/core";
   import StarterKit from "@tiptap/starter-kit";
   import Highlight from "@tiptap/extension-highlight";
@@ -11,6 +16,25 @@
   import Flex from "../../../../components/flex/Flex.svelte";
   let editor,
     editingBox,
+    open = false,
+    modalTabs = [
+      {
+        title: "Upload Media",
+        key: "uploadMedia",
+        component: UploadMedia,
+      },
+      {
+        title: "Insert Media",
+        key: "insertMedia",
+        component: InsertMedia,
+      },
+      {
+        title: "Insert Template",
+        key: "templates",
+        component: HeaderFooterTemplates,
+      },
+    ],
+    currentModalTab = modalTabs[0],
     buttons = [
       {
         title: "bold",
@@ -75,7 +99,10 @@
       {
         title: "Insert Image",
         icon: "material-symbols:image-outline",
-        // action: () => openModal("UploadAndInsertMedia"),
+        action: () => {
+          open = true;
+          currentModalTab = modalTabs[1];
+        },
       },
       {
         title: "Hard break",
@@ -99,33 +126,45 @@
       },
     ];
   const loadEditor = () => {
-    editor = new Editor({
-      element: editingBox,
-      extensions: [
-        StarterKit,
-        TextAlign.configure({
-          types: ["heading", "paragraph"],
-        }),
-        Image.configure({
-          inline: true,
-          HTMLAttributes: {
-            class: "object:cover mx:auto h:150 square",
-          },
-        }),
-        Highlight,
-      ],
-      content: `<p>this is a paragraph <span class="bg:yellow">with a span</span></p>`,
-      onTransaction: () => {
-        editor = editor;
-        // console.log("onTransaction", contentObj);
-      },
-      onUpdate({ editor }) {
-        // console.log("onUpdate", contentObj);
-        //   contentObj.content = editor.getHTML();
-        //   dispatch("updateContent", contentObj);
-      },
-    });
-  };
+      editor = new Editor({
+        element: editingBox,
+        extensions: [
+          StarterKit,
+          TextAlign.configure({
+            types: ["heading", "paragraph"],
+          }),
+          Image.configure({
+            inline: true,
+            // HTMLAttributes: {
+            //   class: "object:cover mx:auto h:150 square",
+            // },
+          }),
+          Highlight,
+        ],
+        content: `<p>this is a paragraph <span class="bg:yellow">with a span</span></p>`,
+        onTransaction: () => {
+          editor = editor;
+          // console.log("onTransaction", contentObj);
+        },
+        onUpdate({ editor }) {
+          // console.log("onUpdate", contentObj);
+          //   contentObj.content = editor.getHTML();
+          //   dispatch("updateContent", contentObj);
+        },
+      });
+    },
+    insert = ({ detail }) => {
+      let { key, items } = detail;
+      if (key === "template") {
+        editor.chain().focus().insertContent(items).run();
+      }
+      if (key === "media") {
+        for (let url of items) {
+          editor.commands.setImage({ src: url });
+        }
+      }
+      open = false;
+    };
   onMount(() => {
     loadEditor();
   });
@@ -151,8 +190,41 @@
             </span>
           </button>
         {/each}
+        <button
+          class="button button-outline button-sm"
+          on:click={() => {
+            open = true;
+            currentModalTab = modalTabs[2];
+          }}
+        >
+          <span>Insert Template</span>
+        </button>
       </Flex>
     </div>
   {/if}
   <div bind:this={editingBox}></div>
 </Flex>
+
+<Modal bind:open>
+  <Flex direction="column" gap="sm" slot="content">
+    <h3>Upload or Insert Media/Template</h3>
+    <Flex direction="column" gap="sm">
+      <Tabs>
+        {#each modalTabs as tab}
+          <Tabs.Tab
+            active={currentModalTab === tab}
+            on:click={() => (currentModalTab = tab)}
+          >
+            <span slot="label">{tab.title}</span>
+          </Tabs.Tab>
+        {/each}
+        <div slot="content">
+          <svelte:component
+            this={currentModalTab.component}
+            on:insert={insert}
+          />
+        </div>
+      </Tabs>
+    </Flex>
+  </Flex>
+</Modal>

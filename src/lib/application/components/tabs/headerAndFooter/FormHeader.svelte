@@ -1,6 +1,5 @@
 <script>
   import { Collapse } from "../../../../components/collapse/index";
-  import Modal from "../../../../components/modal/Modal.svelte";
   import Editor from "./Editor.svelte";
 </script>
 
@@ -10,11 +9,3 @@
     <Editor slot="content"></Editor>
   </Collapse.Panel>
 </Collapse>
-
-<!-- 
-<Modal>
-  <div slot="trigger">
-    <span>open modal...</span>
-  </div>
-  <div slot="content">modal content</div>
-</Modal> -->

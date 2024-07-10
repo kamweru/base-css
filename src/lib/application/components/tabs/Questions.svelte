@@ -40,7 +40,6 @@
 
 <Flex gap="xl" direction="column">
   <FormHeader></FormHeader>
-  <FormFooter></FormFooter>
   {#each Object.values(form.sections) as section, index}
     <Collapse>
       <Collapse.Panel>
@@ -51,14 +50,17 @@
           <Section bind:section></Section>
           <Flex gap="xl" direction="column">
             {#if section.questions && Object.keys(section.questions).length > 0}
-              <Collapse>
-                {#each Object.values(section.questions) as question, index}
-                  <Collapse.Panel>
-                    <span slot="header">Question {index + 1}</span>
-                    <Question bind:question bind:form slot="content"></Question>
-                  </Collapse.Panel>
-                {/each}
-              </Collapse>
+              <div class="padding-inline-sm">
+                <Collapse>
+                  {#each Object.values(section.questions) as question, index}
+                    <Collapse.Panel>
+                      <span slot="header">Question {index + 1}</span>
+                      <Question bind:question bind:form slot="content"
+                      ></Question>
+                    </Collapse.Panel>
+                  {/each}
+                </Collapse>
+              </div>
             {/if}
             <div class="pb:24">
               <Divider type="textCenter">
@@ -92,4 +94,5 @@
       </button>
     </Divider>
   </div>
+  <FormFooter></FormFooter>
 </Flex>
