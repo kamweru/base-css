@@ -30,6 +30,7 @@
             slot="input"
             class="input input-outline"
             bind:value={controlKey[controlKey]}
+            placeholder={controls[controlKey].placeholder}
           />
         </Field>
       {/each}

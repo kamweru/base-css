@@ -67,6 +67,7 @@
           <span slot="input">
             {#if control.inputType === "text"}
               <Input
+                size="sm"
                 type="underline"
                 bind:value={question[control.key]}
                 placeholder={control.placeholder}

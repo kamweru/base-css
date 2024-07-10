@@ -327,6 +327,28 @@ a {
 .shadow-secondary {
   box-shadow: var(--shadow-secondary);
 }
+.scrollbar {
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 8px;
+  --scrollbar-color: rgb(var(--green-7));
+  /* scrollbar-color: var(--scrollbar-color) transparent;
+  scrollbar-width: var(--scrollbar-width); */
+  overflow-y: scroll;
+}
+.scrollbar::-webkit-scrollbar {
+  width: var(--scrollbar-width-legacy);
+  height: var(--scrollbar-width-legacy);
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-color);
+  border-radius: 9999px;
+  border: var(--scrollbar-width) solid transparent;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 9999px;
+  border: var(--scrollbar-width) solid transparent;
+}
 .row {
   display: flex;
   flex-flow: row wrap;

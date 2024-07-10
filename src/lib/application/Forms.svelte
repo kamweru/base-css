@@ -17,7 +17,7 @@
     <h3>{title}</h3>
   </div>
   <div
-    class="bg:rgb($(gray-1)) r:16 p:16 flex:1 flex flex-column gap:32 overflow-y:scroll"
+    class="bg:rgb($(gray-1)) r:16 p:16 flex:1 flex flex-column gap:32 scrollbar"
   >
     {#if params && params.folderId && params.formId && pageData[params.folderId] && pageData[params.folderId].forms[params.formId]}
       <FormQuestions form={pageData[params.folderId].forms[params.formId]} />
