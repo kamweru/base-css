@@ -10,6 +10,26 @@ export const routes = [
     view: "Preview",
   },
   {
+    path: "/login",
+    name: "Login",
+    view: "Login",
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    view: "Signup",
+  },
+  {
+    path: "/forgot-password",
+    name: "ForgotPassword",
+    view: "ForgotPassword",
+  },
+  {
+    path: "/reset-password",
+    name: "ResetPassword",
+    view: "ResetPassword",
+  },
+  {
     path: "/docs",
     name: "Documentation",
     view: "Documentation",
